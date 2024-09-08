@@ -37,7 +37,7 @@
             <li><a href="/git/advertListing.php" class="menu-link">Search cars</a></li>
             <li><a href="service" class="menu-link">Services</a></li>
             <li><a href="about" class="menu-link">About us</a></li>
-            <li><a href="user/login">Sign in</a></li>
+            <li><a href="login">Sign in</a></li>
             <div>
                 <li><a href="../git/createAds.php" class="Ads-button Ads-mob" id="Ads-mob">Create Ads</a></li>
                 <div class="icons">

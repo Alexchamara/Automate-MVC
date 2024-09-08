@@ -14,7 +14,7 @@ $routes = [
     'service' => ['controller' => 'ViewController', 'method' => 'servicePage'],
 
     //route for signin page
-    'user/login' => ['controller' => 'UserManageController', 'method' => 'registerNewUser'],
+    'login' => ['controller' => 'UserManageController', 'method' => 'registerNewUser'],
 
     // '' => ['controller' => '', 'method' => ''],
     // '' => ['controller' => '', 'method' => ''],

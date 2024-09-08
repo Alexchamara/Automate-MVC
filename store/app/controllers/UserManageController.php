@@ -1,6 +1,6 @@
 <?php
 
-class UserManageControllers extends Controller
+class UserManageController extends Controller
 {
 
     //method to display all users
@@ -22,7 +22,7 @@ class UserManageControllers extends Controller
                 $_POST['uEmail'], 
                 $_POST['userName'], 
                 $_POST['uPassword']);
-            header('Location: ../user/login');
+            header('Location: ../login');
         }
         $this->renderView('Sign/SignIn');
     }
