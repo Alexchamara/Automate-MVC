@@ -11,20 +11,98 @@ class UserManageController extends Controller
         $this->renderView('');
     }
 
+    //methhod to display user dashboard after checking if the user is logged in
+    public function userDashboard()
+    {
+        if (isset($_SESSION['userId'])) {
+            if ($_SESSION['isAdmin'] == 1) {
+                $this->renderView('UserDashboard/AdminDashboard');
+            } else {
+                $this->renderView('UserDashboard/UserDashboard');
+            }
+            // $signModel = $this->loadModel("UserManage");
+            // $this->renderView('UserDashboard/UserDashboard');
+        }
+    }
+
     //method to register a new user
     public function registerNewUser()
     {
         //check if the request method is POST
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $signModel = $this->loadModel("UserManage");
-            $signModel->registerUser(
-                $_POST['uName'],
-                $_POST['uEmail'], 
-                $_POST['userName'], 
-                $_POST['uPassword']);
-            header('Location: ../login');
+            $uName = trim($_POST['uName']);
+            $uEmail = trim($_POST['uEmail']);
+            $uPassword = trim($_POST['uPassword']);
+            $uPwdRepeat = trim($_POST['uPwdRepeat']);
+
+            //validate the user input
+            if (empty($uName) || empty($uEmail) || empty($uPassword) || empty($uPwdRepeat)) {
+                header('Location: ?error=emptyinput');
+                exit();
+            } elseif (!filter_var($uEmail, FILTER_VALIDATE_EMAIL)) {
+                header('Location: ?error=invaildEmail');
+                exit();
+            } elseif ($uPassword !== $uPwdRepeat) {
+                header('Location: ?error=passwordsdontmatch');
+                exit();
+            } elseif (strlen($uPassword) < 8) {
+                header('Location: ?error=passwordshort');
+                exit();
+            } elseif ($signModel->getUserByEmail($uEmail)) {
+                header('Location: ?error=emailtaken');
+                exit();
+            } else {
+                $signModel->registerUser($uName, $uEmail, $uPassword);
+                header('Location: login');
+                exit();
+            }
         }
         $this->renderView('Sign/SignIn');
+    }
+
+    //method to login a user
+    public function loginUser()
+    {
+
+        //check if the request method is POST
+        if ($_SERVER['REQUEST_METHOD'] == "POST") {
+            $signModel = $this->loadModel("UserManage");
+            $uEmail = trim($_POST['uEmail']);
+            $uPassword = trim($_POST['uPassword']);
+
+            //validate the user input
+            if (empty($uEmail) || empty($uPassword)) {
+                header('Location: ?error=emptyinput');
+                exit();
+            } elseif (!filter_var($uEmail, FILTER_VALIDATE_EMAIL)) {
+                header('Location: ?error=invaildEmail');
+                exit();
+            } else {
+                $user = $signModel->loginUser($uEmail, $uPassword);
+                if ($user) {
+                    session_start();
+                    $_SESSION['userId'] = $user['userId'];
+                    $_SESSION['userName'] = $user['name'];
+                    $_SESSION['isAdmin'] = $user['isAdmin'];
+                    header("Location: home");
+                    exit();
+                } else {
+                    header('Location: ?error=wronglogin');
+                    exit();
+                }
+            }
+        }
+        $this->renderView('Sign/SignIn');
+    }
+
+    //method to logout a user
+    public function logoutUser()
+    {
+        session_start();
+        session_unset();
+        session_destroy();
+        header('Location: home');
     }
 
     //method to delete a user account by userId
@@ -43,15 +121,45 @@ class UserManageController extends Controller
         $this->renderView('');
     }
 
-    //method to update user's password by userId
-    public function updatePassword($userId)
+    //method to update a user password
+    public function updateUserPassword()
     {
-        $signModel = $this->loadModel("UserManage");
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $currentPassword = trim($_POST['currentPassword']);
+            $newPassword = trim($_POST['newPassword']);
+            $confirmPassword = trim($_POST['confirmPassword']);
 
-        if ($_SERVER['REQUEST_METHOD'] == "POST"){
-            $signModel->updateUserPassword($userId, $_POST['uPassword']);
-            header('Location: ../../users');
+            if (empty($currentPassword) || empty($newPassword) || empty($confirmPassword)) {
+                header('Location: ?error=emptyinput');
+                exit();
+            }
+
+            if ($newPassword !== $confirmPassword) {
+                header('Location: ?error=passwordsdontmatch');
+                exit();
+            }
+
+            if (strlen($newPassword) < 8) {
+                header('Location: ?error=passwordshort');
+                exit();
+            }
+
+            $userId = $_SESSION['userId'];
+            $signModel = $this->loadModel("UserManage");
+            $user = $signModel->getUserById($userId);
+
+            if ($user && password_verify($currentPassword, $user->userPassword)) {
+                $signModel->updatePassword($userId, $newPassword);
+
+                header('Location: ?updatepassword=success');
+                exit();
+            } else {
+                header('Location: ?error=incorrectpassword' . $currentPassword . $user->userPassword);
+                exit();
+            }
         }
-        //should add renderView?
+        else {
+            $this->renderView('UserDashboard/UserDashboard');
+        }
     }
 }

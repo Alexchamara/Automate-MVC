@@ -8,7 +8,7 @@
         </div>
         <!-- Sign out btn -->
         <div class="text-sm mb-4">
-            <a href="#" class="text-customBlue hover:underline">Sign out<i class="fa-solid fa-arrow-right-from-bracket ml-1"></i></a>
+            <a href="logout" class="text-customBlue hover:underline">Sign out<i class="fa-solid fa-arrow-right-from-bracket ml-1"></i></a>
         </div>
     </div>
 
@@ -39,12 +39,12 @@
                     <label for="myAdvert" class="dashboard-sidebar-title">My adverts</label><br>
                     <span class="dashboard-sidebar-sub-title">Vehicles you are selling</span>
                 </li>
-                <li class="u-sidebar-value" data-page="myMessages" onclick="loadPage('myMessages')">
+                <!-- <li class="u-sidebar-value" data-page="myMessages" onclick="loadPage('myMessages')">
                     <i class="fa-regular fa-envelope ud-icon-left"></i>
                     <i class="fa-solid fa-arrow-right-long"></i>
                     <label for="myAdvert" class="dashboard-sidebar-title">My messages</label><br>
                     <span class="dashboard-sidebar-sub-title">Send and receive messages</span>
-                </li>
+                </li> -->
                 <li class="u-sidebar-value" data-page="notifications" onclick="loadPage('notification')">
                     <i class="fa-regular fa-bell ud-icon-left"></i>
                     <i class="fa-solid fa-arrow-right-long"></i>
@@ -81,7 +81,7 @@
         <!-- Main Content -->
         <div class="u-dashboard-content-wrapper">
             <!-- Dashboard page -->
-            <div id="dashboard" class="ud-page-wrapper hidden">
+            <div id="dashboard" class="ud-page-wrapper">
                 <div class="ud-dashboard-page">
                     <h2 class="text-[40px] font-bold text-customBlue">Hello! Alex</h2>
                     <div class="flex gap-10 text-[#252a34] mb-4">
@@ -103,7 +103,7 @@
                     <div class="flex gap-10 text-[#252a34] mb-4">
                         <p class="mt-2">Make more money by selling your car with Automate 3 easy steps!</p>
                     </div>
-                    <a href="./createAds.php" class="ud-btn">Create your advert</a>
+                    <a href="createAdvert" class="ud-btn">Create your advert</a>
                 </div>
             </div>
 
@@ -130,13 +130,27 @@
                     <i class="fa-solid fa-magnifying-glass text-[#6C757D] text-[80px]"></i>
                     <h2 class="text-[#6C757D] text-[40px] font-bold">No adverts found</h2>
                     <span class="text-[#6C757D]">We couldn't find any records. Try changing search filters</span>
-                    <a href="./createAds.php" class="border bg-customRed text-white px-7 py-2 rounded-[50px] hover:shadow-4xl transition-all duration-300 ease-in-out">Create a new advert</a>
+                    <a href="createAdvert" class="border bg-customRed text-white px-7 py-2 rounded-[50px] hover:shadow-4xl transition-all duration-300 ease-in-out">Create a new advert</a>
                 </div>
             </div>
 
-            <div id="myMessages" class="ud-page-wrapper bg-white p-6 rounded shadow hidden">
+            <!-- My messages -->
+            <!-- <div id="myMessages" class="ud-page-wrapper bg-white p-6 rounded shadow hidden">
                 <h2 class="text-2xl font-bold text-blue-900">My messages</h2>
                 <p class="mt-2">Your messages.</p>
+            </div> -->
+
+
+            <!-- Notification page -->
+            <div id="notification" class="ud-page-wrapper hidden">
+                <div class="ud-presonal-page">
+                    <!-- order page -->
+                </div>
+                <div class="ud-empty-body">
+                    <i class="fa-solid fa-magnifying-glass text-[#6C757D] text-[80px]"></i>
+                    <h2 class="text-[#6C757D] text-[40px] font-bold">No any notification found</h2>
+                    <span class="text-[#6C757D]">We couldn't find any notification.</span>
+                </div>
             </div>
 
             <!-- Saved ad page -->
@@ -151,72 +165,115 @@
                     </div>
                 </div>
 
-                <?php
-                // Assuming $savedAds is an array containing saved ads
-                $savedAds = [1, 2]; // Replace this with actual data fetching logic
-
-                if (count($savedAds) > 0): ?>
-                    <div class="ud-savedAd-container">
-                        <ul>
-                            <?php foreach ($savedAds as $ad): ?>
-                                <li>
-                                    <?php require "./savedAdvertContainer.php"; ?>
-                                </li>
-                            <?php endforeach; ?>
-                        </ul>
-                    </div>
-                <?php else: ?>
-                    <!-- empty body -->
-                    <div class="ud-empty-body">
-                        <i class="fa-solid fa-magnifying-glass text-[#6C757D] text-[80px]"></i>
-                        <h2 class="text-[#6C757D] text-[40px] font-bold">No saved adverts found</h2>
-                        <span class="text-[#6C757D]">We couldn't find any saved adverts. Try changing search filters.</span>
-                        <a href="./advertListing.php" class="border bg-customRed text-white px-7 py-2 rounded-[50px] hover:shadow-4xl transition-all duration-300 ease-in-out">Show latest adverts</a>
-                    </div>
-                <?php endif; ?>
+                <div class="ud-savedAd-container">
+                    <ul>
+                        <?php foreach ($savedAds as $ad): ?>
+                            <li>
+                                <?php require "./savedAdvertContainer.php"; ?>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+                <div class="ud-empty-body">
+                    <i class="fa-solid fa-magnifying-glass text-[#6C757D] text-[80px]"></i>
+                    <h2 class="text-[#6C757D] text-[40px] font-bold">No saved adverts found</h2>
+                    <span class="text-[#6C757D]">We couldn't find any records. Try changing search filters</span>
+                    <a href="#" class="border bg-customRed text-white px-7 py-2 rounded-[50px] hover:shadow-4xl transition-all duration-300 ease-in-out">Show latest adverts</a>
+                </div>
             </div>
 
-            <div id="myOrders" class="ud-page-wrapper bg-white p-6 rounded shadow hidden">
-                <h2 class="text-2xl font-bold text-blue-900">My orders</h2>
-                <p class="mt-2">Your orders.</p>
+            <!-- My order page -->
+            <div id="myOrders" class="ud-page-wrapper hidden">
+                <div class="ud-presonal-page">
+                    <!-- order page -->
+                </div>
+                <div class="ud-empty-body">
+                    <i class="fa-solid fa-magnifying-glass text-[#6C757D] text-[80px]"></i>
+                    <h2 class="text-[#6C757D] text-[40px] font-bold">No order found</h2>
+                    <span class="text-[#6C757D]">We couldn't find any records. Try changing search filters</span>
+                </div>
             </div>
-            <div id="personalDetails" class="ud-page-wrapper bg-white p-6 rounded shadow hidden">
-                <h2 class="text-2xl font-bold text-blue-900">Personal details</h2>
-                <p class="mt-2">Your personal details.</p>
+
+            <!-- My presonal details -->
+            <div id="personalDetails" class="ud-page-wrapper hidden">
+                <div class="ud-presonal-page">
+                    <div class="ud-pro-change">
+                        <h2 class="text-[50px] font-bold text-customBlue">Your details</h2>
+                        <span>Please keep your details up to date. Your personal data are stored securely. We do not share information with third parties.</span>
+                        <form action="" method="POST" class="mt-4">
+                            <div class="mb-4">
+                                <span class="required"></span>
+                                <label for="fullName" class="block text-sm font-medium text-gray-700 required">Full Name
+                                    <span class="required"></span>
+                                </label>
+                                <input type="text" name="" id="" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="email" class="block text-sm font-medium text-gray-700 required">Email address
+                                    <span class="required"></span>
+                                </label>
+                                <input type="text" name="" id="" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="mobile" class="block text-sm font-medium text-gray-700 ">Mobile
+                                </label>
+                                <input type="number" name="" id="" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" oninput="limitInputLength(this)">
+                            </div>
+                            <button type="submit" class="ud-btn">Save my details</button>
+                        </form>
+                    </div>
+                </div>
             </div>
 
             <!-- Account security page -->
-            <div id="accountSecurity" class="ud-page-wrapper">
+            <div id="accountSecurity" class="ud-page-wrapper hidden">
                 <div class="ud-security-page">
                     <div class="ud-pw-change">
                         <h2 class="text-[50px] font-bold text-customBlue">Your password</h2>
                         <span>Please make sure to have a secure password with at least 6 characters long.</span>
-                        <form action="" method="post" class="mt-4">
+                        <form action="changePassword" method="POST" class="mt-4">
                             <div class="mb-4">
-                                <label for="currentPassword" class="block text-sm font-medium text-gray-700">Current password</label>
+                                <span class="required"></span>
+                                <label for="currentPassword" class="block text-sm font-medium text-gray-700 required">Current password
+                                    <span class="required"></span>
+                                </label>
                                 <input type="password" name="currentPassword" id="currentPassword" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
                             </div>
                             <div class="mb-4">
-                                <label for="newPassword" class="block text-sm font-medium text-gray-700">New password</label>
+                                <label for="newPassword" class="block text-sm font-medium text-gray-700 required">New password
+                                    <span class="required"></span>
+                                </label>
                                 <input type="password" name="newPassword" id="newPassword" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
                             </div>
                             <div class="mb-4">
-                                <label for="confirmPassword" class="block text-sm font-medium text-gray-700">Confirm password</label>
+                                <label for="confirmPassword" class="block text-sm font-medium text-gray-700 required">Confirm password
+                                    <span class="required"></span>
+                                </label>
                                 <input type="password" name="confirmPassword" id="confirmPassword" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
                             </div>
-                            <button type="submit" class="ud-btn">Change password</button>
+                            <button type="submit" class="ud-btn">Change my password</button>
                         </form>
                     </div>
                 </div>
-                <div class="ud-security-page">
-                    <h2 class="text-2xl font-bold text-blue-900">Account security</h2>
-                    <p class="mt-2">Change your password.</p>
+                <div class="bg-red-100 p-6 rounded shadow-6xl my-5">
+                    <div class="ud-dlt-acc ">
+                        <h2 class="text-[50px] font-bold text-customBlue">Delete account</h2>
+                        <span>By deleting the account your data will be permanently removed and you will no longer have access to them.</span>
+                    </div>
+                    <button type="submit" class="ud-btn mt-3">Delete my account</button>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
+        // Limit the input length in mobile number
+        function limitInputLength(element) {
+            if (element.value.length > 10) {
+                element.value = element.value.slice(0, 10);
+            }
+        }
+
         // Load the dashboard page in mobile view
         document.getElementById('menuToggle').addEventListener('click', function() {
             const sidebar = document.getElementById('sidebar');

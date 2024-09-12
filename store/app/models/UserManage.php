@@ -21,25 +21,49 @@ class UserManage
     }
 
     //method to add new user to the database
-    public function registerUser($name, $email, $userName, $userPassword)
+    public function registerUser($name, $email, $userPassword)
     {
-        $this->db->query("INSERT INTO users (name, email, userName, userPassword) VALUES (:name, :email, :userName, :userPassword)");
 
+        $this->db->query("INSERT INTO users (name, email, userPassword) VALUES (:name, :email, :userPassword)");
+    
         $this->db->bind(':name', $name);
         $this->db->bind(':email', $email);
-        $this->db->bind(':userName', $userName);
-        $this->db->bind(':userPassword', $userPassword);
+        $this->db->bind(':userPassword', password_hash($userPassword, PASSWORD_DEFAULT));
 
         $this->db->execute();
     }
 
-    //method to update user's password to the database
-    public function updateUserPassword($userId, $userPassword)
+    //method to login a user by email and password
+    public function loginUser($email, $userPassword)
+    {
+        $this->db->query("SELECT * FROM users WHERE email=:email");
+
+        $this->db->bind(':email', $email);
+
+        $this->db->execute();
+
+        $user = $this->db->result();
+
+        //check if the user exists
+        if ($user) {
+            $hashedPwd = $user["userPassword"];
+            if (password_verify($userPassword, $hashedPwd)) {
+                return $user;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    //method to update a user password in the database
+    public function updatePassword($userId, $newPassword)
     {
         $this->db->query("UPDATE users SET userPassword=:userPassword WHERE userId=:userId");
 
-        $this->db->bind(":userId", $userId);
-        $this->db->bind(":userPassword", $userPassword);
+        $this->db->bind(':userPassword', password_hash($newPassword, PASSWORD_DEFAULT));
+        $this->db->bind(':userId', $userId);
 
         $this->db->execute();
     }
@@ -65,4 +89,18 @@ class UserManage
 
         $this->db->execute();
     }
+
+    //method to get a user by email from the database
+    public function getUserByEmail($email)
+    {
+        $this->db->query("SELECT * FROM users WHERE email=:email");
+
+        $this->db->bind(':email', $email);
+
+        $this->db->execute();
+
+        return $this->db->result();
+    }
 }
+
+

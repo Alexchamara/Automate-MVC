@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,12 +32,16 @@
         <a href="home" class="logo">automate</a>
 
         <ul class="navlist">
-            <li><a href="/git/advertListing.php" class="menu-link">Search cars</a></li>
+            <li><a href="allAdverts" class="menu-link">Search cars</a></li>
             <li><a href="service" class="menu-link">Services</a></li>
             <li><a href="about" class="menu-link">About us</a></li>
-            <li><a href="login">Sign in</a></li>
+            <?php
+            $link = isset($_SESSION['userName']) ? 'dashboard' : 'sign';
+            $linkText = isset($_SESSION['userName']) ? "My Account (" . explode(' ', $_SESSION['userName'])[0] . ")" : "Sign in";
+            echo '<a href="' . $link . '" class="menu-link dropdown-toggle">' . $linkText . '</a>';
+            ?>
             <div>
-                <li><a href="../git/createAds.php" class="Ads-button Ads-mob" id="Ads-mob">Create Ads</a></li>
+                <li><a href="createAdvert" class="Ads-button Ads-mob" id="Ads-mob">Create Ads</a></li>
                 <div class="icons">
                     <a href="https://www.instagram.com/alex.chamara?igsh=MTF4MmdqeHA5MDNtOA%3D%3D&utm_source=qr" target="_blank"><i class="ri-instagram-line"></i></a>
                     <a href="https://www.facebook.com/profile.php?id=100070128788033&mibextid=LQQJ4d" target="_blank"><i class="ri-facebook-circle-line"></i></a>
@@ -50,10 +52,8 @@
 
         <div class="bx bx-menu" id="menu-icon"></div>
     </header>
-    
 
-
-
+    <!-- Include the view file -->
     <?php
     // Ensure $viewPath is set correctly
     if (isset($viewPath)) {
@@ -95,10 +95,10 @@
                     <h3>Automate</h3>
                     <ul>
                         <li>
-                            <a href="about.php">About Us</a>
+                            <a href="about">About Us</a>
                         </li>
                         <li>
-                            <a href="#">Contact Us</a>
+                            <a href="about">Contact Us</a>
                         </li>
                         <li>
                             <a href="#">Careers</a>
@@ -109,13 +109,13 @@
                     <h3>Find my car</h3>
                     <ul>
                         <li>
-                            <a href="/git/advertListing.php">Search cars</a>
+                            <a href="allAdverts">Search cars</a>
                         </li>
                         <li>
-                            <a href="#">Buying advice</a>
+                            <a href="service">Buying advice</a>
                         </li>
                         <li>
-                            <a href="#">Account loging</a>
+                            <a href="sign">Account loging</a>
                         </li>
                     </ul>
                 </div>
@@ -123,10 +123,10 @@
                     <h3>Sell my car</h3>
                     <ul>
                         <li>
-                            <a href="../git/createAds.php">Advertise</a>
+                            <a href="createAdvert">Advertise</a>
                         </li>
                         <li>
-                            <a href="#">Advert promotion</a>
+                            <a href="service">Advert promotion</a>
                         </li>
                         <li>
                             <a href="#">Car valuation</a>

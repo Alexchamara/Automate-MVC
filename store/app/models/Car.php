@@ -11,14 +11,6 @@ class Car
         $this->db = new Database();
     }
 
-    //method to retrieve all listings from the database
-    public function getAllCar()
-    {
-        $this->db->query("SELECT * FROM car");
-        $this->db->execute();
-        return $this->db->results();
-    }
-
     //method to add a new car to the database
     public function addCar($make, $model, $color, $conditions, $mileage, $bodyType, $fuelType, $images, $price, $location, $description)
     {

@@ -117,7 +117,7 @@
 
 /* about page - start */
 .about-main-wrapper {
-    @apply h-[100%] bg-cover bg-center bg-no-repeat shadow-3xl;
+    @apply h-[100vh] bg-cover bg-center bg-no-repeat shadow-3xl bg-[url(../img/about_main.jpg)];
 }
 
 .about-main-info {
@@ -198,11 +198,11 @@
 }
 
 .aw-intro-btn {
-    @apply text-[#A82E23] text-center;
+    @apply text-[#A82E23] text-center ;
 }
 
 .aw-intro-btn-1 {
-    @apply tracking-[0.1rem] rounded-[50px] border py-[5px] px-[13px] border-[#A82E23] hover:bg-[#A82E23] hover:text-white transition-all duration-300 ease-in-out;
+    @apply tracking-[0.1rem] rounded-[50px] border py-[5px] px-[13px] border-[#A82E23] hover:text-white hover:bg-[#A82E23]  transition-all duration-300 ease-in-out;
 }
 
 /* about page - end */
@@ -368,7 +368,9 @@
 
 .ud-dashboard-page,
 .ud-advert-page,
-.ud-saved-advert-page, .ud-security-page {
+.ud-saved-advert-page,
+.ud-security-page,
+.ud-presonal-page {
     @apply bg-white p-6 rounded shadow-6xl mb-5;
 }
 
@@ -443,6 +445,26 @@
 }
 
 
+/* edit admin dashboard */
+.plt-summery {
+    @apply grid grid-cols-2 grid-rows-2 gap-5;
+}
+
+.plt-summery-lists {
+    @apply relative p-4 bg-white rounded shadow-6xl h-[150px];
+}
+
+.summery-title {
+    @apply text-customBlue text-2xl;
+}
+
+.summary-amount {
+    @apply text-4xl font-bold text-customBlue;
+}
+
+.summery-icon{
+    @apply absolute bottom-2 right-2 text-customBlue text-2xl;
+}
 
 
 
@@ -465,7 +487,7 @@
     @apply  fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 opacity-0 pointer-events-none transition-opacity duration-300 ease-in-out;
 } */
 
-.delete-popUp-wrapper{
+.delete-popUp-wrapper {
     @apply flex flex-col items-center bg-white rounded-lg p-10 w-[520px] transform scale-90 transition-transform duration-300 ease-in-out;
 }
 
@@ -491,4 +513,4 @@
 
 #delete-button {
     @apply bg-customRed text-white px-4 py-2 rounded hover:bg-red-600 focus:outline-none;
-} 
+}

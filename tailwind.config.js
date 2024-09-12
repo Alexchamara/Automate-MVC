@@ -1,6 +1,14 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./*.php", "./lang/*.php", "./lang/*.html", "./js/custom.min.js", "./src/**/*.{html,js,php}"],
+  // content: ["./*.php", "./lang/*.php", "./lang/*.html", "./js/custom.min.js", "./src/**/*.{html,js,php}"],
+  // purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
+  content: [
+
+
+
+    "./store/app/views/**/*.{html,js,php}",
+  ],
+  // darkMode: false,
   theme: {
     extend: {
       skew: {

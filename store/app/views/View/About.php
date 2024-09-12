@@ -1,6 +1,6 @@
 <main class="main-about-container">
     <section class="about-main-container">
-        <div class="about-main-wrapper bg-[url('../img/insurence.png')]">
+        <div class="about-main-wrapper ">
             <div class="about-main-info">
                 <h1 class="about-main-titel">Hi, we’re Automate</h1>
                 <p class="about-main-sub-titel">We are the fastest growing largest digital automotive
@@ -15,7 +15,7 @@
     </section>
 
     <!-- section 01 -->
-    <!-- <section class="about-wrap1">
+    <section class="about-wrap1">
         <div class="about-w-body">
             <h2 class="about-w-titel">Our mission simple</h2>
             <p class="aw-body-para1">Our purpose is to lead the future of the digital automotive marketplace. We aim to improve the process of buying and selling vehicles, by
@@ -32,10 +32,10 @@
                 </div>
             </div>
         </div>
-    </section> -->
+    </section>
 
     <!-- section 02 -->
-    <!-- <section class="about-wrap2">
+    <section class="about-wrap2">
         <div class="about-w-body1">
             <h2 class="about-w-titel">Our services for everyone</h2>
             <p class="aw-body-para1">We believe in giving back to the community. So, we made our services are free for everyone.</p>
@@ -50,7 +50,7 @@
                     <p class="aw-intro-para-1">From desire, to research, to decision - Automate makes the consumer journey easier.</p><br>
                 </div>
                 <div class="aw-intro-btn">
-                    <a href="#" class="aw-intro-btn-1">Find my car<i class="fa-solid fa-arrow-right text-[#A82E23] ml-[5px]"></i></a>
+                    <a href="allAdverts" class="aw-intro-btn-1">Find my car<i class="fa-solid fa-arrow-right ml-[5px]"></i></a>
                 </div>
             </div>
 
@@ -63,7 +63,7 @@
                     <p class="aw-intro-para-1">We offer a range of products and services to help win the today’s digital automotive marketplace.</p><br>
                 </div>
                 <div class="aw-intro-btn">
-                    <a href="#" class="aw-intro-btn-1">Sell my car<i class="fa-solid fa-arrow-right text-[#A82E23] ml-[5px]"></i></a>
+                    <a href="createAdvert" class="aw-intro-btn-1">Sell my car<i class="fa-solid fa-arrow-right ml-[5px]"></i></a>
                 </div>
             </div>
 
@@ -76,11 +76,11 @@
                     <p class="aw-intro-para-1">Our platform enables trade sellers to advertise to the largest car buying audience.</p><br>
                 </div>
                 <div class="aw-intro-btn">
-                    <a href="#" class="aw-intro-btn-1">Start selling<i class="fa-solid fa-arrow-right hover:text-white text-[#A82E23] ml-[5px]"></i></a>
+                    <a href="createAdvert" class="aw-intro-btn-1">Start selling<i class="fa-solid fa-arrow-right hover:text-white ml-[5px]"></i></a>
                 </div>
             </div>
 
 
         </div>
-    </section> -->
+    </section>
 </main>

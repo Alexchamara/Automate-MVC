@@ -21,7 +21,7 @@
     </div>
 
     <!-- Add vehicle informations -->
-    <form action="include/createAds_inc.php" method="post" id="multi-step-form">
+    <form method="POST" id="multi-step-form">
         <div class="form-step active form_1">
             <h2>Make & model</h2>
             <div class="sec-box">
@@ -102,7 +102,7 @@
                     <label for="year" class="required">Year of registration
                         <span class="required"></span>
                     </label><br>
-                    <select name="years" id="years">
+                    <select name="registrationYear" id="years">
                         <option value="">Select</option>
                         <option value="2024">2024</option>
                         <option value="2023">2023</option>
@@ -168,8 +168,8 @@
                     <label for="condition" class="required">Condition
                         <span class="required"></span>
                     </label><br>
-                    <select name="condition" id="condition">
-                        <option value="DEF">Select</option>
+                    <select name="conditions" id="condition">
+                        <option value="">Select</option>
                         <option value="brand new">Brand new</option>
                         <option value="reconditioned">Reconditioned</option>
                         <option value="used">Used</option>
@@ -182,7 +182,7 @@
                         <span class="required"></span>
                     </label><br>
                     <select id="engine" name="engine">
-                        <option value="DEF">Select</option>
+                        <option value="">Select</option>
                         <option value="0.6L">0.6L</option>
                         <option value="0.7L">0.7L</option>
                         <option value="0.8L">0.8L</option>
@@ -215,6 +215,19 @@
                         <option value="7.0L">7.0L</option>
                     </select>
                 </div>
+                <!-- colors -->
+                <div class="col-left">
+                    <label for="colors" class="required">Color
+                        <span class="required"></span>
+                    </label><br>
+                    <select name="color" id="color">
+                        <option value="">Select</option>
+                        <option value="red">Red</option>
+                        <option value="green">Green</option>
+                        <option value="blue">Blue</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
             </div>
 
             <div class="vhicle-details-container">
@@ -231,7 +244,7 @@
                         <button type="button" data-value="Estate">Estate</button>
                         <button type="button" data-value="4X4">4X4</button>
                         <button type="button" data-value="Other">Other</button>
-                        <input type="hidden" name="body_type" id="body_type">
+                        <input type="hidden" name="bodyType" id="body_type" value="">
                     </div>
                 </div>
 
@@ -243,7 +256,7 @@
                         <button type="button" data-value="Manual">Manual</button>
                         <button type="button" data-value="Tiptronic">Tiptronic</button>
                         <button type="button" data-value="Other">Other</button>
-                        <input type="hidden" name="gearbox" id="gearbox">
+                        <input type="hidden" name="transmission" id="gearbox" value="">
                     </div>
                 </div>
 
@@ -257,7 +270,7 @@
                         <button type="button" data-value="Hybrid">Hybrid</button>
                         <button type="button" data-value="Gas">Gas</button>
                         <button type="button" data-value="Other">Other</button>
-                        <input type="hidden" name="fuel_type" id="fuel_type">
+                        <input type="hidden" name="fuelType" id="fuel_type" value="">
                     </div>
                 </div>
             </div>
@@ -272,7 +285,7 @@
                 main.</span>
             <div class="sec-box img-up">
                 <div class="image-uploader">
-                    <input type="file" name="carImg" id="image-input" multiple accept="image/*">
+                    <input type="file" name="images" id="image-input" multiple accept="image/*">
                     <label for="image-input"><i class="fa-solid fa-plus" style="color: rgb(11, 25, 111);"></i><br>Add photo</label>
                     <div class="image-preview" id="image-preview"></div>
                 </div>
@@ -470,31 +483,89 @@
         container.addEventListener('dragend', handleDragEnd, false);
     }
 
-    imagePreview.addEventListener('DOMNodeInserted', function(e) {
-        if (e.target.className === 'image-container') {
-            e.target.setAttribute('draggable', 'true');
-            addDnDHandlers(e.target);
+    // imagePreview.addEventListener('DOMNodeInserted', function(e) {
+    //     if (e.target.className === 'image-container') {
+    //         e.target.setAttribute('draggable', 'true');
+    //         addDnDHandlers(e.target);
+    //     }
+    // });
+
+    document.addEventListener('DOMContentLoaded', (event) => {
+        // Callback function to execute when mutations are observed
+        const callback = function(mutationsList, observer) {
+            for (let mutation of mutationsList) {
+                if (mutation.type === 'childList') {
+                    console.log('A child node has been added or removed.');
+                    // Your existing code here
+                }
+            }
+        };
+
+        // Create an observer instance linked to the callback function
+        const observer = new MutationObserver(callback);
+
+        // Options for the observer (which mutations to observe)
+        const config = {
+            childList: true,
+            subtree: true
+        };
+
+        // Target element to observe
+        const imagePreview = document.getElementById('imagePreview');
+
+        // Start observing the target element for configured mutations
+        if (imagePreview) {
+            observer.observe(imagePreview, config);
         }
     });
 
     // handle button selection for body type, gearbox, and fuel type
-    document.querySelectorAll('.options').forEach(optionGroup => {
-        optionGroup.querySelectorAll('button').forEach(button => {
-            button.addEventListener('click', function() {
-                // Remove selected state from all buttons in the group
-                optionGroup.querySelectorAll('button').forEach(btn => {
-                    btn.classList.remove('bg-customBlue', 'text-white');
-                    btn.classList.add('bg-customBlue', 'text-gray-900');
+    document.addEventListener('DOMContentLoaded', (event) => {
+        document.querySelectorAll('.options').forEach(optionGroup => {
+            optionGroup.querySelectorAll('button').forEach(button => {
+                button.addEventListener('click', function() {
+                    console.log('Button clicked:', this); // Debugging log
+
+                    // Remove selected state from all buttons in the group
+                    optionGroup.querySelectorAll('button').forEach(btn => {
+                        btn.classList.remove('bg-customBlue', 'text-white');
+                        btn.classList.add('bg-customBlue', 'text-gray-900');
+                    });
+
+                    // Add selected state to the clicked button
+                    this.classList.add('bg-customBlue', 'text-white');
+                    this.classList.remove('bg-customBlue', 'text-gray-900');
+
+                    // Update the hidden input with the selected value
+                    let hiddenInput = optionGroup.querySelector('input[type="hidden"]');
+                    if (hiddenInput) {
+                        hiddenInput.value = this.getAttribute('data-value');
+                        console.log('Hidden input updated:', hiddenInput.value); // Debugging log
+                    } else {
+                        console.error('Hidden input not found'); // Error log
+                    }
                 });
-
-                // Add selected state to the clicked button
-                this.classList.add('bg-customBlue', 'text-white');
-                this.classList.remove('bg-customBlue', 'text-gray-900');
-
-                // Update the hidden input with the selected value
-                let hiddenInput = optionGroup.querySelector('input[type="hidden"]');
-                hiddenInput.value = this.getAttribute('data-value');
             });
         });
     });
+
+    // document.querySelectorAll('.options').forEach(optionGroup => {
+    //     optionGroup.querySelectorAll('button').forEach(button => {
+    //         button.addEventListener('click', function() {
+    //             // Remove selected state from all buttons in the group
+    //             optionGroup.querySelectorAll('button').forEach(btn => {
+    //                 btn.classList.remove('bg-customBlue', 'text-white');
+    //                 btn.classList.add('bg-customBlue', 'text-gray-900');
+    //             });
+
+    //             // Add selected state to the clicked button
+    //             this.classList.add('bg-customBlue', 'text-white');
+    //             this.classList.remove('bg-customBlue', 'text-gray-900');
+
+    //             // Update the hidden input with the selected value
+    //             let hiddenInput = optionGroup.querySelector('input[type="hidden"]');
+    //             hiddenInput.value = this.getAttribute('data-value');
+    //         });
+    //     });
+    // });
 </script>

@@ -15,10 +15,17 @@
     z-index: 1;
 }
 
+.dBoard{
+    display: flex;
+    gap: 40px;
+    margin-bottom: 16px;
+    font-weight: bold;
+}
+
 /* Main img in home */
 .home-main-container{
     box-shadow: 10px 10px 10px #80808099;
-    height: 100%;
+    height: 100vh;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

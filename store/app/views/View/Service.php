@@ -6,8 +6,8 @@
             <span class="s-phara top-t">See what you could get if you sold your car yourself, <br>or get a guide price of you’re looking to buy.</span>
         </div>
         <div class="img-wrapper">
-            <div class="l-img bg-[url('../img/silver-car.png')]">
-                <div class="m-img bg-[url('../img/question.png')]"></div>
+            <div class="l-img bg-[url('../../public/img/silver-car.png')]">
+                <div class="m-img bg-[url('../../public/img/question.png')]"></div>
             </div>
         </div>
     </section>
@@ -33,7 +33,8 @@
                     </div>
                 </div>
             </div>
-            <div class="sw-imgs1 bg-[url('../img/insurence.png')]"></div>
+            <div class="sw-imgs1 bg-[url('../../public/img/insurence.png')]"></div>
+            <!-- <img src="img/insurence.png"/> -->
         </div>
     </section>
 
@@ -64,7 +65,7 @@
                     <a href="#" class="loan-btn" id="">Apply your finance</a>
                 </div>
             </div>
-            <div class="w-imgs2 bg-[url('../img/Finance.png')]"></div>
+            <div class="w-imgs2 bg-[url('../../public/img/Finance.png')]"></div>
         </div>
     </section>
 
@@ -79,7 +80,7 @@
                     <a href="#" class="loan-btn" id="">Learn more</a>
                 </div>
             </div>
-            <div class="sw-imgs3 bg-[url('../img/service.png')]"></div>
+            <div class="sw-imgs3 bg-[url('../../public/img/service.png')]"></div>
         </div>
     </section>
 </main>

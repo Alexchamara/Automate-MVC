@@ -3,7 +3,7 @@
 class Controller{
     //method to load a model, takes the model name as a parameter
     protected function loadModel($model){
-        require_once '../app/models' . $model . '.php';
+        require_once '../app/models/' . $model . '.php';
         return new $model;
     }
 

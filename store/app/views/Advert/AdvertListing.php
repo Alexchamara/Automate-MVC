@@ -198,13 +198,5 @@
     </aside>
 
     <!-- car listings -->
-    <section class="listing-container">
-        <ul>
-            <?php for ($i = 0; $i < 5; $i++): ?>
-                <li class="listing-value-wrapper">
-                    <?php require "./listingContainer.php"; ?>
-                </li>
-            <?php endfor; ?>
-        </ul>
-    </section>
+    
 </main>
