@@ -45,6 +45,12 @@
                     <label for="users" class="dashboard-sidebar-title">Users</label><br>
                     <span class="dashboard-sidebar-sub-title">Manage all users</span>
                 </li>
+                <li class="u-sidebar-value" data-page="admin" onclick="loadPage('admin')">
+                    <i class="fa-solid fa-user-tie ud-icon-left"></i>
+                    <i class=" fa-solid fa-arrow-right-long"></i>
+                    <label for="admin" class="dashboard-sidebar-title">Admin</label><br>
+                    <span class="dashboard-sidebar-sub-title">Manage all admins</span>
+                </li>
                 <li class="u-sidebar-value" data-page="personalDetails" onclick="loadPage('personalDetails')">
                     <i class="fa-regular fa-user ud-icon-left"></i>
                     <i class="fa-solid fa-arrow-right-long"></i>
@@ -175,7 +181,7 @@
                 </div>
             </div>
 
-            <!-- Saved ad page -->
+            <!-- users page -->
             <div id="users" class="ud-page-wrapper hidden">
                 <div class="ud-saved-advert-page">
                     <div class="ud-advert-status-wrapper flex-[25%]">
@@ -200,77 +206,112 @@
                 </div>
             </div>
 
-        <!-- My presonal details -->
-        <div id="personalDetails" class="ud-page-wrapper hidden">
-            <div class="ud-presonal-page">
-                <div class="ud-pro-change">
-                    <h2 class="text-[50px] font-bold text-customBlue">Your details</h2>
-                    <span>Please keep your details up to date. Your personal data are stored securely. We do not share information with third parties.</span>
-                    <form action="" method="POST" class="mt-4">
-                        <div class="mb-4">
-                            <span class="required"></span>
-                            <label for="fullName" class="block text-sm font-medium text-gray-700 required">Full Name
+            <!-- admin page -->
+            <div id="admin" class="ud-page-wrapper hidden">
+                <div class="ud-presonal-page">
+                    <div class="ud-pro-change">
+                        <h2 class="text-[50px] font-bold text-customBlue">Add admin</h2>
+                        <span>Fill out the form below to add a new admin. Ensure that all information is accurate and complete.</span>
+                        <form action="newAdmin" method="POST" class="mt-4">
+                            <div class="mb-4">
                                 <span class="required"></span>
-                            </label>
-                            <input type="text" name="" id="" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
-                        </div>
-                        <div class="mb-4">
-                            <label for="email" class="block text-sm font-medium text-gray-700 required">Email address
-                                <span class="required"></span>
-                            </label>
-                            <input type="text" name="" id="" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
-                        </div>
-                        <div class="mb-4">
-                            <label for="mobile" class="block text-sm font-medium text-gray-700">Mobile
-                            </label>
-                            <input type="number" name="" id="" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" oninput="limitInputLength(this)">
-                        </div>
-                        <button type=" submit" class="ud-btn">Save my details</button>
-                    </form>
+                                <label for="fullName" class="block text-sm font-medium text-gray-700 required">Full Name
+                                </label>
+                                <input type="text" name="uName" id="" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="email" class="block text-sm font-medium text-gray-700 required">Email address
+                                </label>
+                                <input type="text" name="uEmail" id="" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="password" class="block text-sm font-medium text-gray-700 required">Password
+                                </label>
+                                <input type="password" name="uPassword" id="" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="comfirmPassword" class="block text-sm font-medium text-gray-700 required">Confirm Password
+                                </label>
+                                <input type="password" name="uPwdRepeat" id="" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
+                            </div>
+                            <button type="submit" class="ud-btn">Add admin</button>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Account security page -->
-        <div id="accountSecurity" class="ud-page-wrapper hidden">
-            <div class="ud-security-page">
-                <div class="ud-pw-change">
-                    <h2 class="text-[50px] font-bold text-customBlue">Your password</h2>
-                    <span>Please make sure to have a secure password with at least 6 characters long.</span>
-                    <form action="changePassword" method="POST" class="mt-4">
-                        <div class="mb-4">
-                            <span class="required"></span>
-                            <label for="currentPassword" class="block text-sm font-medium text-gray-700 required">Current password
+            <!-- My presonal details -->
+            <div id="personalDetails" class="ud-page-wrapper hidden">
+                <div class="ud-presonal-page">
+                    <div class="ud-pro-change">
+                        <h2 class="text-[50px] font-bold text-customBlue">Your details</h2>
+                        <span>Please keep your details up to date. Your personal data are stored securely. We do not share information with third parties.</span>
+                        <form action="" method="POST" class="mt-4">
+                            <div class="mb-4">
                                 <span class="required"></span>
-                            </label>
-                            <input type="password" name="currentPassword" id="currentPassword" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
-                        </div>
-                        <div class="mb-4">
-                            <label for="newPassword" class="block text-sm font-medium text-gray-700 required">New password
-                                <span class="required"></span>
-                            </label>
-                            <input type="password" name="newPassword" id="newPassword" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
-                        </div>
-                        <div class="mb-4">
-                            <label for="confirmPassword" class="block text-sm font-medium text-gray-700 required">Confirm password
-                                <span class="required"></span>
-                            </label>
-                            <input type="password" name="confirmPassword" id="confirmPassword" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
-                        </div>
-                        <button type="submit" class="ud-btn">Change my password</button>
-                    </form>
+                                <label for="fullName" class="block text-sm font-medium text-gray-700 required">Full Name
+                                    <span class="required"></span>
+                                </label>
+                                <input type="text" name="" id="" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="email" class="block text-sm font-medium text-gray-700 required">Email address
+                                    <span class="required"></span>
+                                </label>
+                                <input type="text" name="" id="" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="mobile" class="block text-sm font-medium text-gray-700">Mobile
+                                </label>
+                                <input type="number" name="" id="" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" oninput="limitInputLength(this)">
+                            </div>
+                            <button type=" submit" class="ud-btn">Save my details</button>
+                        </form>
+                    </div>
                 </div>
             </div>
-            <div class="bg-red-100 p-6 rounded shadow-6xl my-5">
-                <div class="ud-dlt-acc ">
-                    <h2 class="text-[50px] font-bold text-customBlue">Delete account</h2>
-                    <span>By deleting the account your data will be permanently removed and you will no longer have access to them.</span>
+
+            <!-- Account security page -->
+            <div id="accountSecurity" class="ud-page-wrapper hidden">
+                <div class="ud-security-page">
+                    <div class="ud-pw-change">
+                        <h2 class="text-[50px] font-bold text-customBlue">Your password</h2>
+                        <span>Please make sure to have a secure password with at least 6 characters long.</span>
+                        <form action="changePassword" method="POST" class="mt-4">
+                            <div class="mb-4">
+                                <span class="required"></span>
+                                <label for="currentPassword" class="block text-sm font-medium text-gray-700 required">Current password
+                                    <span class="required"></span>
+                                </label>
+                                <input type="password" name="currentPassword" id="currentPassword" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="newPassword" class="block text-sm font-medium text-gray-700 required">New password
+                                    <span class="required"></span>
+                                </label>
+                                <input type="password" name="newPassword" id="newPassword" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="confirmPassword" class="block text-sm font-medium text-gray-700 required">Confirm password
+                                    <span class="required"></span>
+                                </label>
+                                <input type="password" name="confirmPassword" id="confirmPassword" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
+                            </div>
+                            <button type="submit" class="ud-btn">Change my password</button>
+                        </form>
+                    </div>
                 </div>
-                <button type="submit" class="ud-btn mt-3">Delete my account</button>
+                <div class="bg-red-100 p-6 rounded shadow-6xl my-5">
+                    <div class="ud-dlt-acc ">
+                        <h2 class="text-[50px] font-bold text-customBlue">Delete account</h2>
+                        <span>By deleting the account your data will be permanently removed and you will no longer have access to them.</span>
+                    </div>
+                    <button type="submit" class="ud-btn mt-3">Delete my account</button>
+                </div>
             </div>
         </div>
     </div>
-    </div>
+
 
     <script>
         // Limit the input length in mobile number
@@ -279,6 +320,12 @@
                 element.value = element.value.slice(0, 10);
             }
         }
+
+        // Load the dashboard page in mobile view
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('hidden');
+        });
 
         // Load the dashboard page in mobile view
         document.getElementById('menuToggle').addEventListener('click', function() {
@@ -306,12 +353,14 @@
             // Update the active state in the sidebar
             var items = document.querySelectorAll('.u-sidebar-value');
             items.forEach(function(item) {
-                item.classList.remove('bg-customBlue');
+                item.classList.remove('bg-customBlue', 'text-white');
+                item.classList.add('text-black');
             });
 
             var activeItem = document.querySelector(`.u-sidebar-value[data-page="${page}"]`);
             if (activeItem) {
-                activeItem.classList.add('bg-customBlue');
+                activeItem.classList.add('bg-customBlue', 'text-white');
+                activeItem.classList.remove('text-black');
             } else {
                 console.error(`Sidebar item with data-page="${page}" not found.`);
             }
@@ -324,5 +373,18 @@
                 console.error('Breadcrumb element not found.');
             }
         }
+
+        // Set default text color to black on page load and select default tab
+        document.addEventListener('DOMContentLoaded', function() {
+            var items = document.querySelectorAll('.u-sidebar-value');
+            items.forEach(function(item) {
+                item.classList.add('text-black');
+            });
+
+            // Set the default tab to 'dashboard'
+            loadPage('dashboard');
+        });
+
+        ////////
     </script>
 </main>

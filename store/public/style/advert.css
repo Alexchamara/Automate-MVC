@@ -382,6 +382,254 @@ span {
     color: #fff;
 }
 
-/* .aw-intro-btn:hover .fa-arrow-right{
-    color: #fff;
+.publish-top .perview-btn,
+.publish-top .edit-advert-btn{
+    color: rgb(11, 25, 111);
+    display: unset;
+    font-weight: 600;
+    text-align: center;
+    letter-spacing: 0.1rem;
+    padding: 8px 22px;
+    border: 1px solid rgb(11, 25, 111);
+    border-radius: 50px;
+}
+
+.publish-top .perview-btn:hover,
+.publish-top .edit-advert-btn:hover{
+    color: white;
+    background-color: rgb(8, 18, 85);
+}
+
+.advert-preview-btn{
+    margin: 25px 0 45px;
+    text-align: center;
+}
+
+.advert-summery-last, .advert-summery-info{
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 24px;
+    margin-bottom: 24px;
+}
+
+.advert-summery-info{
+    border-bottom: 1px solid #D9D9D9;
+}
+
+
+.advert-opt-title {
+    font-size: 2vw;
+    font-weight: bold;
+    color: rgb(11, 25, 111);
+}
+
+.advert-summery-icon{
+    float: right;
+    color: rgb(13, 165, 116);
+    font-size: 40px;
+    margin-top: 1rem;
+}
+
+/* payment */
+/* styles.css */
+/* .payment-form-container {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #a8edea, #fed6e3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    position: relative;
+    overflow-x: hidden;
 } */
+
+.blur-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    -webkit-backdrop-filter: blur(10px); /* Safari */
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s, visibility 0.5s;
+    z-index: 999;
+}
+
+.blur-background.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.payment-popup {
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+    max-width: 450px;
+    width: 100%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.5);
+    opacity: 0;
+    transition: transform 0.5s, opacity 0.5s;
+    z-index: 1000;
+    display: none; /* Hidden initially */
+}
+
+.payment-popup.active {
+    display: block;
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+}
+
+.payment-popup h2 {
+    margin-top: 0;
+    font-size: 24px;
+    color: #333;
+}
+
+.payment-options {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 25px;
+}
+
+.payment-options label {
+    cursor: pointer;
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+    text-align: center;
+    flex-grow: 1;
+}
+
+.payment-options input[type="radio"] {
+    display: none;
+}
+
+.payment-options input[type="radio"]:checked + label {
+    background-color: #D9D9D9;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.payment-form {
+    display: none;
+    animation: fadeIn 0.5s;
+}
+
+.payment-form.active {
+    display: block;
+}
+
+.payment-form h3 {
+    margin-top: 0;
+    font-size: 20px;
+    color: #555;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.payment-form button {
+    width: 100%;
+    padding: 12px;
+    background-color: #0b196f;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 16px;
+}
+
+.payment-form button:hover {
+    background-color: #0b196f;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    color: #333;
+    background: #f8f8f8;
+    padding: 5px;
+    border-radius: 50%;
+}
+
+.close-btn:hover {
+    color: #A82E23;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .payment-popup {
+        width: 80%;
+        padding: 20px;
+    }
+
+    .payment-popup h2 {
+        font-size: 20px;
+    }
+
+    .payment-options {
+        flex-direction: column;
+    }
+
+    .payment-options label {
+        margin-bottom: 10px;
+    }
+
+    .input-group input {
+        padding: 8px;
+    }
+
+    .payment-form button {
+        padding: 10px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .payment-popup {
+        width: 90%;
+        padding: 15px;
+    }
+
+    .payment-popup h2 {
+        font-size: 18px;
+    }
+
+    .input-group input {
+        padding: 6px;
+    }
+
+    .popup-toggle {
+        font-size: 14px;
+        padding: 10px 15px;
+    }
+}

@@ -638,6 +638,10 @@ video {
   margin-bottom: 1rem;
 }
 
+.mb-\[24px\] {
+  margin-bottom: 24px;
+}
+
 .ml-1 {
   margin-left: 0.25rem;
 }
@@ -921,9 +925,21 @@ video {
   padding-bottom: 0.5rem;
 }
 
+.pb-\[24px\] {
+  padding-bottom: 24px;
+}
+
+.text-center {
+  text-align: center;
+}
+
 .text-2xl {
   font-size: 1.5rem;
   line-height: 2rem;
+}
+
+.text-\[12px\] {
+  font-size: 12px;
 }
 
 .text-\[20px\] {
@@ -986,11 +1002,6 @@ video {
   color: rgb(108 117 125 / var(--tw-text-opacity));
 }
 
-.text-\[\#A82E23\] {
-  --tw-text-opacity: 1;
-  color: rgb(168 46 35 / var(--tw-text-opacity));
-}
-
 .text-\[\#a9a9a9\] {
   --tw-text-opacity: 1;
   color: rgb(169 169 169 / var(--tw-text-opacity));
@@ -1009,6 +1020,11 @@ video {
 .text-customBlue {
   --tw-text-opacity: 1;
   color: rgb(11 25 111 / var(--tw-text-opacity));
+}
+
+.text-customRed {
+  --tw-text-opacity: 1;
+  color: rgb(168 46 35 / var(--tw-text-opacity));
 }
 
 .text-gray-600 {
@@ -1736,8 +1752,6 @@ video {
   padding-right: 1.25rem;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
-  --tw-text-opacity: 1;
-  color: rgb(37 42 52 / var(--tw-text-opacity));
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;

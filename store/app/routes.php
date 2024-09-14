@@ -34,9 +34,24 @@ $routes = [
     //route for edit user password
     'changePassword' => ['controller' => 'UserManageController', 'method' => 'updateUserPassword'],
 
-    //route for create a new advert
-    'createAdvert' => ['controller' => 'AdvertController', 'method' => 'index'],
+    //route for edit user profile
+    'editProfile' => ['controller' => 'UserManageController', 'method' => 'updateUserDetails'],
+
+    //route for access to create advert
+    'accessToCreateAdvert' => ['controller' => 'AdvertController', 'method' => 'index'],
     
+    //route for create a new advert
+    'createAdvert' => ['controller' => 'AdvertController', 'method' => 'createNewAdvert'],
+    
+    //route for payment
+    'payment' => ['controller' => 'AdvertController', 'method' => 'payment'],
+
+    //route for admin dashboard
+    'newAdmin' => ['controller' => 'AdminManageController', 'method' => 'registerNewAdmin'],
+
+
+    // '' => ['controller' => '', 'method' => ''],
+    // '' => ['controller' => '', 'method' => ''],
     // '' => ['controller' => '', 'method' => ''],
     // '' => ['controller' => '', 'method' => ''],
 ];

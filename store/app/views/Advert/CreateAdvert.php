@@ -21,14 +21,13 @@
     </div>
 
     <!-- Add vehicle informations -->
-    <form method="POST" id="multi-step-form">
+    <form action="createAdvert" method="POST" id="multi-step-form">
         <div class="form-step active form_1">
             <h2>Make & model</h2>
             <div class="sec-box">
                 <!-- Make -->
                 <div class="col-left">
                     <label for="make" class="required">Make
-                        <!-- <span class="required"></span> -->
                     </label><br>
                     <select name="make" id="brand">
                         <option value="DEF">Select</option>
@@ -341,22 +340,172 @@
         <!-- Review & publish -->
         <div class="form-step form_3">
             <div class="publish-top">
-                <h2>Advert summary</h2>
+                <h2 style="font-size:3vw; font-weight: bold;">Advert summary</h2>
                 <span>Please review the details and click the 'Publish advert' button to post. To prevent potential
                     spam or suspicious behavior our team will review.</span>
+                <div class="advert-preview-btn">
+                    <a href="#" class="perview-btn"><i class="fa-solid fa-eye" style="margin-right: 5px;"></i>Preview advert</a>
+                    <a href="#" class="edit-advert-btn prev-btn"><i class="fa-solid fa-pencil" style="margin-right: 5px;"></i>Edit advert</a>
+                </div>
+
+                <div class="advert-summery-info">
+                    <div>
+                        <h1 class="advert-opt-title">Mercedes-Benz CLA Class</h1>
+                        <span class="">Used • 2014 Reg • 76,000 km • Automatic • Diesel</span>
+                    </div>
+                    <i class="fa-solid fa-circle-check advert-summery-icon"></i>
+                </div>
+                <div class="advert-summery-info">
+                    <div>
+                        <h1 class="advert-opt-title">Advert photos</h1>
+                        <span class="">Upload at least 1 photo to attract more buyers.</span>
+                    </div>
+                    <i class="fa-solid fa-circle-check advert-summery-icon"></i>
+                </div>
+                <div class="advert-summery-info">
+                    <div>
+                        <h1 class="advert-opt-title">Asking price</h1>
+                        <span class=""><strong class="font-bold text-customRed"> Rs. 12,345 </strong> / Your price is very attractive</span>
+                    </div>
+                    <i class="fa-solid fa-circle-check advert-summery-icon"></i>
+                </div>
+                <div class="advert-summery-last">
+                    <div>
+                        <h1 class="advert-opt-title">Contact details</h1>
+                        <span class="">alexchamara76@gmail.com, 0705782002 </span>
+                    </div>
+                    <i class="fa-solid fa-circle-check advert-summery-icon"></i>
+                </div>
+
+                <div class="flex justify-center items-center h-full pb-[24px] mb-[24px]">
+                    <span class="text-center text-[12px]">Sign in to your account at anytime to manage, edit or deactivate the advert.</span>
+                </div>
+
+                <button type="button" class="prev-btn">
+                    <i class="fa-solid fa-arrow-left"></i>Back</button>
+                <button type="button" class="publish-btn" id="open-popup">Publish advert</button>
             </div>
-            <button type="button" class="prev-btn">
-                <i class="fa-solid fa-arrow-left" style="margin-right: 10px;"></i>Back</button>
-            <button type="submit" class="publish-btn">Publish advert</button>
-        </div>
     </form>
 </main>
 
+<div class="payment-form-container">
+    <!-- Blurred Background Overlay -->
+    <div id="blur-background" class="blur-background"></div>
+
+    <!-- Payment Popup Window -->
+    <div class="payment-popup" id="payment-popup">
+        <!-- Close Button -->
+        <span id="close-popup" class="close-btn"><i class="fas fa-times"></i></span>
+
+        <h2>Payment Method</h2>
+        <div class="payment-options">
+            <input type="radio" name="payment" id="credit-card" checked>
+            <label for="credit-card">Credit Card</label>
+            <input type="radio" name="payment" id="debit-card">
+            <label for="debit-card">Debit Card</label>
+            <input type="radio" name="payment" id="paypal">
+            <label for="paypal">PayPal</label>
+        </div>
+
+        <div class="payment-form" id="credit-card-form">
+            <h3>Credit Card</h3>
+            <form>
+                <div class="input-group">
+                    <label for="cc-name">Card Holder Name</label>
+                    <input type="text" id="cc-name" placeholder="John Doe">
+                </div>
+                <div class="input-group">
+                    <label for="cc-number">Card Number</label>
+                    <input type="text" id="cc-number" placeholder="4123 4567 8910 1234">
+                </div>
+                <div class="input-group">
+                    <label for="cc-expiry">Expiry Date</label>
+                    <input type="text" id="cc-expiry" placeholder="MM/YY">
+                </div>
+                <div class="input-group">
+                    <label for="cc-cvv">CVV Code</label>
+                    <input type="text" id="cc-cvv" placeholder="123">
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+
+        <div class="payment-form" id="debit-card-form">
+            <h3>Debit Card</h3>
+            <form>
+                <div class="input-group">
+                    <label for="dc-name">Card Holder Name</label>
+                    <input type="text" id="dc-name" placeholder="John Doe">
+                </div>
+                <div class="input-group">
+                    <label for="dc-number">Card Number</label>
+                    <input type="text" id="dc-number" placeholder="4123 4567 8910 1234">
+                </div>
+                <div class="input-group">
+                    <label for="dc-expiry">Expiry Date</label>
+                    <input type="text" id="dc-expiry" placeholder="MM/YY">
+                </div>
+                <div class="input-group">
+                    <label for="dc-cvv">CVV Code</label>
+                    <input type="text" id="dc-cvv" placeholder="123">
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+
+        <div class="payment-form" id="paypal-form">
+            <h3>PayPal</h3>
+            <form>
+                <button type="submit">Continue to PayPal</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
 <!-- progress bar -->
 <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+        const paymentOptions = document.querySelectorAll('.payment-options input[type="radio"]');
+        const paymentForms = document.querySelectorAll('.payment-form');
+        const openPopupBtn = document.getElementById('open-popup');
+        const closePopupBtn = document.getElementById('close-popup');
+        const paymentPopup = document.getElementById('payment-popup');
+        const blurBackground = document.getElementById('blur-background');
+
+        function showForm(id) {
+            paymentForms.forEach(form => form.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+        }
+
+        paymentOptions.forEach(option => {
+            option.addEventListener('change', function() {
+                showForm(option.id + '-form');
+            });
+        });
+
+        // Open the popup
+        openPopupBtn.addEventListener('click', function() {
+            paymentPopup.classList.add('active');
+            blurBackground.classList.add('active');
+        });
+
+        // Close the popup
+        closePopupBtn.addEventListener('click', function() {
+            paymentPopup.classList.remove('active');
+            blurBackground.classList.remove('active');
+        });
+
+        // Trigger default form display
+        showForm('credit-card-form');
+    });
+
+
     const formSteps = document.querySelectorAll('.form-step');
     const nextBtns = document.querySelectorAll('.next-btn');
-    const prevBtns = document.querySelectorAll('.prev-btn');
+    const prevBtns = document.querySelectorAll('.prev-btn', '.perview-btn');
+    const editAdvert = document.querySelector('.perview-btn');
     const progressSteps = document.querySelectorAll('.progress-bar .step');
     const progressLine = document.querySelector('.progress-line .progress');
 
@@ -377,6 +526,16 @@
             updateProgressBar();
         });
     });
+
+    // editAdvert.forEach(button => {
+    //     button.addEventListener('click', () => {
+    //         if (formStepIndex > 0) {
+    //             formStepIndex--;
+    //             updateFormSteps();
+    //             updateProgressBar();
+    //         }
+    //     });
+    // });
 
     function updateFormSteps() {
         formSteps.forEach((step, index) => {

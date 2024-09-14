@@ -91,15 +91,17 @@ class UserManage
     }
 
     //method to get a user by email from the database
-    public function getUserByEmail($email)
+    public function updateDetails($userId, $name ,$email)
     {
-        $this->db->query("SELECT * FROM users WHERE email=:email");
+        $this->db->query("SELECT * FROM users WHERE userId=:userId AND name=:name AND email=:email");
 
+        $this->db->bind(':userId', $userId);
+        $this->db->bind(':name', $name);
         $this->db->bind(':email', $email);
 
         $this->db->execute();
 
-        return $this->db->result();
+        // return $this->db->result();
     }
 }
 

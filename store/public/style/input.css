@@ -329,7 +329,7 @@
 }
 
 .u-sidebar-value {
-    @apply transition duration-150 text-[#252a34] px-5 py-2 w-[350px] cursor-pointer hover:bg-customBlue hover:text-white;
+    @apply transition duration-150  px-5 py-2 w-[350px] cursor-pointer hover:bg-customBlue hover:text-white;
 }
 
 .dashboard-sidebar-sub-title {

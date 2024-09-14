@@ -29,6 +29,10 @@ class AdvertController extends Controller
         $adverts = $advertModel->getListings();
         $this->renderView('Advert/AdvertListing');
     }
+
+    public function payment(){
+        $this->renderView('Advert/Payment');
+    }
     
 
     //method to create a new advert

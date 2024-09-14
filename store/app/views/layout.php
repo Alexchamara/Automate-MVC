@@ -41,7 +41,7 @@
             echo '<a href="' . $link . '" class="menu-link dropdown-toggle">' . $linkText . '</a>';
             ?>
             <div>
-                <li><a href="createAdvert" class="Ads-button Ads-mob" id="Ads-mob">Create Ads</a></li>
+                <li><a href="accessToCreateAdvert" class="Ads-button Ads-mob" id="Ads-mob">Create Ads</a></li>
                 <div class="icons">
                     <a href="https://www.instagram.com/alex.chamara?igsh=MTF4MmdqeHA5MDNtOA%3D%3D&utm_source=qr" target="_blank"><i class="ri-instagram-line"></i></a>
                     <a href="https://www.facebook.com/profile.php?id=100070128788033&mibextid=LQQJ4d" target="_blank"><i class="ri-facebook-circle-line"></i></a>
@@ -123,7 +123,7 @@
                     <h3>Sell my car</h3>
                     <ul>
                         <li>
-                            <a href="createAdvert">Advertise</a>
+                            <a href="accessToCreateAdvert">Advertise</a>
                         </li>
                         <li>
                             <a href="service">Advert promotion</a>

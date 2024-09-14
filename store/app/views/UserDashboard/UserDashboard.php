@@ -200,7 +200,8 @@
                     <div class="ud-pro-change">
                         <h2 class="text-[50px] font-bold text-customBlue">Your details</h2>
                         <span>Please keep your details up to date. Your personal data are stored securely. We do not share information with third parties.</span>
-                        <form action="" method="POST" class="mt-4">
+                        <form action="editProfile" method="POST" class="mt-4">
+                            <h2>ID: <?= $userId['userId'] ?></h2>
                             <div class="mb-4">
                                 <span class="required"></span>
                                 <label for="fullName" class="block text-sm font-medium text-gray-700 required">Full Name
@@ -300,12 +301,14 @@
             // Update the active state in the sidebar
             var items = document.querySelectorAll('.u-sidebar-value');
             items.forEach(function(item) {
-                item.classList.remove('bg-customBlue');
+                item.classList.remove('bg-customBlue', 'text-white');
+                item.classList.add('text-black');
             });
 
             var activeItem = document.querySelector(`.u-sidebar-value[data-page="${page}"]`);
             if (activeItem) {
-                activeItem.classList.add('bg-customBlue');
+                activeItem.classList.add('bg-customBlue', 'text-white');
+                activeItem.classList.remove('text-black');
             } else {
                 console.error(`Sidebar item with data-page="${page}" not found.`);
             }
@@ -318,5 +321,16 @@
                 console.error('Breadcrumb element not found.');
             }
         }
+
+        // Set default text color to black on page load and select default tab
+        document.addEventListener('DOMContentLoaded', function() {
+            var items = document.querySelectorAll('.u-sidebar-value');
+            items.forEach(function(item) {
+                item.classList.add('text-black');
+            });
+
+            // Set the default tab to 'dashboard'
+            loadPage('dashboard');
+        });
     </script>
 </main>

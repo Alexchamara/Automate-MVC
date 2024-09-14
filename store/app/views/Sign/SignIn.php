@@ -110,14 +110,14 @@
         let emailError = document.getElementById("emailError");
         let passwordError = document.getElementById("passwordError");
         let pwdrepeatError = document.getElementById("pwdrepeatError");
-        let noError = document.getElementById("noError");
+        // let noError = document.getElementById("noError");
 
         // Clear previous error messages
         nameError.innerText = "";
         emailError.innerText = "";
         passwordError.innerText = "";
         pwdrepeatError.innerText = "";
-        noError.innerText = "";
+        // noError.innerText = "";
 
         let namePattern = /^[a-zA-Z]+$/;
         let emailPattern = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
@@ -131,16 +131,16 @@
             emailError.innerText = "Invalid email format.";
             return false;
         }
-        if (!passwordPattern.test(password)) {
-            passwordError.innerText = "Password must be at least 8 characters long and contain at least one number, one lowercase and one uppercase letter.";
-            return false;
-        }
+        // if (!passwordPattern.test(password)) {
+        //     passwordError.innerText = "Password must be at least 8 characters long and contain at least one number, one lowercase and one uppercase letter.";
+        //     return false;
+        // }
         if (password !== pwdrepeat) {
             pwdrepeatError.innerText = "Passwords do not match.";
             return false;
         }
 
-        noError.innerText = "Form is valid.";
+        // noError.innerText = "Form is valid.";
         return true;
     }
 </script>
