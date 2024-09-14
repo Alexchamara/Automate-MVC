@@ -20,8 +20,6 @@ class UserManageController extends Controller
             } else {
                 $this->renderView('UserDashboard/UserDashboard');
             }
-            // $signModel = $this->loadModel("UserManage");
-            // $this->renderView('UserDashboard/UserDashboard');
         }
     }
 
@@ -49,10 +47,12 @@ class UserManageController extends Controller
             } elseif (strlen($uPassword) < 8) {
                 // header('Location: ?error=passwordshort');
                 exit();
-            } elseif ($signModel->getUserByEmail($uEmail)) {
+            } 
+            elseif ($signModel->getUserByEmail($uEmail)) {
                 // header('Location: ?error=emailtaken');
                 exit();
-            } else {
+            } 
+            else {
                 $signModel->registerUser($uName, $uEmail, $uPassword);
                 header('Location: login');
                 exit();

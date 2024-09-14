@@ -23,14 +23,19 @@ class UserManage
     //method to add new user to the database
     public function registerUser($name, $email, $userPassword)
     {
-
-        $this->db->query("INSERT INTO users (name, email, userPassword) VALUES (:name, :email, :userPassword)");
+        try {
+            $this->db->query("INSERT INTO users (name, email, userPassword) VALUES (:name, :email, :userPassword)");
     
-        $this->db->bind(':name', $name);
-        $this->db->bind(':email', $email);
-        $this->db->bind(':userPassword', password_hash($userPassword, PASSWORD_DEFAULT));
-
-        $this->db->execute();
+            $this->db->bind(':name', $name);
+            $this->db->bind(':email', $email);
+            $this->db->bind(':userPassword', password_hash($userPassword, PASSWORD_DEFAULT));
+    
+            $this->db->execute();
+            // return true;
+        } catch (PDOException $e) {
+            error_log("Database error: " . $e->getMessage());
+            return false;
+        }
     }
 
     //method to login a user by email and password
@@ -80,6 +85,17 @@ class UserManage
         return $this->db->result();
     }
 
+    public function getUserByEmail($email)
+    {
+        $this->db->query("SELECT * FROM users WHERE email=:email");
+
+        $this->db->bind(':email', $email);
+
+        $this->db->execute();
+
+        $user = $this->db->result();
+    }
+
     //method to delete a user account from the database by userId
     public function deleteUser($userId)
     {
@@ -91,7 +107,7 @@ class UserManage
     }
 
     //method to get a user by email from the database
-    public function updateDetails($userId, $name ,$email)
+    public function updateDetails($userId, $name, $email)
     {
         $this->db->query("SELECT * FROM users WHERE userId=:userId AND name=:name AND email=:email");
 
@@ -104,5 +120,3 @@ class UserManage
         // return $this->db->result();
     }
 }
-
-
