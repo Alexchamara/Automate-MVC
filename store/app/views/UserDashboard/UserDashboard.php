@@ -1,3 +1,4 @@
+<!-- User Dashboard -->
 <main class="user-dashboard-main-container">
     <!-- upper section -->
     <div class="dashboard-path-wrapper">
@@ -85,9 +86,9 @@
                 <div class="ud-dashboard-page">
                     <h2 class="text-[40px] font-bold text-customBlue">Hello! Alex</h2>
                     <div class="flex gap-10 text-[#252a34] mb-4">
-                        <p class="mt-2"><i class="fa-regular fa-user mr-2"></i>Alex Chamara</p>
-                        <p class="mt-2"><i class="fa-regular fa-envelope mr-2"></i>alexhmara76@gmail.com</p>
-                        <p class="mt-2"><i class="fa-regular fa-calendar mr-2"></i>Member since 19 Aug 2024</p>
+                        <span class="mt-2"><i class="fa-regular fa-user mr-2"></i><?php echo htmlspecialchars($_SESSION['userName']); ?></span>
+                        <span class="mt-2"><i class="fa-regular fa-envelope mr-2"></i><?php echo htmlspecialchars($_SESSION['userEmail']); ?></span>
+                        <span class="mt-2"><i class="fa-regular fa-calendar mr-2"></i>Member since 19 Aug 2024</span>
                     </div>
                     <button class="ud-btn" onclick="loadPage('personalDetails')">Edit my details</button>
                 </div>
@@ -200,25 +201,22 @@
                     <div class="ud-pro-change">
                         <h2 class="text-[50px] font-bold text-customBlue">Your details</h2>
                         <span>Please keep your details up to date. Your personal data are stored securely. We do not share information with third parties.</span>
-                        <form action="editProfile" method="POST" class="mt-4">
-                            <h2>ID: <?= $userId['userId'] ?></h2>
+                        <form action="editProfile" method="POST" class="mt-4" onsubmit="return test()">
                             <div class="mb-4">
                                 <span class="required"></span>
-                                <label for="fullName" class="block text-sm font-medium text-gray-700 required">Full Name
-                                    <span class="required"></span>
+                                <label for="fullName" class="block text-sm font-medium text-gray-700">Full Name
                                 </label>
-                                <input type="text" name="" id="" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
+                                <input type="text" name="uName" id="lname" placeholder="<?= $_SESSION['userName']; ?>" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                             </div>
                             <div class="mb-4">
-                                <label for="email" class="block text-sm font-medium text-gray-700 required">Email address
-                                    <span class="required"></span>
+                                <label for="email" class="block text-sm font-medium text-gray-700">Email address
                                 </label>
-                                <input type="text" name="" id="" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
+                                <input type="text" name="uEmail" id="lemail" placeholder="<?= $_SESSION['userEmail']; ?>" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                             </div>
                             <div class="mb-4">
                                 <label for="mobile" class="block text-sm font-medium text-gray-700 ">Mobile
                                 </label>
-                                <input type="number" name="" id="" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" oninput="limitInputLength(this)">
+                                <input type="number" name="uPhone" id="lphoen" placeholder="<?= $_SESSION['userPhone']; ?>" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                             </div>
                             <button type="submit" class="ud-btn">Save my details</button>
                         </form>
@@ -234,22 +232,15 @@
                         <span>Please make sure to have a secure password with at least 6 characters long.</span>
                         <form action="changePassword" method="POST" class="mt-4">
                             <div class="mb-4">
-                                <span class="required"></span>
-                                <label for="currentPassword" class="block text-sm font-medium text-gray-700 required">Current password
-                                    <span class="required"></span>
-                                </label>
+                                <label for="currentPassword" class="block text-sm font-medium text-gray-700 required">Current password</label>
                                 <input type="password" name="currentPassword" id="currentPassword" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
                             </div>
                             <div class="mb-4">
-                                <label for="newPassword" class="block text-sm font-medium text-gray-700 required">New password
-                                    <span class="required"></span>
-                                </label>
+                                <label for="newPassword" class="block text-sm font-medium text-gray-700 required">New password</label>
                                 <input type="password" name="newPassword" id="newPassword" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
                             </div>
                             <div class="mb-4">
-                                <label for="confirmPassword" class="block text-sm font-medium text-gray-700 required">Confirm password
-                                    <span class="required"></span>
-                                </label>
+                                <label for="confirmPassword" class="block text-sm font-medium text-gray-700 required">Confirm password</label>
                                 <input type="password" name="confirmPassword" id="confirmPassword" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
                             </div>
                             <button type="submit" class="ud-btn">Change my password</button>
@@ -261,20 +252,15 @@
                         <h2 class="text-[50px] font-bold text-customBlue">Delete account</h2>
                         <span>By deleting the account your data will be permanently removed and you will no longer have access to them.</span>
                     </div>
-                    <button type="submit" class="ud-btn mt-3">Delete my account</button>
+                    <form action="deleteProfile" methhod="POST">
+                        <button type="submit" class="ud-btn mt-3">Delete my account</button>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        // Limit the input length in mobile number
-        function limitInputLength(element) {
-            if (element.value.length > 10) {
-                element.value = element.value.slice(0, 10);
-            }
-        }
-
         // Load the dashboard page in mobile view
         document.getElementById('menuToggle').addEventListener('click', function() {
             const sidebar = document.getElementById('sidebar');

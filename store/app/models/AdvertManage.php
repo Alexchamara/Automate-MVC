@@ -40,6 +40,11 @@ class AdvertManage
         $this->db->bind(':description', $description);
 
         $this->db->execute();
+
+        require_once 'Listing.php';
+        $newListing = new Listing();
+
+        $addListing = $newListing->createListing($sellerId, $listingStatus, $boostAd);
     }
 
     //method to update advert details

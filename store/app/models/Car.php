@@ -30,10 +30,10 @@ class Car
         $this->db->bind(':description', $description);
 
         $this->db->execute();
-    }
 
-    public function createListing(){
         
+
+        // $this->db->createListing();
     }
 
     //method to update an existing car in the database

@@ -7,6 +7,10 @@
     @apply relative top-[13%];
 } */
 
+.error{
+    @apply text-red-600;
+}
+
 /* intro */
 .service-titel-img::before {
     @apply absolute top-0 right-[-368px] w-[47%] h-full bg-[#353A3F] border-l-[20px] border-[#A82E23];

@@ -397,7 +397,23 @@
         <!-- Close Button -->
         <span id="close-popup" class="close-btn"><i class="fas fa-times"></i></span>
 
-        <h2>Payment Method</h2>
+        <h2 class="font-bold">Review Payment</h2>
+        <div>
+            <div class="font-medium flex justify-between py-1 px-8">
+                <label for="amount">Amount</label>
+                <span>Rs. 8000/=</span>
+            </div>
+            <div class="font-medium flex justify-between py-1 px-8">
+                <label for="amount">Boosted Ad</label>
+                <span>Rs. 900/=</span>
+            </div>
+            <div class="font-medium flex justify-between py-1 px-8 bg-slate-300 rounded-full">
+                <label for="amount">Total</label>
+                <span>Rs. 8900/=</span>
+            </div>
+        </div>
+
+        <h2 class="font-bold">Payment Method</h2>
         <div class="payment-options">
             <input type="radio" name="payment" id="credit-card" checked>
             <label for="credit-card">Credit Card</label>
@@ -466,6 +482,8 @@
 
 <!-- progress bar -->
 <script type="text/javascript">
+
+    // Payment form
     document.addEventListener('DOMContentLoaded', function() {
         const paymentOptions = document.querySelectorAll('.payment-options input[type="radio"]');
         const paymentForms = document.querySelectorAll('.payment-form');
@@ -687,12 +705,12 @@
 
                     // Remove selected state from all buttons in the group
                     optionGroup.querySelectorAll('button').forEach(btn => {
-                        btn.classList.remove('bg-customBlue', 'text-white');
+                        btn.classList.remove('bg-customBlue', 'text-customBlue');
                         btn.classList.add('bg-customBlue', 'text-gray-900');
                     });
 
                     // Add selected state to the clicked button
-                    this.classList.add('bg-customBlue', 'text-white');
+                    this.classList.add('bg-customBlue', 'text-customBlue');
                     this.classList.remove('bg-customBlue', 'text-gray-900');
 
                     // Update the hidden input with the selected value

@@ -35,6 +35,8 @@ class Database{
         }
     }
 
+
+
     //method to prepare an SQL query
     public function query($sql){
         $this->stmt = $this->dbh->prepare($sql);
@@ -59,5 +61,10 @@ class Database{
     //method to bind a value to a parameter in the SQL statement
     public function bind($param, $value){
         $this->stmt->bindValue($param, $value);
+    }
+
+    //method to get the last inserted id
+    public function getLastInsertId() {
+        return $this->dbh->lastInsertId();
     }
 }

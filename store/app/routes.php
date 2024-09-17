@@ -37,6 +37,9 @@ $routes = [
     //route for edit user profile
     'editProfile' => ['controller' => 'UserManageController', 'method' => 'updateUserDetails'],
 
+    //route for delete user account
+    'deleteProfile' => ['controller' => 'UserManageController', 'method' => 'deleteUser'],
+
     //route for access to create advert
     'accessToCreateAdvert' => ['controller' => 'AdvertController', 'method' => 'index'],
     
@@ -47,10 +50,9 @@ $routes = [
     'payment' => ['controller' => 'AdvertController', 'method' => 'payment'],
 
     //route for admin dashboard
-    'newAdmin' => ['controller' => 'AdminManageController', 'method' => 'registerNewAdmin'],
+    'newAdmin' => ['controller' => 'AdminManageController', 'method' => 'addNewAdmin'],
 
 
-    // '' => ['controller' => '', 'method' => ''],
     // '' => ['controller' => '', 'method' => ''],
     // '' => ['controller' => '', 'method' => ''],
     // '' => ['controller' => '', 'method' => ''],

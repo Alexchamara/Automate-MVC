@@ -431,19 +431,6 @@ span {
 }
 
 /* payment */
-/* styles.css */
-/* .payment-form-container {
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #a8edea, #fed6e3);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    position: relative;
-    overflow-x: hidden;
-} */
-
 .blur-background {
     position: fixed;
     top: 0;
@@ -555,14 +542,15 @@ span {
     background-color: #0b196f;
     color: #fff;
     border: none;
-    border-radius: 8px;
+    border-radius: 50px;
     cursor: pointer;
     transition: background-color 0.3s ease;
     font-size: 16px;
 }
 
 .payment-form button:hover {
-    background-color: #0b196f;
+    background-color: red;
+    background-image: linear-gradient(45deg, black, transparent);
 }
 
 .close-btn {

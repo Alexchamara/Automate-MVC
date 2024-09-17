@@ -31,16 +31,18 @@
 
                 <!-- Login Form -->
                 <div class="login form-peice switched">
-                    <form class="login-form" action="login" method="POST">
+                    <form class="login-form" action="login" method="POST" onsubmit="return validateLogin()">
                         <h2>Log in</h2>
                         <div class="form-group">
                             <label for="loginemail">Email Adderss</label><br>
-                            <input type="text" name="uEmail" id="loginemail" required>
+                            <input type="text" name="uEmail" id="logInEmail">
+                            <span class="text-red-600 block m-0.5 p-0.5" id="logEmailError"></span>
                         </div>
 
                         <div class="form-group">
                             <label for="loginPassword">Password</label><br>
-                            <input type="password" name="uPassword" id="loginPassword" required>
+                            <input type="password" name="uPassword" id="">
+                            <span class="text-red-600 block m-0.5 p-0.5" id="logPasswordError"></span>
                         </div>
 
                         <div class="CTA">
@@ -70,13 +72,13 @@
 
                         <div class="form-group">
                             <label for="password">Password</label><br>
-                            <input type="password" name="uPassword" id="password" class="pass" required>
+                            <input type="password" name="uPassword" id="password" class="pass" >
                             <span class="error" id="passwordError"></span>
                         </div>
 
                         <div class="form-group">
                             <label for="pwdrepeat">Confirm password</label><br>
-                            <input type="password" name="uPwdRepeat" id="pwdrepeat" class="pass" required>
+                            <input type="password" name="uPwdRepeat" id="pwdrepeat" class="pass" >
                             <span class="error" id="pwdrepeatError"></span>
                         </div>
 
@@ -100,47 +102,45 @@
     });
 
 
-    function validateForm() {
-        let name = document.getElementById('name').value;
-        let email = document.getElementById('email').value;
-        let password = document.getElementById('password').value;
-        let pwdrepeat = document.getElementById('pwdrepeat').value;
+    // function validateForm() {
+    //     let name = document.getElementById('name').value;
+    //     let email = document.getElementById('email').value;
+    //     let password = document.getElementById('password').value;
+    //     let pwdrepeat = document.getElementById('pwdrepeat').value;
 
-        let nameError = document.getElementById("nameError");
-        let emailError = document.getElementById("emailError");
-        let passwordError = document.getElementById("passwordError");
-        let pwdrepeatError = document.getElementById("pwdrepeatError");
-        // let noError = document.getElementById("noError");
+    //     let nameError = document.getElementById("nameError");
+    //     let emailError = document.getElementById("emailError");
+    //     let passwordError = document.getElementById("passwordError");
+    //     let pwdrepeatError = document.getElementById("pwdrepeatError");
 
-        // Clear previous error messages
-        nameError.innerText = "";
-        emailError.innerText = "";
-        passwordError.innerText = "";
-        pwdrepeatError.innerText = "";
-        // noError.innerText = "";
+    //     // Clear previous error messages
+    //     nameError.innerText = "";
+    //     emailError.innerText = "";
+    //     passwordError.innerText = "";
+    //     pwdrepeatError.innerText = "";
 
-        let namePattern = /^[a-zA-Z]+$/;
-        let emailPattern = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
-        let passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+    //     let namePattern = /^[a-zA-Z]+$/;
+    //     let emailPattern = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
+    //     let passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
 
-        if (!namePattern.test(name)) {
-            nameError.innerText = "Name must contain only letters.";
-            return false;
-        }
-        if (!emailPattern.test(email)) {
-            emailError.innerText = "Invalid email format.";
-            return false;
-        }
-        // if (!passwordPattern.test(password)) {
-        //     passwordError.innerText = "Password must be at least 8 characters long and contain at least one number, one lowercase and one uppercase letter.";
-        //     return false;
-        // }
-        if (password !== pwdrepeat) {
-            pwdrepeatError.innerText = "Passwords do not match.";
-            return false;
-        }
+    //     if (!namePattern.test(name)) {
+    //         nameError.innerText = "Name must contain only letters.";
+    //         return false;
+    //     }
+    //     if (!emailPattern.test(email)) {
+    //         emailError.innerText = "Invalid email format.";
+    //         return false;
+    //     }
+    //     if (!passwordPattern.test(password)) {
+    //         passwordError.innerText = "Password must be at least 8 characters.";
+    //         return false;
+    //     }
+    //     if (password !== pwdrepeat) {
+    //         pwdrepeatError.innerText = "Passwords do not match.";
+    //         return false;
+    //     }
 
-        // noError.innerText = "Form is valid.";
-        return true;
-    }
+    //     // noError.innerText = "Form is valid.";
+    //     return true;
+    // }
 </script>

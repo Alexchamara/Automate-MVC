@@ -25,13 +25,14 @@ class UserManage
     {
         try {
             $this->db->query("INSERT INTO users (name, email, userPassword) VALUES (:name, :email, :userPassword)");
-    
+
             $this->db->bind(':name', $name);
             $this->db->bind(':email', $email);
             $this->db->bind(':userPassword', password_hash($userPassword, PASSWORD_DEFAULT));
-    
+
             $this->db->execute();
-            // return true;
+
+            return true;
         } catch (PDOException $e) {
             error_log("Database error: " . $e->getMessage());
             return false;
@@ -87,13 +88,15 @@ class UserManage
 
     public function getUserByEmail($email)
     {
-        $this->db->query("SELECT * FROM users WHERE email=:email");
-
-        $this->db->bind(':email', $email);
-
-        $this->db->execute();
-
-        $user = $this->db->result();
+        try{
+            $this->db->query("SELECT * FROM users WHERE email=:email");
+            $this->db->bind(':email', $email);
+            $this->db->execute();
+            return $this->db->result();
+        } catch (PDOException $e){
+            error_log("Database error: " . $e->getMessage());
+            return false;
+        }
     }
 
     //method to delete a user account from the database by userId
@@ -106,17 +109,49 @@ class UserManage
         $this->db->execute();
     }
 
-    //method to get a user by email from the database
-    public function updateDetails($userId, $name, $email)
+    //method to update user details
+    public function updateDetails($userId, $name = null, $email = null, $contactNumber = null)
     {
-        $this->db->query("SELECT * FROM users WHERE userId=:userId AND name=:name AND email=:email");
+        try {
+            $query = "UPDATE users SET ";
+            $params = [];
 
-        $this->db->bind(':userId', $userId);
-        $this->db->bind(':name', $name);
-        $this->db->bind(':email', $email);
+            // Add each field if it is provided
+            if (!empty($name)) {
+                $query .= "name = :name, ";
+                $params[':name'] = $name;
+            }
+            if (!empty($email)) {
+                $query .= "email = :email, ";
+                $params[':email'] = $email;
+            }
+            if (!empty($contactNumber)) {
+                $query .= "contactNumber = :contactNumber, ";
+                $params[':contactNumber'] = $contactNumber;
+            }
 
-        $this->db->execute();
+            // Check if there are any fields to update
+            if (empty($params)) {
+                return false;
+            }
 
-        // return $this->db->result();
+            // Remove the trailing comma and space
+            $query = rtrim($query, ', ');
+
+            $query .= " WHERE userId = :userId";
+            $params[':userId'] = $userId;
+
+            $this->db->query($query);
+
+            // Bind the parameters dynamically
+            foreach ($params as $key => $value) {
+                $this->db->bind($key, $value);
+            }
+
+            return $this->db->execute();
+        } catch (PDOException $e) {
+            error_log("Database error: " . $e->getMessage());
+            return false;
+        }
     }
 }

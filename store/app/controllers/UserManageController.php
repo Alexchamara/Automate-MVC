@@ -47,12 +47,10 @@ class UserManageController extends Controller
             } elseif (strlen($uPassword) < 8) {
                 // header('Location: ?error=passwordshort');
                 exit();
-            } 
-            elseif ($signModel->getUserByEmail($uEmail)) {
+            } elseif ($signModel->getUserByEmail($uEmail)) {
                 // header('Location: ?error=emailtaken');
                 exit();
-            } 
-            else {
+            } else {
                 $signModel->registerUser($uName, $uEmail, $uPassword);
                 header('Location: login');
                 exit();
@@ -73,10 +71,10 @@ class UserManageController extends Controller
 
             //validate the user input
             if (empty($uEmail) || empty($uPassword)) {
-                header('Location: ?error=emptyinput');
+                // header('Location: ?error=emptyinput');
                 exit();
             } elseif (!filter_var($uEmail, FILTER_VALIDATE_EMAIL)) {
-                header('Location: ?error=invaildEmail');
+                // header('Location: ?error=invaildEmail');
                 exit();
             } else {
                 $user = $signModel->loginUser($uEmail, $uPassword);
@@ -84,6 +82,8 @@ class UserManageController extends Controller
                     session_start();
                     $_SESSION['userId'] = $user['userId'];
                     $_SESSION['userName'] = $user['name'];
+                    $_SESSION['userEmail'] = $user['email'];
+                    $_SESSION['userPhone'] = $user['phone'];
                     $_SESSION['isAdmin'] = $user['isAdmin'];
                     header("Location: home");
                     exit();
@@ -110,7 +110,7 @@ class UserManageController extends Controller
     {
         $signModel = $this->loadModel("UserManage");
         $signModel->deleteUser($userId);
-        header('');
+        header('Location: home');
     }
 
     //method to dispaly a user by userId
@@ -122,8 +122,12 @@ class UserManageController extends Controller
     }
 
     //method to update a user password
-    public function updateUserPassword($user)
+    public function updateUserPassword()
     {
+
+        $userId = $_SESSION['userId'];
+
+
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $currentPassword = trim($_POST['currentPassword']);
             $newPassword = trim($_POST['newPassword']);
@@ -144,22 +148,17 @@ class UserManageController extends Controller
                 exit();
             }
 
-            $userId = $_SESSION['userId'];
             $signModel = $this->loadModel("UserManage");
             $user = $signModel->getUserById($userId);
 
-            if ($user && password_verify($currentPassword, $user->userPassword)) {
+            if ($user && password_verify($currentPassword, $user["userPassword"])) {
                 $signModel->updatePassword($userId, $newPassword);
-                // $userId = $_SESSION['userId'];
-                // $signModel = $this->loadModel("UserManage");
-                // $user = $signModel->getUserById($userId);
 
-                header('Location: ?updatepassword=success');
                 $this->renderView('UserDashboard/UserDashboard', ['user' => $user]);
 
                 exit();
             } else {
-                header('Location: ?error=incorrectpassword');
+
                 exit();
             }
         } else {
@@ -168,26 +167,71 @@ class UserManageController extends Controller
     }
 
     //method to update a user details
-    public function updateUserDetails($userId){
+    public function updateUserDetails()
+    {
+        $userId = $_SESSION['userId'];
+
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
-            $uName = trim($_POST['uName']);
-            $uEmail = trim($_POST['uEmail']);
-            // $uPhone = trim($_POST['uPhone']);
-    
-            if (empty($uName) || empty($uEmail)) {
-                header('Location: ?error=emptyinput');
-                exit();
-            } elseif (!filter_var($uEmail, FILTER_VALIDATE_EMAIL)) {
-                header('Location: ?error=invaildEmail');
-                exit();
-            } else {
-                $userId = $_SESSION['userId'];
-                $signModel = $this->loadModel("UserManage");
-                $signModel->updateUserDetails($userId, $uName, $uEmail);
-                header('Location: ?updateuserdetails=success');
+
+            $uName = isset($_POST['uName']) ? trim($_POST['uName']) : null;
+            $uEmail = isset($_POST['uEmail']) ? trim($_POST['uEmail']) : null;
+            $uPhone = isset($_POST['uPhone']) ? trim($_POST['uPhone']) : null;
+
+            if (!empty($uEmail) && !filter_var($uEmail, FILTER_VALIDATE_EMAIL)) {
+                // If the email is invalid, redirect with an error
+                header('Location: ?error=invalidEmail');
                 exit();
             }
+
+            if (!empty($uPhone)) {
+                $uPhone = filter_var($uPhone, FILTER_SANITIZE_NUMBER_INT);
+                if (strlen($uPhone) != 10) {
+                    // If the phone number is invalid, redirect with an error
+                    header('Location: ?error=invalidPhone');
+                    exit();
+                }
+            }
+
+            $signModel = $this->loadModel("UserManage");
+            $signModel->updateDetails($userId, $uName, $uEmail, $uPhone);
+
+            header('Location: ?updateuserdetails=success');
+            exit();
         }
+
+        // Render the view if not a POST request
         $this->renderView('UserDashboard/UserDashboard', ['userId' => $userId]);
     }
+
+    public function deleteUser()
+    {
+        $userId = $_SESSION['userId'];
+
+        $deleteModel = $this->loadModel("UserManage");
+        $deleteModel->deleteUser($userId);
+        
+        session_destroy();
+        header('Location: home');
+    }
+    // public function deleteUser(){
+    //     // session_start();
+
+    //     if(isset($_SESSION['userId']) && $_SERVER['REQUEST_METHOD'] == "POST"){
+    //         $userId = $_POST['userId'];
+
+    //         $deleteModel = $this->loadModel("UserManage");
+    //         $isDeleted = $deleteModel->deleteUser($userId);
+
+    //         if ($isDeleted){
+    //             session_destroy();
+    //             header('Location: home');
+    //             exit();
+    //         } else {
+    //             header('Location: ?deleteAccount=failed');
+    //             exit();
+    //         }
+    //     }
+    // }
+
+
 }
