@@ -72,10 +72,11 @@
             <!-- Dashboard page -->
             <div id="dashboard" class="ud-page-wrapper">
                 <div class="ud-dashboard-page">
-                    <h2 class="text-[40px] font-bold text-customBlue">Hello! Alex</h2>
+                    <h2 class="text-[40px] font-bold text-customBlue">Hello! <?= $userData['name']?></h2>
                     <div class="flex gap-10 text-[#252a34] mb-4">
                         <span class="mt-2"><i class="fa-regular fa-user mr-2"></i><?php echo htmlspecialchars($_SESSION['userName']); ?></span>
                         <span class="mt-2"><i class="fa-regular fa-envelope mr-2"></i><?php echo htmlspecialchars($_SESSION['userEmail']); ?></span>
+                        <span class="mt-2"><i class="fa-regular fa-calendar mr-2"></i>Account Created On: <?php echo htmlspecialchars($_SESSION['createdDate']); ?></span>                   
                     </div>
                     <button class="ud-btn" onclick="loadPage('personalDetails')">Edit my details</button>
                 </div>

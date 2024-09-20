@@ -30,17 +30,17 @@ class AdvertController extends Controller
         $this->renderView('Advert/AdvertListing');
     }
 
-    public function payment(){
+    public function payment()
+    {
         $this->renderView('Advert/Payment');
     }
-    
+
 
     //method to create a new advert
     public function createNewAdvert()
     {
-        //check if the request method is POST
+        // check if the request method is POST
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
-            $advertModel = $this->loadModel("AdvertManage");
             $make = trim($_POST['make']);
             $model = trim($_POST['model']);
             $engine = trim($_POST['engine']);
@@ -54,6 +54,8 @@ class AdvertController extends Controller
             $images = trim($_POST['images']);
             $price = trim($_POST['price']);
             $location = trim($_POST['location']);
+            $contactNumber = trim($_POST['contactNumber']);
+            $advertEmail = trim($_POST['advertEmail']);
             $description = trim($_POST['description']);
 
             // Collect empty fields
@@ -71,6 +73,8 @@ class AdvertController extends Controller
             if (empty($images)) $emptyFields[] = 'images';
             if (empty($price)) $emptyFields[] = 'price';
             if (empty($location)) $emptyFields[] = 'location';
+            if (empty($contactNumber)) $emptyFields[] = 'contactNumber';
+            if (empty($advertEmail)) $emptyFields[] = 'advertEmail';
             if (empty($description)) $emptyFields[] = 'description';
 
             // Validate the user input
@@ -79,8 +83,9 @@ class AdvertController extends Controller
                 header('Location: ?' . $queryString);
                 exit();
             } else {
-                $advertModel->createAdvert($make, $model, $engine, $registrationYear, $color, $conditions, $mileage, $bodyType, $fuelType, $transmission, $images, $price, $location, $description);
-                header('Location: home');
+                $advertModel = $this->loadModel("AdvertManage");
+                $advertModel->createAdvert($make, $model, $engine, $registrationYear, $color, $conditions, $mileage, $bodyType, $fuelType, $transmission, $images, $price, $location, $contactNumber, $advertEmail, $description);
+                // header('Location: home');
                 exit();
             }
         }
@@ -147,5 +152,29 @@ class AdvertController extends Controller
 
         $adverts = $advertModel->getAdvertsByFilter($location, $model, $engine, $registrationYear, $conditions, $mileage, $fuelType, $transmission, $color, $price);
         $this->renderView('Advert/AdvertView', ['adverts' => $adverts]);
+    }
+
+    // public function productView($id)
+    // {
+    //     $advertModel = $this->loadModel("Listing");
+
+    //     $result = $advertModel->getListingById($id);
+
+    //     $this->renderView('Advert/ProductView', ['listing' => $result["listing"], 'car' => $result["car"]]);
+    // }
+
+    public function productView($id)
+    {
+        $advertModel = $this->loadModel("Listing");
+
+        $result = $advertModel->getListingById($id);
+
+        if ($result) {
+            $this->renderView('Advert/ProductView', ['listing' => $result["listing"], 'car' => $result["car"]]);
+        } else {
+            header('Location: ?error=notfound');
+            exit();
+        }
+        // $this->renderView('Advert/ProductView', ['listing' => $result["listing"], 'car' => $result["car"]]);
     }
 }

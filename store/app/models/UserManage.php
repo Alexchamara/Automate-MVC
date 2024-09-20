@@ -77,7 +77,7 @@ class UserManage
     //method to retrieve a user by userId from the dataabase
     public function getUserById($userId)
     {
-        $this->db->query("SELECT * FROM users WHERE userId=:userId");
+        $this->db->query("SELECT *, DATE(createdAt) as createdAt FROM users WHERE userId=:userId");
 
         $this->db->bind(':userId', $userId);
 

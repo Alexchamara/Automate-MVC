@@ -340,3 +340,102 @@
     clip-path: polygon(0 0, 100% 0, 100% 38%, 0 80%);
     /* z-index: -1; */
 }
+
+
+/* Product view - start */
+
+/* image slider */
+
+ /* Container */
+ .ad-image-slider {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* width: 100%; */
+}
+
+.slider-container {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    /* Adjust the max-width as needed */
+    overflow: hidden;
+}
+
+.slider {
+    display: flex;
+    width: 100%;
+}
+
+.slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slides img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+}
+
+.prev-btn,
+.next-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.prev-btn {
+    left: 10px;
+}
+
+.next-btn {
+    right: 10px;
+}
+
+.thumbnails-container {
+    display: flex;
+    /* align-items: center; */
+    width: 100%;
+    max-width: 800px;
+    /* Adjust the max-width as needed */
+    margin-top: 10px;
+}
+
+.thumbnails {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    width: calc(100% - 60px);
+    /* Adjust the width to account for button widths */
+}
+
+.thumbnails img {
+    flex: 0 0 auto;
+    width: 100px;
+    margin-right: 10px;
+}
+
+.thumbnails::-webkit-scrollbar {
+    display: none;
+    /* Hide the scrollbar */
+}
+
+.scroll-button {
+    background-color: grey;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    display: none;
+    /* Hide buttons initially */
+}
+
+.scroll-button i {
+    font-size: 16px;
+}

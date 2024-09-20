@@ -33,6 +33,11 @@ class AdminManage{
             return false;
         }
     }
-
-    //
+    ////////////////////////////////?????????//////??/??/??/?//?//?//?//?/?/
+    //method to show all users
+    public function getTotalUsers() {
+        $this->db->query("SELECT COUNT(*) as total FROM users");
+        $this->db->execute();
+        return $this->db->result();
+    }
 }

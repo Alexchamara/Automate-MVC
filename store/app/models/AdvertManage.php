@@ -20,31 +20,46 @@ class AdvertManage
     }
 
     //method to create a new advert
-    public function createAdvert($make, $model, $engine, $registrationYear, $color, $conditions, $mileage, $bodyType, $fuelType, $transmission, $images, $price, $location, $description)
+    public function createAdvert($make, $model, $engine, $registrationYear, $color, $conditions, $mileage, $bodyType, $fuelType, $transmission, $images, $price, $location, $contactNumber, $advertEmail, $description)
     {
-        $this->db->query("INSERT INTO car (make, model, engine, registrationYear, color, conditions, mileage, bodyType, fuelType, transmission, images, price, location, description) VALUES (:make, :model, :engine, :registrationYear, :color, :conditions, :mileage, :bodyType, :fuelType, :transmission, :images, :price, :location, :description)");
+        try {
+            $this->db->startTransaction();
+            $this->db->query(
+                "INSERT INTO car (make, model, engine, registrationYear, color, conditions, mileage, bodyType, fuelType, transmission, images, price, location, contactNumber, advertEmail, description) 
+                VALUES (:make, :model, :engine, :registrationYear, :color, :conditions, :mileage, :bodyType, :fuelType, :transmission, :images, :price, :location, :contactNumber, :advertEmail, :description)");
+    
+            $this->db->bind(':make', $make);
+            $this->db->bind(':model', $model);
+            $this->db->bind(':engine', $engine);
+            $this->db->bind(':registrationYear', $registrationYear);
+            $this->db->bind(':color', $color);
+            $this->db->bind(':conditions', $conditions);
+            $this->db->bind(':mileage', $mileage);
+            $this->db->bind(':bodyType', $bodyType);
+            $this->db->bind(':fuelType', $fuelType);
+            $this->db->bind(':transmission', $transmission);
+            $this->db->bind(':images', $images);
+            $this->db->bind(':price', $price);
+            $this->db->bind(':location', $location);
+            $this->db->bind(':contactNumber', $contactNumber);
+            $this->db->bind(':advertEmail', $advertEmail);
+            $this->db->bind(':description', $description);
+    
+            $this->db->execute();
+    
+            require_once 'Listing.php';
+            $newListing = new Listing();
+    
+            $newListing->createListing();
+    
+            $this->db->endTransaction();
+        }
+        catch (Exception $e) {
+            $this->db->cancelTransaction();
+            echo "Database error: " . $e->getMessage();
+            return false;
+        }
 
-        $this->db->bind(':make', $make);
-        $this->db->bind(':model', $model);
-        $this->db->bind(':engine', $engine);
-        $this->db->bind(':registrationYear', $registrationYear);
-        $this->db->bind(':color', $color);
-        $this->db->bind(':conditions', $conditions);
-        $this->db->bind(':mileage', $mileage);
-        $this->db->bind(':bodyType', $bodyType);
-        $this->db->bind(':fuelType', $fuelType);
-        $this->db->bind(':transmission', $transmission);
-        $this->db->bind(':images', $images);
-        $this->db->bind(':price', $price);
-        $this->db->bind(':location', $location);
-        $this->db->bind(':description', $description);
-
-        $this->db->execute();
-
-        require_once 'Listing.php';
-        $newListing = new Listing();
-
-        $addListing = $newListing->createListing($sellerId, $listingStatus, $boostAd);
     }
 
     //method to update advert details

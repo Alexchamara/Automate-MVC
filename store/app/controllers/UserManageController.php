@@ -16,9 +16,15 @@ class UserManageController extends Controller
     {
         if (isset($_SESSION['userId'])) {
             if ($_SESSION['isAdmin'] == 1) {
-                $this->renderView('UserDashboard/AdminDashboard');
+                $userModel = $this->loadModel("AdminManage");
+                $totalUsers = $userModel->getTotalUsers(); 
+                $data = $userModel->getUserById([$_SESSION['userId']]);
+                $this->renderView('UserDashboard/AdminDashboard', ['totalUsers' => $totalUsers, 'userData' => $data]);
+                // $this->renderView('UserDashboard/AdminDashboard');
+
             } else {
-                $this->renderView('UserDashboard/UserDashboard');
+                $data = $this->loadModel("UserManage")->getUserById($_SESSION['userId']);
+                $this->renderView('UserDashboard/UserDashboard', ["userData" => $data]);
             }
         }
     }
@@ -83,7 +89,8 @@ class UserManageController extends Controller
                     $_SESSION['userId'] = $user['userId'];
                     $_SESSION['userName'] = $user['name'];
                     $_SESSION['userEmail'] = $user['email'];
-                    $_SESSION['userPhone'] = $user['phone'];
+                    $_SESSION['userPhone'] = $user['contactNumber'];
+                    $_SESSION['createdDate'] = $user['createdAt'];
                     $_SESSION['isAdmin'] = $user['isAdmin'];
                     header("Location: home");
                     exit();
@@ -102,14 +109,6 @@ class UserManageController extends Controller
         session_start();
         session_unset();
         session_destroy();
-        header('Location: home');
-    }
-
-    //method to delete a user account by userId
-    public function deleteUserAccount($userId)
-    {
-        $signModel = $this->loadModel("UserManage");
-        $signModel->deleteUser($userId);
         header('Location: home');
     }
 
@@ -192,46 +191,44 @@ class UserManageController extends Controller
                 }
             }
 
+            $_SESSION['userName'] = $uName;
+            $_SESSION['userEmail'] = $uEmail;
+            $_SESSION['userPhone'] = $uPhone;
+
             $signModel = $this->loadModel("UserManage");
             $signModel->updateDetails($userId, $uName, $uEmail, $uPhone);
 
             header('Location: ?updateuserdetails=success');
             exit();
+
         }
 
         // Render the view if not a POST request
         $this->renderView('UserDashboard/UserDashboard', ['userId' => $userId]);
     }
 
+    //method to delete user account
     public function deleteUser()
     {
         $userId = $_SESSION['userId'];
 
         $deleteModel = $this->loadModel("UserManage");
         $deleteModel->deleteUser($userId);
-        
+
         session_destroy();
         header('Location: home');
     }
-    // public function deleteUser(){
-    //     // session_start();
 
-    //     if(isset($_SESSION['userId']) && $_SERVER['REQUEST_METHOD'] == "POST"){
-    //         $userId = $_POST['userId'];
+    //method to show uder details ///////???///????//?????????//???/?///////?/???????????/?/?/?////?/?/?/?/?////?/?///?/?/
+    public function getUserDetailsById()
+    {
+        session_start();
+        $userId = $_SESSION['userId'];
+        $userModel = $this->loadModel('UserManage');
+        $user = $userModel->getUserById($userId);
 
-    //         $deleteModel = $this->loadModel("UserManage");
-    //         $isDeleted = $deleteModel->deleteUser($userId);
-
-    //         if ($isDeleted){
-    //             session_destroy();
-    //             header('Location: home');
-    //             exit();
-    //         } else {
-    //             header('Location: ?deleteAccount=failed');
-    //             exit();
-    //         }
-    //     }
-    // }
-
-
+        if ($user) {
+            $_SESSION['createdDate'] = $user['createdAt'];
+        }
+    }
 }

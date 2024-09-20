@@ -313,19 +313,16 @@
             <div class="sec-box">
                 <div class="col-left">
                     <label for="phone-number" class="required">Phone number
-                        <span class="required"></span>
                     </label><br>
-                    <input id="phone-number" name="phone-number" placeholder="Phone number (077..)"></input>
+                    <input id="phone-number" name="contactNumber" placeholder="Phone number (077..)"></input>
                 </div>
                 <div class="col-left">
                     <label for="email" class="required">Email
-                        <span class="required"></span>
                     </label><br>
-                    <input id="email" name="email"></input>
+                    <input id="email" name="advertEmail"></input>
                 </div>
                 <div class="col-right">
                     <label for="location" class="required">Location
-                        <span class="required"></span>
                     </label><br>
                     <input id="location" name="location"></input>
                 </div>
@@ -383,7 +380,7 @@
 
                 <button type="button" class="prev-btn">
                     <i class="fa-solid fa-arrow-left"></i>Back</button>
-                <button type="button" class="publish-btn" id="open-popup">Publish advert</button>
+                <button type="submit" class="publish-btn" id="open-popup">Publish advert</button>
             </div>
     </form>
 </main>

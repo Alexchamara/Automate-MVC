@@ -52,8 +52,10 @@ $routes = [
     //route for admin dashboard
     'newAdmin' => ['controller' => 'AdminManageController', 'method' => 'addNewAdmin'],
 
-
-    // '' => ['controller' => '', 'method' => ''],
+    //route for view product
+    'product' => ['controller' => 'AdvertController', 'method' => 'productView'],
+    
+    
     // '' => ['controller' => '', 'method' => ''],
     // '' => ['controller' => '', 'method' => ''],
 ];

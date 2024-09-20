@@ -19,23 +19,41 @@ class Listing {
     }
 
     //method to add a new listing to the database
-    public function createListing($sellerId, $listingStatus, $boostAd){
-        try {
+    public function createListing($boostAd = 0){
 
-            $listId = $this->db->getLastInsertId($sellerId);
+        $listId = $this->db->getLastInsertId();
 
-            $this->db->query("INSERT INTO listing (carId, sellerId, listingStatus, boostAd) VALUES (:carId, :sellerId, :listingStatus, :boostAd)");
+        $this->db->query("INSERT INTO listing (carId, sellerId, boostAd) VALUES (:carId, :sellerId, :boostAd)");
 
-            $this->db->bind(':carId', $listId);
-            $this->db->bind(':sellerId', $sellerId);
-            $this->db->bind(':listingStatus', $listingStatus);
-            $this->db->bind(':boostAd', $boostAd);
-            
+        $this->db->bind(':carId', $listId);
+        $this->db->bind(':sellerId', $_SESSION["userId"]);
+        $this->db->bind(':boostAd', $boostAd);
+        
+        $this->db->execute();
+    }
+
+    // method to get a listing by listingId
+    public function getListingById($id) {
+        // try {
+            $this->db->startTransaction();
+
+            $this->db->query("SELECT * FROM listing WHERE listingId=:id");
+            $this->db->bind(':id', $id);
             $this->db->execute();
+            $listing = $this->db->result();
 
-        } catch (PDOException $e) {
-            error_log("Database error: " . $e->getMessage());
-            return false;
-        }
+            $this->db->query("SELECT * FROM car WHERE carId=:carId");
+            $this->db->bind(':carId', $listing["carId"]);
+            $this->db->execute();
+            $car = $this->db->result();
+
+            $this->db->endTransaction();
+
+            return ["listing" => $listing, "car" => $car];
+        // }
+        // catch (Exception $e) {
+        //     $this->db->cancelTransaction();
+        //     echo $e->getMessage();
+        // }
     }
 }
