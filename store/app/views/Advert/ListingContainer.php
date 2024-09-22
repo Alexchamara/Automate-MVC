@@ -1,28 +1,41 @@
+<?php 
+echo print_r($listing);
+?>
+
+<?php if(!empty($listing)): ?>
 <section class="sub-listing-container">
     <div class="sub-listing-content">
         <div class="sub-listing-content-up">
             <div class="main-img-wrapper">
-                <div class="sub-listing-main-img bg-[url('../img/testimg/listing1.jpeg')]"></div>
+                <?php
+                if (empty($listing["image"])) {
+                    $imageSrc = "img/placeholder.jpg"; // Update this path according to your project structure
+                } else {
+                    $imageSrc = "path/to/your/images/directory/" . htmlspecialchars($listing["image"]); // Update this path according to your project structure
+                }
+                ?>
+                <img src="<?= htmlspecialchars($imageSrc) ?>" alt="main image" class="sub-listing-main-img">
+                <!-- <div class="sub-listing-main-img bg-[url('../img/testimg/listing1.jpeg')]"></div> -->
             </div>
             <div class="sub-listing-info">
-                <lable class="sub-listing-title">Mercedes-Benz CLA Class</lable>
+                <label class="sub-listing-title"><?= htmlspecialchars($product['make']); ?></label>
                 <div class="sub-listing-features-container">
                     <div class="sub-listing-features">
-                        <lable class="sub-listing-feature-value">Used</lable>
-                        <lable class="sub-listing-feature-value">2014 Reg</lable>
-                        <lable class="sub-listing-feature-value">76,00km</lable>
-                        <lable class="sub-listing-feature-value">SUV</lable>
-                        <lable class="sub-listing-feature-value">Diesel</lable>
-                        <lable class="sub-listing-feature-value">Black</lable>
-                        <lable class="sub-listing-feature-value">2L</lable>
+                        <lable class="sub-listing-feature-value"><?= htmlspecialchars(ucfirst($listing['conditions'])); ?></lable>
+                        <lable class="sub-listing-feature-value"><?= htmlspecialchars(ucfirst($listing['registrationYear'])); ?></lable>
+                        <lable class="sub-listing-feature-value"><?= htmlspecialchars(ucfirst($listing['mileage'])); ?></lable>
+                        <lable class="sub-listing-feature-value"><?= htmlspecialchars(ucfirst($listing['bodyType'])); ?></lable>
+                        <lable class="sub-listing-feature-value"><?= htmlspecialchars(ucfirst($listing['fuelType'])); ?></lable>
+                        <lable class="sub-listing-feature-value"><?= htmlspecialchars(ucfirst($listing['color'])); ?></lable>
+                        <lable class="sub-listing-feature-value"><?= htmlspecialchars(ucfirst($listing['engine'])); ?></lable>
                     </div>
                     <div class="sub-listing-location">
-                        <label for="location"><i class="fa-solid fa-map-pin mr-1"></i>Malabe</label>
+                        <label for="location"><i class="fa-solid fa-map-pin mr-1"></i><?= htmlspecialchars(ucfirst($listing['location'])); ?></label>
                     </div>
                 </div>
             </div>
             <div class="listing-price-label">
-                <label for="vahiclePrice" class="listing-price">Rs. 1,000,000</label>
+                <label for="vahiclePrice" class="listing-price">Rs. <?= htmlspecialchars(ucfirst($listing['price'])); ?>/=</label>
             </div>
         </div>
         <div class="sub-listing-content-bottom">
@@ -37,3 +50,17 @@
         </div>
     </div>
 </section>
+<?php else: ?>
+<section class="sub-listing-container">
+    <div class="sub-listing-content">
+        <div class="sub-listing-content-up">
+            <div class="main-img-wrapper">
+                <img src="img/placeholder.jpg" alt="main image" class="sub-listing-main-img">
+            </div>
+            <div class="sub-listing-info">
+                <label class="sub-listing-title">No listing found</label>
+            </div>
+        </div>
+    </div>
+</section>
+<?php endif; ?>

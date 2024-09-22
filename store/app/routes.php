@@ -25,9 +25,6 @@ $routes = [
     //route for logout
     'logout' => ['controller' => 'UserManageController', 'method' => 'logoutUser'],
 
-    //route for display all adverts
-    'allAdverts' => ['controller' => 'AdvertController', 'method' => 'getAllListings'],
-
     //route for user dashboard
     'dashboard' => ['controller' => 'UserManageController', 'method' => 'userDashboard'],
 
@@ -52,10 +49,13 @@ $routes = [
     //route for admin dashboard
     'newAdmin' => ['controller' => 'AdminManageController', 'method' => 'addNewAdmin'],
 
+    //route for display all adverts
+    'allAdverts' => ['controller' => 'ListingController', 'method' => 'index'],
+
     //route for view product
-    'product' => ['controller' => 'AdvertController', 'method' => 'productView'],
+    'product/view' => ['controller' => 'AdvertController', 'method' => 'productView'],
     
-    
-    // '' => ['controller' => '', 'method' => ''],
+    //route for listing view
+    'listing' => ['controller' => 'ListingController', 'method' => 'displayListing'],
     // '' => ['controller' => '', 'method' => ''],
 ];

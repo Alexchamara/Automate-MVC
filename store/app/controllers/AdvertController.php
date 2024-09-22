@@ -2,15 +2,6 @@
 
 class AdvertController extends Controller
 {
-
-    //method to display all adverts
-    // public function index()
-    // {
-    //     $advertModel = $this->loadModel("AdvertManage");
-    //     $adverts = $advertModel->getAllAdverts();
-    //     $this->renderView('Advert/AdvertView', ['adverts' => $adverts]);
-    // }
-
     //method to display create advert page after checking if the user is logged in
     public function index()
     {
@@ -23,12 +14,12 @@ class AdvertController extends Controller
     }
 
     //method to display all adverts
-    public function getAllListings()
-    {
-        $advertModel = $this->loadModel("AdvertManage");
-        $adverts = $advertModel->getListings();
-        $this->renderView('Advert/AdvertListing');
-    }
+    // public function AllListings()
+    // {
+    //     $advertModel = $this->loadModel("AdvertManage");
+    //     $adverts = $advertModel->getListings();
+    //     $this->renderView('Advert/AdvertListing');
+    // }
 
     public function payment()
     {
@@ -136,33 +127,25 @@ class AdvertController extends Controller
     }
 
     //method to get adverts by location, model, registration year, condition, engine, fuel type, transmission, color, price
-    public function getAdvertsByFilter()
-    {
-        $advertModel = $this->loadModel("AdvertManage");
-        $location = trim($_POST['location']);
-        $model = trim($_POST['model']);
-        $engine = trim($_POST['engine']);
-        $registrationYear = trim($_POST['registrationYear']);
-        $conditions = trim($_POST['conditions']);
-        $mileage = trim($_POST['mileage']);
-        $fuelType = trim($_POST['fuelType']);
-        $transmission = trim($_POST['transmission']);
-        $color = trim($_POST['color']);
-        $price = trim($_POST['price']);
-
-        $adverts = $advertModel->getAdvertsByFilter($location, $model, $engine, $registrationYear, $conditions, $mileage, $fuelType, $transmission, $color, $price);
-        $this->renderView('Advert/AdvertView', ['adverts' => $adverts]);
-    }
-
-    // public function productView($id)
+    // public function getAdvertsByFilter()
     // {
-    //     $advertModel = $this->loadModel("Listing");
+    //     $advertModel = $this->loadModel("AdvertManage");
+    //     $location = trim($_POST['location']);
+    //     $model = trim($_POST['model']);
+    //     $engine = trim($_POST['engine']);
+    //     $registrationYear = trim($_POST['registrationYear']);
+    //     $conditions = trim($_POST['conditions']);
+    //     $mileage = trim($_POST['mileage']);
+    //     $fuelType = trim($_POST['fuelType']);
+    //     $transmission = trim($_POST['transmission']);
+    //     $color = trim($_POST['color']);
+    //     $price = trim($_POST['price']);
 
-    //     $result = $advertModel->getListingById($id);
-
-    //     $this->renderView('Advert/ProductView', ['listing' => $result["listing"], 'car' => $result["car"]]);
+    //     $adverts = $advertModel->getAdvertsByFilter($location, $model, $engine, $registrationYear, $conditions, $mileage, $fuelType, $transmission, $color, $price);
+    //     $this->renderView('Advert/AdvertListing', ['adverts' => $adverts]);
     // }
 
+    //method to view a product
     public function productView($id)
     {
         $advertModel = $this->loadModel("Listing");
@@ -175,6 +158,8 @@ class AdvertController extends Controller
             header('Location: ?error=notfound');
             exit();
         }
-        // $this->renderView('Advert/ProductView', ['listing' => $result["listing"], 'car' => $result["car"]]);
+        $this->renderView('Advert/ProductView', ['listing' => $result["listing"], 'car' => $result["car"]]);
     }
+
+    
 }

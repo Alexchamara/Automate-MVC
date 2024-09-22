@@ -24,7 +24,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/brands.min.css">
     <!-- jquery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="script.js"></script>
+    <script src="js/script.js" defer></script>
+    <script src="js/navigation.js" defer></script>
 </head>
 
 <body>
@@ -39,7 +40,7 @@
             <?php
             $link = isset($_SESSION['userName']) ? 'dashboard' : 'sign';
             $linkText = isset($_SESSION['userName']) ? "My Account (" . explode(' ', $_SESSION['userName'])[0] . ")" : "Sign in";
-            echo '<a href="' . $link . '" class="menu-link dropdown-toggle">' . $linkText . '</a>';
+            echo "<a href=\"{$link}\" class=\"menu-link dropdown-toggle\">{$linkText}</a>";
             ?>
             <div>
                 <li><a href="accessToCreateAdvert" class="Ads-button Ads-mob" id="Ads-mob">Create Ads</a></li>
@@ -59,7 +60,7 @@
     // Ensure $viewPath is set correctly
     if (isset($viewPath)) {
         // Construct the full path to the view file
-        $viewFilePath = '../app/views/' . $viewPath . '.php';
+        $viewFilePath = "../app/views/{$viewPath}.php";
 
         // Check if the view file exists before including it
         if (file_exists($viewFilePath)) {
@@ -154,7 +155,7 @@
     </footer>
 
     <!-- custom js for navigation -->
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
         //resposive navigation bar
         let menu = document.querySelector("#menu-icon");
         let navlist = document.querySelector(".navlist");
@@ -251,7 +252,7 @@
                 }
             }
         });
-    </script>
+    </script> -->
 </body>
 
 </html>

@@ -378,7 +378,7 @@
     height: auto;
 }
 
-.prev-btn,
+/* .prev-btn,
 .next-btn {
     position: absolute;
     top: 50%;
@@ -388,7 +388,7 @@
     border: none;
     padding: 10px;
     cursor: pointer;
-}
+} */
 
 .prev-btn {
     left: 10px;

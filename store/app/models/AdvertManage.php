@@ -13,11 +13,11 @@ class AdvertManage
     }
 
     //method to get all listings
-    public function getListings() {
-        $this->db->query("SELECT * FROM car");
-        $this->db->execute();
-        return $this->db->results();
-    }
+    // public function getListings() {
+    //     $this->db->query("SELECT * FROM car");
+    //     $this->db->execute();
+    //     return $this->db->results();
+    // }
 
     //method to create a new advert
     public function createAdvert($make, $model, $engine, $registrationYear, $color, $conditions, $mileage, $bodyType, $fuelType, $transmission, $images, $price, $location, $contactNumber, $advertEmail, $description)

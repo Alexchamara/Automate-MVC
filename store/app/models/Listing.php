@@ -1,6 +1,7 @@
 <?php
 
-class Listing {
+class Listing
+{
     //hold the database connection
     private $db;
 
@@ -11,7 +12,7 @@ class Listing {
     }
 
     //method to retrieve all listings from the database
-    public function getAllListing()
+    public function getListing()
     {
         $this->db->query("SELECT * FROM listing");
         $this->db->execute();
@@ -19,7 +20,8 @@ class Listing {
     }
 
     //method to add a new listing to the database
-    public function createListing($boostAd = 0){
+    public function createListing($boostAd = 0)
+    {
 
         $listId = $this->db->getLastInsertId();
 
@@ -28,13 +30,14 @@ class Listing {
         $this->db->bind(':carId', $listId);
         $this->db->bind(':sellerId', $_SESSION["userId"]);
         $this->db->bind(':boostAd', $boostAd);
-        
+
         $this->db->execute();
     }
 
-    // method to get a listing by listingId
-    public function getListingById($id) {
-        // try {
+    // method to get a listing data by listingId
+    public function getListingById($id)
+    {
+        try {
             $this->db->startTransaction();
 
             $this->db->query("SELECT * FROM listing WHERE listingId=:id");
@@ -50,10 +53,28 @@ class Listing {
             $this->db->endTransaction();
 
             return ["listing" => $listing, "car" => $car];
-        // }
-        // catch (Exception $e) {
-        //     $this->db->cancelTransaction();
-        //     echo $e->getMessage();
-        // }
+        } catch (Exception $e) {
+            $this->db->cancelTransaction();
+            echo $e->getMessage();
+        }
+    }
+
+    //method to get all listings
+    public function getAllListings()
+    {
+        try {
+            $this->db->startTransaction();
+            $this->db->query("SELECT listing.*, car.* FROM listing JOIN car ON listing.carId = car.carId");
+            $this->db->execute();
+
+            $results = $this->db->results();
+
+            $this->db->endTransaction();
+
+            return $results;
+        } catch (Exception $e) {
+            $this->db->cancelTransaction();
+            echo $e->getMessage();
+        }
     }
 }

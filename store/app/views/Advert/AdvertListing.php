@@ -1,3 +1,7 @@
+<?php
+    echo print_r($listing);
+    // echo print_r($product);
+?>
 <main class="listing-main-container">
     <!-- search options -->
     <aside class="listing-main-wrapper">
@@ -199,6 +203,18 @@
 
     <!-- car listings -->
 
-    <button type="submit" value="product" class="border">Search car</button>
+    <!-- loop ListingContainer.php -->
+    <section class="listing-container">
+        <ul>
+            <?php foreach ($product as $listing) : ?>
+                <li class="listing-value-wrapper">
+                <?php include 'ListingContainer.php'; ?>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    </section>
+
+
     
+
 </main>
