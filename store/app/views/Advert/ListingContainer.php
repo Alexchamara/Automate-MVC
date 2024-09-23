@@ -1,19 +1,16 @@
-<?php 
-echo print_r($listing);
-?>
-
 <?php if(!empty($listing)): ?>
 <section class="sub-listing-container">
     <div class="sub-listing-content">
         <div class="sub-listing-content-up">
             <div class="main-img-wrapper">
                 <?php
-                if (empty($listing["image"])) {
+                if (empty($listing["images"])) {
                     $imageSrc = "img/placeholder.jpg"; // Update this path according to your project structure
                 } else {
-                    $imageSrc = "path/to/your/images/directory/" . htmlspecialchars($listing["image"]); // Update this path according to your project structure
+                    $imageSrc = "path/to/your/images/directory/" . htmlspecialchars($listing["images"]); // Update this path according to your project structure
                 }
                 ?>
+                <?= $listing["images"] ?>
                 <img src="<?= htmlspecialchars($imageSrc) ?>" alt="main image" class="sub-listing-main-img">
                 <!-- <div class="sub-listing-main-img bg-[url('../img/testimg/listing1.jpeg')]"></div> -->
             </div>

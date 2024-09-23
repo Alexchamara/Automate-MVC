@@ -1,6 +1,6 @@
 <?php
-    echo print_r($listing);
-    // echo print_r($product);
+    // echo print_r($listing ['listing']);
+    // echo print_r($advert);
 ?>
 <main class="listing-main-container">
     <!-- search options -->
@@ -202,19 +202,30 @@
     </aside>
 
     <!-- car listings -->
-
-    <!-- loop ListingContainer.php -->
+        <!-- AdvertListing.php -->
     <section class="listing-container">
         <ul>
             <?php foreach ($product as $listing) : ?>
-                <li class="listing-value-wrapper">
-                <?php include 'ListingContainer.php'; ?>
+                <li class="listing-value-wrapper" data-id="<?= $listing['listing']; ?>">
+                    <?php require 'ListingContainer.php'; ?>
                 </li>
             <?php endforeach; ?>
         </ul>
     </section>
-
-
     
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const listingCards = document.querySelectorAll('.listing-value-wrapper');
+            listingCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const listingId = this.getAttribute('data-id');
+                    window.location.href = `product/view?id=${listingId}`;
+                });
+            });
+        });
+    </script>
+
+
+
 
 </main>

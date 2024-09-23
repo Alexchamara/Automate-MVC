@@ -1,4 +1,4 @@
-<?php
+<ed?php
 echo print_r($car);
 echo print_r($listing);
 ?>
@@ -68,13 +68,13 @@ echo print_r($listing);
 
             <!-- Title Section -->
             <div class="pb-5">
-                <h1 class="text-xl md:text-4xl font-bold text-blue-900"><?= $car['make'] ?></h1>
+                <h1 class="text-xl md:text-4xl font-bold text-blue-900"><?= $listing['make'] ?></h1>
                 <p class="text-gray-500 text-sm md:text-base">Suzuki Swift Japan 2008</p>
             </div>
 
             <!-- Price Section -->
             <div class="flex flex-col md:flex-row justify-between items-center border-y border-gray-200 py-5">
-                <span class="text-customRed text-2xl md:text-3xl font-bold">Rs. 5,125,000</span>
+                <span class="text-customRed text-2xl md:text-3xl font-bold"><?= $listing['price']?></span>
                 <div class="flex items-center space-x-2 mt-2 md:mt-0"> <i class="fa-regular fa-circle-check w-5 h-5 text-green-500"></i>
                     <span class="text-green-500 text-base">Verified Ad</span>
                 </div>
@@ -124,31 +124,31 @@ echo print_r($listing);
         <div class="grid grid-cols-2 md:grid-cols-3 gap-4 w-full md:w-1/2">
             <div class="flex items-center p-4 font-semibold">
                 <img src="img/condition.png" alt="condition" class="w-9">
-                <span class="ml-2 text-customBlue" name="">Used</span>
+                <span class="ml-2 text-customBlue" name=""><?= $listing['conditions'] ?></span>
             </div>
             <div class="flex items-center p-4 font-semibold">
                 <img src="img/meeter.png" alt="condition" class="w-9">
-                <span class="ml-2 text-customBlue" name="">Used</span>
+                <span class="ml-2 text-customBlue" name=""><?= $listing['mileage'] ?></span>
             </div>
             <div class="flex items-center p-4 font-semibold">
                 <img src="img/registration.png" alt="condition" class="w-9">
-                <span class="ml-2 text-customBlue" name="">Used</span>
+                <span class="ml-2 text-customBlue" name=""><?= $listing['registrationYear'] ?></span>
             </div>
             <div class="flex items-center p-4 font-semibold">
                 <img src="img/gearbox.svg" alt="condition" class="w-9">
-                <span class="ml-2 text-customBlue" name="">Used</span>
+                <span class="ml-2 text-customBlue" name=""><?= $listing['transmission'] ?></span>
             </div>
             <div class="flex items-center p-4 font-semibold">
                 <img src="img/engin.png" alt="condition" class="w-9">
-                <span class="ml-2 text-customBlue" name="">Used</span>
+                <span class="ml-2 text-customBlue" name=""><?= $listing['engine'] ?></span>
             </div>
             <div class="flex items-center p-4 font-semibold">
                 <img src="img/model.png" alt="condition" class="w-9">
-                <span class="ml-2 text-customBlue" name="">Used</span>
+                <span class="ml-2 text-customBlue" name=""><?= $listing['model'] ?></span>
             </div>
             <div class="flex items-center p-4 font-semibold">
                 <img src="img/fuel.png" alt="condition" class="w-9">
-                <span class="ml-2 text-customBlue" name="">Used</span>
+                <span class="ml-2 text-customBlue" name=""><?= $listing['fuelType'] ?></span>
             </div>
             <div class="flex items-center p-4 font-semibold">
                 <img src="img/door.png" alt="condition" class="w-9">
@@ -156,7 +156,7 @@ echo print_r($listing);
             </div>
             <div class="flex items-center p-4 font-semibold">
                 <img src="img/color.png" alt="condition" class="w-9">
-                <span class="ml-2 text-customBlue" name="">Used</span>
+                <span class="ml-2 text-customBlue" name=""><?= $listing['color']?></span>
             </div>
         </div>
     </div> <!-- Description -->

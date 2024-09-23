@@ -53,9 +53,15 @@ $routes = [
     'allAdverts' => ['controller' => 'ListingController', 'method' => 'index'],
 
     //route for view product
-    'product/view' => ['controller' => 'AdvertController', 'method' => 'productView'],
+    // 'product/view' => ['controller' => 'AdvertController', 'method' => 'productView'],
+    'product/view' => ['controller' => 'ListingController', 'method' => 'view'],
     
     //route for listing view
     'listing' => ['controller' => 'ListingController', 'method' => 'displayListing'],
-    // '' => ['controller' => '', 'method' => ''],
+
+    //route for user adverts
+    'userAdverts' => ['controller' => 'zzzzz', 'method' => 'getListingByUserId'],
+
+
+    
 ];

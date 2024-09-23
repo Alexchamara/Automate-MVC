@@ -77,4 +77,15 @@ class Listing
             echo $e->getMessage();
         }
     }
+
+    //method to get all listings by user
+    public function getAdvertByUser(){
+
+        $this->db->query("SELECT * FROM car LEFT JOIN listing ON car.carId = listing.carId WHERE sellerId = :sellerId");
+        $this->db->bind(':sellerId', $_SESSION["userId"]);
+        $this->db->execute();
+        return $this->db->results();
+    }
+
+
 }

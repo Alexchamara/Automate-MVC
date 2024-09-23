@@ -49,7 +49,7 @@ class Database{
 
     //method to fetch all results as an associative array
     public function results(){
-        return $this->stmt->fetch(PDO::FETCH_ASSOC);
+        return $this->stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     //method to fetch a single result to an associative array

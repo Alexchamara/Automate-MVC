@@ -15,4 +15,13 @@ class ListingController extends Controller {
         $listing = $advertModel->getAllListings();
         $this->renderView('Advert/ListingContainer', ['listing' => $listing]);
     }
+
+    //method to view a product
+    public function getAllAdvertsByUser(){
+        $advertModel = $this->loadModel("Listing");
+        $advert = $advertModel->getAdvertByUser();
+        return $advert;
+    }
+
+    
 }

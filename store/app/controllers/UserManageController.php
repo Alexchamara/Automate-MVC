@@ -24,7 +24,8 @@ class UserManageController extends Controller
 
             } else {
                 $data = $this->loadModel("UserManage")->getUserById($_SESSION['userId']);
-                $this->renderView('UserDashboard/UserDashboard', ["userData" => $data]);
+                $car = $this->loadModel('Listing')->getAdvertByUser($_SESSION['userId']);
+                $this->renderView('UserDashboard/UserDashboard', ["userData" => $data, "car" => $car]);
             }
         }
     }

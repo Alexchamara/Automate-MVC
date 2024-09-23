@@ -1,3 +1,6 @@
+<?php 
+echo print_r($car);
+?>
 <!-- User Dashboard -->
 <main class="user-dashboard-main-container">
     <!-- upper section -->
@@ -84,11 +87,11 @@
             <!-- Dashboard page -->
             <div id="dashboard" class="ud-page-wrapper">
                 <div class="ud-dashboard-page">
-                    <h2 class="text-[40px] font-bold text-customBlue">Hello! <?= $userData["name"]?></h2>
+                    <h2 class="text-[40px] font-bold text-customBlue">Hello! <?= $userData["name"] ?></h2>
                     <div class="flex gap-10 text-[#252a34] mb-4">
-                        <span class="mt-2"><i class="fa-regular fa-user mr-2"></i><?= $userData['name']?></span>
-                        <span class="mt-2"><i class="fa-regular fa-envelope mr-2"></i><?= $userData["email"]?></span>
-                        <span class="mt-2"><i class="fa-regular fa-calendar mr-2"></i>Member since: <?= $userData['createdAt']?></span>
+                        <span class="mt-2"><i class="fa-regular fa-user mr-2"></i><?= $userData['name'] ?></span>
+                        <span class="mt-2"><i class="fa-regular fa-envelope mr-2"></i><?= $userData["email"] ?></span>
+                        <span class="mt-2"><i class="fa-regular fa-calendar mr-2"></i>Member since: <?= $userData['createdAt'] ?></span>
                     </div>
                     <button class="ud-btn" onclick="loadPage('personalDetails')">Edit my details</button>
                 </div>
@@ -127,6 +130,21 @@
                         </div>
                     </div>
                 </div>
+
+                <section class="listing-container">
+                    <ul>
+                        <?php foreach ($car as $cars) : ?>
+                            <li class="listing-value-wrapper">
+                                <?php
+                                // Ensure the $listing variable is available in UserAdvert.php
+                                $currentListing = $listing;
+                                require 'UserAdvert.php';
+                                ?>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                </section>
+
                 <div class="ud-empty-body">
                     <i class="fa-solid fa-magnifying-glass text-[#6C757D] text-[80px]"></i>
                     <h2 class="text-[#6C757D] text-[40px] font-bold">No adverts found</h2>
@@ -145,7 +163,7 @@
             <!-- Notification page -->
             <div id="notification" class="ud-page-wrapper hidden">
                 <div class="ud-presonal-page">
-                    <!-- order page -->
+                    <!-- Notification page -->
                 </div>
                 <div class="ud-empty-body">
                     <i class="fa-solid fa-magnifying-glass text-[#6C757D] text-[80px]"></i>
@@ -206,17 +224,17 @@
                                 <span class="required"></span>
                                 <label for="fullName" class="block text-sm font-medium text-gray-700">Full Name
                                 </label>
-                                <input type="text" name="uName" id="lname" placeholder="<?= $userData['name']?>" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                                <input type="text" name="uName" id="lname" placeholder="<?= $userData['name'] ?>" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                             </div>
                             <div class="mb-4">
                                 <label for="email" class="block text-sm font-medium text-gray-700">Email address
                                 </label>
-                                <input type="text" name="uEmail" id="lemail" placeholder="<?= $userData['email']?>" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                                <input type="text" name="uEmail" id="lemail" placeholder="<?= $userData['email'] ?>" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                             </div>
                             <div class="mb-4">
                                 <label for="mobile" class="block text-sm font-medium text-gray-700 ">Mobile
                                 </label>
-                                <input type="number" name="uPhone" id="lphoen" placeholder="<?= $userData['contactNumber']?>" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                                <input type="number" name="uPhone" id="lphoen" placeholder="<?= $userData['contactNumber'] ?>" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                             </div>
                             <button type="submit" class="ud-btn">Save my details</button>
                         </form>
