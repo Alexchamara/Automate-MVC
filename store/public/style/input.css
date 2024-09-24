@@ -221,7 +221,7 @@
 
 /* Advert listing page - start */
 .listing-main-container {
-    @apply flex mt-[11%] mb-[25%] mx-[6%];
+    @apply flex mt-[11%] mx-[6%];
 }
 
 .listing-main-wrapper {
@@ -243,7 +243,7 @@
 }
 
 .listing-container {
-    @apply ml-10 w-full;
+    @apply w-full;
 }
 
 .listing-value-wrapper {

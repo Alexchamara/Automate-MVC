@@ -79,7 +79,8 @@ class Listing
     }
 
     //method to get all listings by user
-    public function getAdvertByUser(){
+    public function getAdvertByUser()
+    {
 
         $this->db->query("SELECT * FROM car LEFT JOIN listing ON car.carId = listing.carId WHERE sellerId = :sellerId");
         $this->db->bind(':sellerId', $_SESSION["userId"]);
@@ -87,5 +88,32 @@ class Listing
         return $this->db->results();
     }
 
+    //method to delete a listing
+    public function deleteListing($id)
+    {
+        try {
+            $this->db->startTransaction();
+    
+            $this->db->query("SELECT carId FROM listing WHERE listingId = :id");
+            $this->db->bind(':id', $id);
+            $this->db->execute();
+            $listing = $this->db->result();
+    
+            if ($listing) {
+                $this->db->query("DELETE FROM listing WHERE listingId = :id");
+                $this->db->bind(':id', $id);
+                $this->db->execute();
 
+                $this->db->query("DELETE FROM car WHERE carId = :carId");
+                $this->db->bind(':carId', $listing['carId']);
+                $this->db->execute();
+            }
+    
+            $this->db->endTransaction();
+
+        } catch (Exception $e) {
+            $this->db->cancelTransaction();
+            error_log("Error deleting listing: " . $e->getMessage());
+        }
+    }
 }

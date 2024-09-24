@@ -1,6 +1,3 @@
-<?php
-echo print_r($car);
-?>
 <section class="sub-listing-container">
     <div class="sub-listing-content">
         <div class="sub-listing-content-up">
@@ -8,37 +5,39 @@ echo print_r($car);
                 <div class="sub-listing-main-img bg-[url('../img/testimg/listing1.jpeg')]"></div>
             </div>
             <div class="sub-listing-info">
-                <lable class="sub-listing-title">Mercedes-Benz CLA Class</lable>
+                <lable class="sub-listing-title"><?= htmlspecialchars($car['make']); ?></lable>
                 <div class="sub-listing-features-container">
                     <div class="sub-listing-features">
-                        <lable class="sub-listing-feature-value">Used</lable>
-                        <lable class="sub-listing-feature-value">2014 Reg</lable>
-                        <lable class="sub-listing-feature-value">76,00km</lable>
-                        <lable class="sub-listing-feature-value">SUV</lable>
-                        <lable class="sub-listing-feature-value">Diesel</lable>
-                        <lable class="sub-listing-feature-value">Black</lable>
-                        <lable class="sub-listing-feature-value">2L</lable>
+                        <lable class="sub-listing-feature-value"><?= htmlspecialchars(ucfirst($car['conditions'])); ?></lable>
+                        <lable class="sub-listing-feature-value"><?= htmlspecialchars(ucfirst($car['registrationYear'])); ?></lable>
+                        <lable class="sub-listing-feature-value"><?= htmlspecialchars(ucfirst($car['mileage'])); ?></lable>
+                        <lable class="sub-listing-feature-value"><?= htmlspecialchars(ucfirst($car['bodyType'])); ?></lable>
+                        <lable class="sub-listing-feature-value"><?= htmlspecialchars(ucfirst($car['fuelType'])); ?></lable>
+                        <lable class="sub-listing-feature-value"><?= htmlspecialchars(ucfirst($car['color'])); ?></lable>
+                        <lable class="sub-listing-feature-value"><?= htmlspecialchars(ucfirst($car['engine'])); ?></lable>
                     </div>
                     <div class="sub-listing-location">
-                        <label for="location"><i class="fa-solid fa-map-pin mr-1"></i>Malabe</label>
+                        <label for="location"><i class="fa-solid fa-map-pin mr-1"></i><?= htmlspecialchars(ucfirst($car['location'])); ?></label>
                     </div>
                 </div>
             </div>
             <div class="listing-price-label">
-                <label for="vahiclePrice" class="listing-price">Rs. 1,000,000</label>
+                <label for="vahiclePrice" class="listing-price">Rs. <?= htmlspecialchars(ucfirst($car['price'])); ?>/=</label>
             </div>
         </div>
         <div class="savedAd-buttons">
             <div class="border-r border-customGray">
-                <button class="savedAd-view"><i class="fa-regular fa-eye mr-1"></i>View advert</button>
+                <a href="viewAdvert/id/<?= $car['listingId'] ?>" class="savedAd-view">
+                    <button class="savedAd-view"><i class="fa-regular fa-eye mr-1"></i>View advert</button></a>
             </div>
-            <div class="border-l border-customGray">
-                <button class="remove-button savedAd-delete"><i class="fa-solid fa-pencil" style="margin-right: 5px;"></i>
+            <div class="border-l border-customGray flex">
+                <a href="#" class="remove-button savedAd-delete"><i class="fa-solid fa-pencil mr-1"></i>
                     Update
-                </button>
-                <button class="remove-button savedAd-delete"><i class="fa-regular fa-trash-can mr-1"></i>
+                </a>
+
+                <a href="deleteList/id/<?= $car['listingId']; ?>" class="remove-button savedAd-delete border-l"><i class="fa-regular fa-trash-can mr-1"></i>
                     Remove
-                </button>
+                </a>
             </div>
         </div>
     </div>

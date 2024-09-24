@@ -13,14 +13,6 @@ class AdvertController extends Controller
         }
     }
 
-    //method to display all adverts
-    // public function AllListings()
-    // {
-    //     $advertModel = $this->loadModel("AdvertManage");
-    //     $adverts = $advertModel->getListings();
-    //     $this->renderView('Advert/AdvertListing');
-    // }
-
     public function payment()
     {
         $this->renderView('Advert/Payment');
@@ -86,64 +78,75 @@ class AdvertController extends Controller
     //method to update an advert
     public function updateAdvert()
     {
-        //check if the request method is POST
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $advertModel = $this->loadModel("AdvertManage");
             $carId = trim($_POST['carId']);
-            $make = trim($_POST['make']);
-            $model = trim($_POST['model']);
-            $engine = trim($_POST['engine']);
-            $registrationYear = trim($_POST['registrationYear']);
-            $color = trim($_POST['color']);
-            $conditions = trim($_POST['conditions']);
-            $mileage = trim($_POST['mileage']);
-            $bodyType = trim($_POST['bodyType']);
-            $fuelType = trim($_POST['fuelType']);
-            $transmission = trim($_POST['transmission']);
-            $images = trim($_POST['images']);
-            $price = trim($_POST['price']);
-            $location = trim($_POST['location']);
-            $description = trim($_POST['description']);
 
-            //validate the user input
-            if (empty($make) || empty($model) || empty($engine) || empty($registrationYear) || empty($color) || empty($conditions) || empty($mileage) || empty($bodyType) || empty($fuelType) || empty($transmission) || empty($images) || empty($price) || empty($location) || empty($description)) {
-                header('Location: ?error=emptyinput');
+            // Create an associative array to store the updated fields
+            $fieldsToUpdate = [];
+
+            if (!empty(trim($_POST['make']))) {
+                $fieldsToUpdate['make'] = trim($_POST['make']);
+            }
+            if (!empty(trim($_POST['model']))) {
+                $fieldsToUpdate['model'] = trim($_POST['model']);
+            }
+            if (!empty(trim($_POST['engine']))) {
+                $fieldsToUpdate['engine'] = trim($_POST['engine']);
+            }
+            if (!empty(trim($_POST['registrationYear']))) {
+                $fieldsToUpdate['registrationYear'] = trim($_POST['registrationYear']);
+            }
+            if (!empty(trim($_POST['color']))) {
+                $fieldsToUpdate['color'] = trim($_POST['color']);
+            }
+            if (!empty(trim($_POST['conditions']))) {
+                $fieldsToUpdate['conditions'] = trim($_POST['conditions']);
+            }
+            if (!empty(trim($_POST['mileage']))) {
+                $fieldsToUpdate['mileage'] = trim($_POST['mileage']);
+            }
+            if (!empty(trim($_POST['bodyType']))) {
+                $fieldsToUpdate['bodyType'] = trim($_POST['bodyType']);
+            }
+            if (!empty(trim($_POST['fuelType']))) {
+                $fieldsToUpdate['fuelType'] = trim($_POST['fuelType']);
+            }
+            if (!empty(trim($_POST['transmission']))) {
+                $fieldsToUpdate['transmission'] = trim($_POST['transmission']);
+            }
+            // if (!empty(trim($_POST['images']))) {
+            //     $fieldsToUpdate['images'] = trim($_POST['images']);
+            // }
+            if (!empty(trim($_POST['price']))) {
+                $fieldsToUpdate['price'] = trim($_POST['price']);
+            }
+            if (!empty(trim($_POST['location']))) {
+                $fieldsToUpdate['location'] = trim($_POST['location']);
+            }
+            if (!empty(trim($_POST['description']))) {
+                $fieldsToUpdate['description'] = trim($_POST['description']);
+            }
+
+            // Ensure at least one field is provided for update
+            if (count($fieldsToUpdate) > 0) {
+                // Call the model's method to perform the update
+                $advertModel->updateAdvert($carId, $fieldsToUpdate);
+
+                // Redirect to index after successful update
+                header('Location: home');
                 exit();
             } else {
-                $advertModel->updateAdvert($carId, $make, $model, $engine, $registrationYear, $color, $conditions, $mileage, $bodyType, $fuelType, $transmission, $images, $price, $location, $description);
-                header('Location: index');
+                // No fields provided, redirect with an error message
+                header('Location: ?error=noinput');
                 exit();
             }
         }
+
+        // Render the update view if not a POST request
         $this->renderView('Advert/UpdateAdvert');
     }
 
-    //method to delete an advert
-    public function deleteAdvert($carId)
-    {
-        $advertModel = $this->loadModel("AdvertManage");
-        $advertModel->deleteAdvert($carId);
-        header('Location: index');
-    }
-
-    //method to get adverts by location, model, registration year, condition, engine, fuel type, transmission, color, price
-    // public function getAdvertsByFilter()
-    // {
-    //     $advertModel = $this->loadModel("AdvertManage");
-    //     $location = trim($_POST['location']);
-    //     $model = trim($_POST['model']);
-    //     $engine = trim($_POST['engine']);
-    //     $registrationYear = trim($_POST['registrationYear']);
-    //     $conditions = trim($_POST['conditions']);
-    //     $mileage = trim($_POST['mileage']);
-    //     $fuelType = trim($_POST['fuelType']);
-    //     $transmission = trim($_POST['transmission']);
-    //     $color = trim($_POST['color']);
-    //     $price = trim($_POST['price']);
-
-    //     $adverts = $advertModel->getAdvertsByFilter($location, $model, $engine, $registrationYear, $conditions, $mileage, $fuelType, $transmission, $color, $price);
-    //     $this->renderView('Advert/AdvertListing', ['adverts' => $adverts]);
-    // }
 
     //method to view a product
     public function productView($id)
@@ -160,6 +163,4 @@ class AdvertController extends Controller
         }
         $this->renderView('Advert/ProductView', ['listing' => $result["listing"], 'car' => $result["car"]]);
     }
-
-    
 }

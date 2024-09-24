@@ -56,7 +56,7 @@
 
                 <!-- Signup Form -->
                 <div class="signup form-peice">
-                    <form class="signup-form" action="register" method="POST" onsubmit="return validateForm()">
+                    <form class="signup-form" action="register" method="POST">
                         <h2>Sign in</h2>
                         <div class="form-group">
                             <label for="name">Full Name</label><br>

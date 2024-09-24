@@ -1,3 +1,6 @@
+<?php
+echo print_r($_POST['carId']);
+?>
 <main class="advert-main-container">
     <!-- Progress bar -->
     <div class="progress-bar-container">
@@ -21,7 +24,7 @@
     </div>
 
     <!-- Add vehicle informations -->
-    <form action="createAdvert" method="POST" id="multi-step-form">
+    <form action="editList" method="POST" id="multi-step-form">
         <div class="form-step active form_1">
             <h2>Make & model</h2>
             <div class="sec-box">
@@ -160,7 +163,7 @@
                     <label for="mileage" class="required">Current mileage
                         <span class="required"></span>
                     </label><br>
-                    <input id="model" name="mileage" placeholder="e.g. 50000"></input>
+                    <input id="mileage" name="mileage" placeholder="e.g. 50000"></input>
                 </div>
                 <!-- Condition -->
                 <div class="col-left">
@@ -330,12 +333,12 @@
 
             <button type="button" class="prev-btn">
                 <i class="fa-solid fa-arrow-left" style="margin-right: 10px;"></i>Back</button>
-            <button type="button" class="next-btn">Next
+            <button type="submit" class="next-btn">Update
                 <i class="fa-solid fa-arrow-right" style="color: #ffffff; margin-left: 10px;"></i></button>
         </div>
 
         <!-- Review & publish -->
-        <div class="form-step form_3">
+        <!-- <div class="form-step form_3">
             <div class="publish-top">
                 <h2 style="font-size:3vw; font-weight: bold;">Advert summary</h2>
                 <span>Please review the details and click the 'Publish advert' button to post. To prevent potential
@@ -380,145 +383,15 @@
 
                 <button type="button" class="prev-btn">
                     <i class="fa-solid fa-arrow-left"></i>Back</button>
-                <button type="" class="publish-btn" id="open-popup">Publish advert</button>
+                <button type="submit" class="publish-btn" id="open-popup">Publish advert</button>
             </div>
-        </div>
-
-        <!-- Payment -->
-        <div class="payment-form-container">
-            <!-- Blurred Background Overlay -->
-            <div id="blur-background" class="blur-background"></div>
-        
-            <!-- Payment Popup Window -->
-            <div class="payment-popup" id="payment-popup">
-                <!-- Close Button -->
-                <span id="close-popup" class="close-btn"><i class="fas fa-times"></i></span>
-        
-                <h2 class="font-bold">Review Payment</h2>
-                <div>
-                    <div class="font-medium flex justify-between py-1 px-8">
-                        <label for="amount">Amount</label>
-                        <span>Rs. 8000/=</span>
-                    </div>
-                    <div class="font-medium flex justify-between py-1 px-8">
-                        <label for="amount">Boosted Ad</label>
-                        <span>Rs. 900/=</span>
-                    </div>
-                    <div class="font-medium flex justify-between py-1 px-8 bg-slate-300 rounded-full">
-                        <label for="amount">Total</label>
-                        <span>Rs. 8900/=</span>
-                    </div>
-                </div>
-        
-                <h2 class="font-bold">Payment Method</h2>
-                <div class="payment-options">
-                    <input type="radio" name="payment" id="credit-card" checked>
-                    <label for="credit-card">Credit Card</label>
-                    <input type="radio" name="payment" id="debit-card">
-                    <label for="debit-card">Debit Card</label>
-                    <input type="radio" name="payment" id="paypal">
-                    <label for="paypal">PayPal</label>
-                </div>
-        
-                <div class="payment-form" id="credit-card-form">
-                    <h3>Credit Card</h3>
-                    <form>
-                        <div class="input-group">
-                            <label for="cc-name">Card Holder Name</label>
-                            <input type="text" id="cc-name" placeholder="John Doe">
-                        </div>
-                        <div class="input-group">
-                            <label for="cc-number">Card Number</label>
-                            <input type="text" id="cc-number" placeholder="4123 4567 8910 1234">
-                        </div>
-                        <div class="input-group">
-                            <label for="cc-expiry">Expiry Date</label>
-                            <input type="text" id="cc-expiry" placeholder="MM/YY">
-                        </div>
-                        <div class="input-group">
-                            <label for="cc-cvv">CVV Code</label>
-                            <input type="text" id="cc-cvv" placeholder="123">
-                        </div>
-                        <button type="submit">Submit</button>
-                    </form>
-                </div>
-        
-                <div class="payment-form" id="debit-card-form">
-                    <h3>Debit Card</h3>
-                    <form>
-                        <div class="input-group">
-                            <label for="dc-name">Card Holder Name</label>
-                            <input type="text" id="dc-name" placeholder="John Doe">
-                        </div>
-                        <div class="input-group">
-                            <label for="dc-number">Card Number</label>
-                            <input type="text" id="dc-number" placeholder="4123 4567 8910 1234">
-                        </div>
-                        <div class="input-group">
-                            <label for="dc-expiry">Expiry Date</label>
-                            <input type="text" id="dc-expiry" placeholder="MM/YY">
-                        </div>
-                        <div class="input-group">
-                            <label for="dc-cvv">CVV Code</label>
-                            <input type="text" id="dc-cvv" placeholder="123">
-                        </div>
-                        <button type="submit">Submit</button>
-                    </form>
-                </div>
-        
-                <div class="payment-form" id="paypal-form">
-                    <h3>PayPal</h3>
-                    <form>
-                        <button type="submit">Continue to PayPal</button>
-                    </form>
-                </div>
-            </div>
-        </div>
+        </div> -->
     </form>
 </main>
 
 
-
-
 <!-- progress bar -->
 <script type="text/javascript">
-
-    // Payment form
-    document.addEventListener('DOMContentLoaded', function() {
-        const paymentOptions = document.querySelectorAll('.payment-options input[type="radio"]');
-        const paymentForms = document.querySelectorAll('.payment-form');
-        const openPopupBtn = document.getElementById('open-popup');
-        const closePopupBtn = document.getElementById('close-popup');
-        const paymentPopup = document.getElementById('payment-popup');
-        const blurBackground = document.getElementById('blur-background');
-
-        function showForm(id) {
-            paymentForms.forEach(form => form.classList.remove('active'));
-            document.getElementById(id).classList.add('active');
-        }
-
-        paymentOptions.forEach(option => {
-            option.addEventListener('change', function() {
-                showForm(option.id + '-form');
-            });
-        });
-
-        // Open the popup
-        openPopupBtn.addEventListener('click', function() {
-            paymentPopup.classList.add('active');
-            blurBackground.classList.add('active');
-        });
-
-        // Close the popup
-        closePopupBtn.addEventListener('click', function() {
-            paymentPopup.classList.remove('active');
-            blurBackground.classList.remove('active');
-        });
-
-        // Trigger default form display
-        showForm('credit-card-form');
-    });
-
 
     const formSteps = document.querySelectorAll('.form-step');
     const nextBtns = document.querySelectorAll('.next-btn');

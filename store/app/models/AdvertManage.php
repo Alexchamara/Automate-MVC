@@ -26,8 +26,9 @@ class AdvertManage
             $this->db->startTransaction();
             $this->db->query(
                 "INSERT INTO car (make, model, engine, registrationYear, color, conditions, mileage, bodyType, fuelType, transmission, images, price, location, contactNumber, advertEmail, description) 
-                VALUES (:make, :model, :engine, :registrationYear, :color, :conditions, :mileage, :bodyType, :fuelType, :transmission, :images, :price, :location, :contactNumber, :advertEmail, :description)");
-    
+                VALUES (:make, :model, :engine, :registrationYear, :color, :conditions, :mileage, :bodyType, :fuelType, :transmission, :images, :price, :location, :contactNumber, :advertEmail, :description)"
+            );
+
             $this->db->bind(':make', $make);
             $this->db->bind(':model', $model);
             $this->db->bind(':engine', $engine);
@@ -44,28 +45,60 @@ class AdvertManage
             $this->db->bind(':contactNumber', $contactNumber);
             $this->db->bind(':advertEmail', $advertEmail);
             $this->db->bind(':description', $description);
-    
+
             $this->db->execute();
-    
+
             require_once 'Listing.php';
             $newListing = new Listing();
-    
+
             $newListing->createListing();
-    
+
             $this->db->endTransaction();
-        }
-        catch (Exception $e) {
+        } catch (Exception $e) {
             $this->db->cancelTransaction();
             echo "Database error: " . $e->getMessage();
             return false;
         }
-
     }
 
     //method to update advert details
-    public function updateAdvert($carId, $make, $model, $engine, $registrationYear, $color, $conditions, $mileage, $bodyType, $fuelType, $transmission, $images, $price, $location, $description)
-    {
-        $this->db->query("UPDATE car SET make=:make, model=:model, engine=:engine, registrationYear=:registrationYear, color=:color, conditions=:conditions, mileage=:mileage, bodyType=:bodyType, fuelType=:fuelType, transmission=:transmission, images=:images, price=:price, location=:location, description=:description WHERE carId=:carId");
+    public function updateAdvert(
+        $carId,
+        $make,
+        $model,
+        $engine,
+        $registrationYear,
+        $color,
+        $conditions,
+        $mileage,
+        $bodyType,
+        $fuelType,
+        $transmission,
+        $images,
+        $price,
+        $location,
+        $description
+    ) {
+        $this->db->query(
+            "UPDATE car
+            INNER JOIN listing ON car.carId = listing.carId
+            SET 
+                car.make = :make,
+                car.model = :model,
+                car.engine = :engine,
+                car.registrationYear = :registrationYear,
+                car.color = :color,
+                car.conditions = :conditions,
+                car.mileage = :mileage,
+                car.bodyType = :bodyType,
+                car.fuelType = :fuelType,
+                car.transmission = :transmission,
+                -- car.images = :images,
+                car.price = :price,
+                car.location = :location,
+                car.description = :description
+            WHERE car.carId = :carId"
+        );
 
         $this->db->bind(':carId', $carId);
         $this->db->bind(':make', $make);
@@ -78,20 +111,10 @@ class AdvertManage
         $this->db->bind(':bodyType', $bodyType);
         $this->db->bind(':fuelType', $fuelType);
         $this->db->bind(':transmission', $transmission);
-        $this->db->bind(':images', $images);
+        // $this->db->bind(':images', $images);
         $this->db->bind(':price', $price);
         $this->db->bind(':location', $location);
         $this->db->bind(':description', $description);
-
-        $this->db->execute();
-    }
-
-    //method to delete an advert
-    public function deleteAdvert($carId)
-    {
-        $this->db->query("DELETE FROM car WHERE carId=:carId");
-
-        $this->db->bind(':carId', $carId);
 
         $this->db->execute();
     }

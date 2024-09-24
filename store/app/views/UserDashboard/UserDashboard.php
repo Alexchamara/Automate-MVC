@@ -1,6 +1,3 @@
-<?php 
-echo print_r($car);
-?>
 <!-- User Dashboard -->
 <main class="user-dashboard-main-container">
     <!-- upper section -->
@@ -100,7 +97,7 @@ echo print_r($car);
                     <div class="flex gap-10 text-[#252a34] mb-4">
                         <p class="mt-2">We are the fastest growing largest digital automotive marketplace in Sri Lanka.</p>
                     </div>
-                    <a href="./advertListing.php" class="ud-btn">Browse latest car</a>
+                    <a href="allAdverts" class="ud-btn">Browse latest car</a>
                 </div>
                 <div class="ud-dashboard-page">
                     <h2 class="text-[40px] font-bold text-customBlue">Looking to sell your car?</h2>
@@ -131,26 +128,25 @@ echo print_r($car);
                     </div>
                 </div>
 
-                <section class="listing-container">
-                    <ul>
-                        <?php foreach ($car as $cars) : ?>
-                            <li class="listing-value-wrapper">
-                                <?php
-                                // Ensure the $listing variable is available in UserAdvert.php
-                                $currentListing = $listing;
-                                require 'UserAdvert.php';
-                                ?>
-                            </li>
-                        <?php endforeach; ?>
-                    </ul>
-                </section>
-
-                <div class="ud-empty-body">
-                    <i class="fa-solid fa-magnifying-glass text-[#6C757D] text-[80px]"></i>
-                    <h2 class="text-[#6C757D] text-[40px] font-bold">No adverts found</h2>
-                    <span class="text-[#6C757D]">We couldn't find any records. Try changing search filters</span>
-                    <a href="createAdvert" class="border bg-customRed text-white px-7 py-2 rounded-[50px] hover:shadow-4xl transition-all duration-300 ease-in-out">Create a new advert</a>
-                </div>
+                <?php if (!empty($cars)) : ?>
+                    <section class="listing-container">
+                        <ul>
+                            <?php foreach ($cars as $car) : ?>
+                                <li class="listing-value-wrapper">
+                                    <?php require '../app/views/Advert/UserAdvert.php'; ?>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </section>
+                <?php else : ?>
+                    <div class="ud-empty-body">
+                        <i class="fa-solid fa-magnifying-glass text-[#6C757D] text-[80px]"></i>
+                        <h2 class="text-[#6C757D] text-[40px] font-bold">No adverts found</h2>
+                        <span class="text-[#6C757D]">We couldn't find any records. Try changing search filters</span>
+                        <a href="accessToCreateAdvert" class="border bg-customRed text-white px-7 py-2 rounded-[50px] hover:shadow-4xl transition-all duration-300 ease-in-out">Create a new advert</a>
+                    </div>
+                <?php endif; ?>
+                
             </div>
 
             <!-- My messages -->
@@ -197,7 +193,7 @@ echo print_r($car);
                     <i class="fa-solid fa-magnifying-glass text-[#6C757D] text-[80px]"></i>
                     <h2 class="text-[#6C757D] text-[40px] font-bold">No saved adverts found</h2>
                     <span class="text-[#6C757D]">We couldn't find any records. Try changing search filters</span>
-                    <a href="#" class="border bg-customRed text-white px-7 py-2 rounded-[50px] hover:shadow-4xl transition-all duration-300 ease-in-out">Show latest adverts</a>
+                    <a href="allAdverts" class="border bg-customRed text-white px-7 py-2 rounded-[50px] hover:shadow-4xl transition-all duration-300 ease-in-out">Show latest adverts</a>
                 </div>
             </div>
 

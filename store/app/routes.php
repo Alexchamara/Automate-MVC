@@ -53,15 +53,17 @@ $routes = [
     'allAdverts' => ['controller' => 'ListingController', 'method' => 'index'],
 
     //route for view product
-    // 'product/view' => ['controller' => 'AdvertController', 'method' => 'productView'],
     'product/view' => ['controller' => 'ListingController', 'method' => 'view'],
     
     //route for listing view
     'listing' => ['controller' => 'ListingController', 'method' => 'displayListing'],
 
-    //route for user adverts
-    'userAdverts' => ['controller' => 'zzzzz', 'method' => 'getListingByUserId'],
+    //rout for delete listing
+    'deleteList/id' => ['controller' => 'ListingController', 'method' => 'deleteListing'],
 
+    //route for edit listing
+    'editList' => ['controller' => 'AdvertController', 'method' => 'updateAdvert'],
 
-    
+    //route for view user adverts
+    'viewAdvert/id' => ['controller' => 'ListingController', 'method' => 'getAdvertById'],
 ];

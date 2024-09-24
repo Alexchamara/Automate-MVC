@@ -202,30 +202,14 @@
     </aside>
 
     <!-- car listings -->
-        <!-- AdvertListing.php -->
     <section class="listing-container">
         <ul>
             <?php foreach ($product as $listing) : ?>
-                <li class="listing-value-wrapper" data-id="<?= $listing['listing']; ?>">
+                <li class="listing-value-wrapper pl-6">
                     <?php require 'ListingContainer.php'; ?>
                 </li>
             <?php endforeach; ?>
         </ul>
     </section>
-    
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const listingCards = document.querySelectorAll('.listing-value-wrapper');
-            listingCards.forEach(card => {
-                card.addEventListener('click', function() {
-                    const listingId = this.getAttribute('data-id');
-                    window.location.href = `product/view?id=${listingId}`;
-                });
-            });
-        });
-    </script>
-
-
-
 
 </main>

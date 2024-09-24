@@ -18,14 +18,15 @@ class UserManageController extends Controller
             if ($_SESSION['isAdmin'] == 1) {
                 $userModel = $this->loadModel("AdminManage");
                 $totalUsers = $userModel->getTotalUsers(); 
-                $data = $userModel->getUserById([$_SESSION['userId']]);
-                $this->renderView('UserDashboard/AdminDashboard', ['totalUsers' => $totalUsers, 'userData' => $data]);
-                // $this->renderView('UserDashboard/AdminDashboard');
+                // $data = $userModel->getUserById([$_SESSION['userId']]);
+                $this->renderView('UserDashboard/AdminDashboard', ['totalUsers' => $totalUsers]);
 
             } else {
+                //method to get user by userId
                 $data = $this->loadModel("UserManage")->getUserById($_SESSION['userId']);
-                $car = $this->loadModel('Listing')->getAdvertByUser($_SESSION['userId']);
-                $this->renderView('UserDashboard/UserDashboard', ["userData" => $data, "car" => $car]);
+                //method to get all adverts by user
+                $cars = $this->loadModel('Listing')->getAdvertByUser($_SESSION['userId']);
+                $this->renderView('UserDashboard/UserDashboard', ["userData" => $data, "cars" => $cars]);
             }
         }
     }
