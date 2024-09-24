@@ -31,7 +31,7 @@
                     <button class="savedAd-view"><i class="fa-regular fa-eye mr-1"></i>View advert</button></a>
             </div>
             <div class="border-l border-customGray flex">
-                <a href="#" class="remove-button savedAd-delete"><i class="fa-solid fa-pencil mr-1"></i>
+                <a href="editList/id/<?= $car['listingId'] ?>" class="remove-button savedAd-delete"><i class="fa-solid fa-pencil mr-1"></i>
                     Update
                 </a>
 

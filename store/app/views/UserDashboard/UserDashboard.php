@@ -46,12 +46,12 @@
                     <label for="myAdvert" class="dashboard-sidebar-title">My messages</label><br>
                     <span class="dashboard-sidebar-sub-title">Send and receive messages</span>
                 </li> -->
-                <li class="u-sidebar-value" data-page="notifications" onclick="loadPage('notification')">
+                <!-- <li class="u-sidebar-value" data-page="notifications" onclick="loadPage('notification')">
                     <i class="fa-regular fa-bell ud-icon-left"></i>
                     <i class="fa-solid fa-arrow-right-long"></i>
                     <label for="myAdvert" class="dashboard-sidebar-title">Notification</label><br>
                     <span class="dashboard-sidebar-sub-title">Receive notifications</span>
-                </li>
+                </li> -->
                 <li class="u-sidebar-value" data-page="savedAdverts" onclick="loadPage('savedAdverts')">
                     <i class="fa-regular fa-heart ud-icon-left"></i>
                     <i class="fa-solid fa-arrow-right-long"></i>
@@ -155,18 +155,17 @@
                 <p class="mt-2">Your messages.</p>
             </div> -->
 
-
             <!-- Notification page -->
-            <div id="notification" class="ud-page-wrapper hidden">
+            <!-- <div id="notification" class="ud-page-wrapper hidden">
                 <div class="ud-presonal-page">
-                    <!-- Notification page -->
+
                 </div>
                 <div class="ud-empty-body">
                     <i class="fa-solid fa-magnifying-glass text-[#6C757D] text-[80px]"></i>
                     <h2 class="text-[#6C757D] text-[40px] font-bold">No any notification found</h2>
                     <span class="text-[#6C757D]">We couldn't find any notification.</span>
                 </div>
-            </div>
+            </div> -->
 
             <!-- Saved ad page -->
             <div id="savedAdverts" class="ud-page-wrapper hidden">

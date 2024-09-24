@@ -1,5 +1,6 @@
 <?php
-echo print_r($_POST['carId']);
+echo print_r($listing['car']['make'], true);
+echo print_r($errors);
 ?>
 <main class="advert-main-container">
     <!-- Progress bar -->
@@ -24,16 +25,16 @@ echo print_r($_POST['carId']);
     </div>
 
     <!-- Add vehicle informations -->
-    <form action="editList" method="POST" id="multi-step-form">
+    <form method="POST" id="multi-step-form">
         <div class="form-step active form_1">
             <h2>Make & model</h2>
             <div class="sec-box">
                 <!-- Make -->
                 <div class="col-left">
-                    <label for="make" class="required">Make
+                    <label for="make">Make 
                     </label><br>
                     <select name="make" id="brand">
-                        <option value="DEF">Select</option>
+                        <option><?= $listing['car']['make']?></option>
                         <option value="ACURA">Acura</option>
                         <option value="ASTON MARTIN">Aston Martin</option>
                         <option value="AUDI">Audi</option>
@@ -82,11 +83,10 @@ echo print_r($_POST['carId']);
                 </div>
                 <!-- Model -->
                 <div class="col-right">
-                    <label for="model" class="required">Model
-                        <span class="required"></span>
+                    <label for="model">Model
                     </label><br>
                     <select id="model" name="model">
-                        <option value="DEF">Model</option>
+                        <option><?= $listing['car']['model']?></option>
                         <option value="COMMANDER">Commander</option>
                         <option value="COMPASS">Compass</option>
                         <option value="GRAND CHEROKEE">Grand Cherokee</option>
@@ -101,11 +101,10 @@ echo print_r($_POST['carId']);
             <div class="sec-box">
                 <!-- Registration year -->
                 <div class="col-left">
-                    <label for="year" class="required">Year of registration
-                        <span class="required"></span>
+                    <label for="year">Year of registration
                     </label><br>
                     <select name="registrationYear" id="years">
-                        <option value="">Select</option>
+                        <option><?= $listing['car']['registrationYear']?></option>
                         <option value="2024">2024</option>
                         <option value="2023">2023</option>
                         <option value="2022">2022</option>
@@ -160,18 +159,16 @@ echo print_r($_POST['carId']);
                 </div>
                 <!-- Mileage -->
                 <div class="col-right">
-                    <label for="mileage" class="required">Current mileage
-                        <span class="required"></span>
+                    <label for="mileage">Current mileage
                     </label><br>
-                    <input id="mileage" name="mileage" placeholder="e.g. 50000"></input>
+                    <input id="mileage" name="mileage" placeholder="<?= $listing['car']['mileage']?>"></input>
                 </div>
                 <!-- Condition -->
                 <div class="col-left">
-                    <label for="condition" class="required">Condition
-                        <span class="required"></span>
+                    <label for="condition">Condition
                     </label><br>
                     <select name="conditions" id="condition">
-                        <option value="">Select</option>
+                        <option value=""><?= $listing['car']['conditions']?></option>
                         <option value="brand new">Brand new</option>
                         <option value="reconditioned">Reconditioned</option>
                         <option value="used">Used</option>
@@ -180,11 +177,10 @@ echo print_r($_POST['carId']);
                 </div>
                 <!-- Engine -->
                 <div class="col-right">
-                    <label for="Engine" class="required">Engine
-                        <span class="required"></span>
+                    <label for="Engine">Engine
                     </label><br>
                     <select id="engine" name="engine">
-                        <option value="">Select</option>
+                        <option><?= $listing['car']['engine']?></option>
                         <option value="0.6L">0.6L</option>
                         <option value="0.7L">0.7L</option>
                         <option value="0.8L">0.8L</option>
@@ -219,11 +215,10 @@ echo print_r($_POST['carId']);
                 </div>
                 <!-- colors -->
                 <div class="col-left">
-                    <label for="colors" class="required">Color
-                        <span class="required"></span>
+                    <label for="colors">Color
                     </label><br>
                     <select name="color" id="color">
-                        <option value="">Select</option>
+                        <option value=""><?= $listing['car']['color']?></option>
                         <option value="red">Red</option>
                         <option value="green">Green</option>
                         <option value="blue">Blue</option>
@@ -246,7 +241,7 @@ echo print_r($_POST['carId']);
                         <button type="button" data-value="Estate">Estate</button>
                         <button type="button" data-value="4X4">4X4</button>
                         <button type="button" data-value="Other">Other</button>
-                        <input type="hidden" name="bodyType" id="body_type" value="">
+                        <input type="hidden" name="bodyType" id="body_type" placeholder="<?= $listing['car']['bodyType']?>" value="">
                     </div>
                 </div>
 
@@ -306,8 +301,7 @@ echo print_r($_POST['carId']);
 
             <h2>Advert description</h2>
             <div class="advert-desceript">
-                <label for="mileage" class="required">Advert description
-                    <span class="required"></span>
+                <label for="mileage">Advert description
                 </label><br>
                 <textarea id="description" name="description" placeholder="Describe your car in detail..." rows="15"></textarea>
             </div>
@@ -315,17 +309,17 @@ echo print_r($_POST['carId']);
             <h2>Contact details</h2>
             <div class="sec-box">
                 <div class="col-left">
-                    <label for="phone-number" class="required">Phone number
+                    <label for="phone-number">Phone number
                     </label><br>
                     <input id="phone-number" name="contactNumber" placeholder="Phone number (077..)"></input>
                 </div>
                 <div class="col-left">
-                    <label for="email" class="required">Email
+                    <label for="email">Email
                     </label><br>
                     <input id="email" name="advertEmail"></input>
                 </div>
                 <div class="col-right">
-                    <label for="location" class="required">Location
+                    <label for="location">Location
                     </label><br>
                     <input id="location" name="location"></input>
                 </div>
@@ -333,12 +327,12 @@ echo print_r($_POST['carId']);
 
             <button type="button" class="prev-btn">
                 <i class="fa-solid fa-arrow-left" style="margin-right: 10px;"></i>Back</button>
-            <button type="submit" class="next-btn">Update
-                <i class="fa-solid fa-arrow-right" style="color: #ffffff; margin-left: 10px;"></i></button>
+            <button type="submit" class="next-btn">Update</button>
         </div>
+    </form>
 
-        <!-- Review & publish -->
-        <!-- <div class="form-step form_3">
+    <!-- Review & publish -->
+    <!-- <div class="form-step form_3">
             <div class="publish-top">
                 <h2 style="font-size:3vw; font-weight: bold;">Advert summary</h2>
                 <span>Please review the details and click the 'Publish advert' button to post. To prevent potential
@@ -386,13 +380,11 @@ echo print_r($_POST['carId']);
                 <button type="submit" class="publish-btn" id="open-popup">Publish advert</button>
             </div>
         </div> -->
-    </form>
 </main>
 
 
 <!-- progress bar -->
 <script type="text/javascript">
-
     const formSteps = document.querySelectorAll('.form-step');
     const nextBtns = document.querySelectorAll('.next-btn');
     const prevBtns = document.querySelectorAll('.prev-btn', '.perview-btn');
@@ -533,13 +525,6 @@ echo print_r($_POST['carId']);
         container.addEventListener('dragend', handleDragEnd, false);
     }
 
-    // imagePreview.addEventListener('DOMNodeInserted', function(e) {
-    //     if (e.target.className === 'image-container') {
-    //         e.target.setAttribute('draggable', 'true');
-    //         addDnDHandlers(e.target);
-    //     }
-    // });
-
     document.addEventListener('DOMContentLoaded', (event) => {
         // Callback function to execute when mutations are observed
         const callback = function(mutationsList, observer) {
@@ -583,7 +568,7 @@ echo print_r($_POST['carId']);
                     });
 
                     // Add selected state to the clicked button
-                    this.classList.add('bg-customBlue', 'text-customBlue');
+                    this.classList.add('bg-customBlue', 'text-customRed');
                     this.classList.remove('bg-customBlue', 'text-gray-900');
 
                     // Update the hidden input with the selected value
@@ -598,24 +583,4 @@ echo print_r($_POST['carId']);
             });
         });
     });
-
-    // document.querySelectorAll('.options').forEach(optionGroup => {
-    //     optionGroup.querySelectorAll('button').forEach(button => {
-    //         button.addEventListener('click', function() {
-    //             // Remove selected state from all buttons in the group
-    //             optionGroup.querySelectorAll('button').forEach(btn => {
-    //                 btn.classList.remove('bg-customBlue', 'text-white');
-    //                 btn.classList.add('bg-customBlue', 'text-gray-900');
-    //             });
-
-    //             // Add selected state to the clicked button
-    //             this.classList.add('bg-customBlue', 'text-white');
-    //             this.classList.remove('bg-customBlue', 'text-gray-900');
-
-    //             // Update the hidden input with the selected value
-    //             let hiddenInput = optionGroup.querySelector('input[type="hidden"]');
-    //             hiddenInput.value = this.getAttribute('data-value');
-    //         });
-    //     });
-    // });
 </script>

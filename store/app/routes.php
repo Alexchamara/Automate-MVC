@@ -61,9 +61,9 @@ $routes = [
     //rout for delete listing
     'deleteList/id' => ['controller' => 'ListingController', 'method' => 'deleteListing'],
 
-    //route for edit listing
-    'editList' => ['controller' => 'AdvertController', 'method' => 'updateAdvert'],
-
     //route for view user adverts
     'viewAdvert/id' => ['controller' => 'ListingController', 'method' => 'getAdvertById'],
+
+    //route for edit listing
+    'editList/id' => ['controller' => 'ListingController', 'method' => 'updateListing'],
 ];
