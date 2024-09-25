@@ -44,4 +44,12 @@ class AdminManageController extends Controller
         $adminModel->deleteUser($userId);
         header('Location: ' . BASE_URL . 'dashboard');
     }
+
+    //method to delete a listing
+    public function deleteListing($listingId)
+    {
+        $adminModel = $this->loadModel("AdminManage");
+        $adminModel->deleteListing($listingId);
+        header('Location: ' . BASE_URL . 'dashboard');
+    }
 }

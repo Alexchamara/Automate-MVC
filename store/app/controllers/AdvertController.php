@@ -13,12 +13,6 @@ class AdvertController extends Controller
         }
     }
 
-    public function payment()
-    {
-        $this->renderView('Advert/Payment');
-    }
-
-
     //method to create a new advert
     public function createNewAdvert()
     {
@@ -146,7 +140,6 @@ class AdvertController extends Controller
         // Render the update view if not a POST request
         $this->renderView('Advert/UpdateAdvert');
     }
-
 
     //method to view a product
     public function productView($id)

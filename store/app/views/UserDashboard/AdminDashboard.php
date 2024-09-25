@@ -177,20 +177,22 @@
                     </div>
                 </div>
                 <!-- car listings -->
-                <section class="listing-container">
+                 <?php if (!empty($listings)) : ?>
                     <ul>
-                        <?php foreach ($product as $listing) : ?>
-                            <li class="listing-value-wrapper pl-6">
-                                <?php require '../app/views/Advert/ListingContainer.php'; ?>
+                        <?php foreach ($listings as $listing) : ?>
+                            <li class="listing-value-wrapper">
+                                <?php require '../app/views/UserDashboard/AdminComponents/Advert.php'; ?>
                             </li>
                         <?php endforeach; ?>
                     </ul>
-                </section>
-                <div class="ud-empty-body">
-                    <i class="fa-solid fa-magnifying-glass text-[#6C757D] text-[80px]"></i>
-                    <h2 class="text-[#6C757D] text-[40px] font-bold">No adverts found</h2>
-                    <span class="text-[#6C757D]">We couldn't find any records. Try changing search filters.</span>
-                </div>
+                <?php else: ?>
+                    <div class="ud-empty-body">
+                        <i class="fa-solid fa-magnifying-glass text-[#6C757D] text-[80px]"></i>
+                        <h2 class="text-[#6C757D] text-[40px] font-bold">No adverts found</h2>
+                        <span class="text-[#6C757D]">We couldn't find any records. Try changing search filters.</span>
+                    </div>
+                <?php endif; ?>
+                
             </div>
 
             <!-- users page -->
@@ -218,7 +220,7 @@
                         <ul>
                             <?php foreach ($users as $user): ?>
                                 <li class="listing-value-wrapper">
-                                    <?php require 'UserInfo.php'; ?>
+                                    <?php require '../app/views/UserDashboard/AdminComponents/UserInfo.php'; ?>
                                 </li>
                             <?php endforeach; ?>
                         </ul>

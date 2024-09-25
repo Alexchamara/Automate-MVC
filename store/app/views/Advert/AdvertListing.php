@@ -198,14 +198,21 @@
     </aside>
 
     <!-- car listings -->
-    <section class="listing-container">
-        <ul>
-            <?php foreach ($product as $listing) : ?>
-                <li class="listing-value-wrapper pl-6">
-                    <?php require 'ListingContainer.php'; ?>
-                </li>
-            <?php endforeach; ?>
-        </ul>
-    </section>
-
+    <?php if (empty($product)) : ?>
+        <div class="ud-empty-body w-full">
+            <i class="fa-solid fa-magnifying-glass text-[#6C757D] text-[80px]"></i>
+            <h2 class="text-[#6C757D] text-[40px] font-bold">No adverts found</h2>
+            <span class="text-[#6C757D]">We couldn't find any records. Try changing search filters.</span>
+        </div>
+    <?php else: ?>
+        <section class="listing-container">
+            <ul>
+                <?php foreach ($product as $listing) : ?>
+                    <li class="listing-value-wrapper pl-6">
+                        <?php require 'ListingContainer.php'; ?>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        </section>
+    <?php endif; ?>
 </main>

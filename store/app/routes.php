@@ -24,7 +24,7 @@ $routes = [
     //Admin
     'newAdmin' => ['controller' => 'AdminManageController', 'method' => 'addNewAdmin'],
     'deleteUser/id' => ['controller' => 'AdminManageController', 'method' => 'deleteUser'],
-
+    'deleteListing/id' => ['controller' => 'AdminManageController', 'method' => 'deleteListing'],
         
     //route for view product
     'allAdverts' => ['controller' => 'ListingController', 'method' => 'index'],

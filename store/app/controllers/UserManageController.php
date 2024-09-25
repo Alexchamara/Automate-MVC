@@ -2,7 +2,6 @@
 
 class UserManageController extends Controller
 {
-
     //method to display all users
     public function index()
     {
@@ -18,8 +17,9 @@ class UserManageController extends Controller
             if ($_SESSION['isAdmin'] == 1) {
                 $userModel = $this->loadModel("AdminManage");
                 $users = $userModel->getAllUsers();
+                $listings = $userModel->getAllListings();
                 // $data = $userModel->getUserById([$_SESSION['userId']]);
-                $this->renderView('UserDashboard/AdminDashboard', ['users' => $users]);
+                $this->renderView('UserDashboard/AdminDashboard', ['users' => $users, 'listings' => $listings]);
             } else {
                 //method to get user by userId
                 $data = $this->loadModel("UserManage")->getUserById($_SESSION['userId']);
@@ -219,7 +219,7 @@ class UserManageController extends Controller
         header('Location: home');
     }
 
-    //method to show uder details ///////???///????//?????????//???/?///////?/???????????/?/?/?////?/?/?/?/?////?/?///?/?/
+    //method to show uder details 
     public function getUserDetailsById()
     {
         session_start();
@@ -230,9 +230,5 @@ class UserManageController extends Controller
         if ($user) {
             $_SESSION['createdDate'] = $user['createdAt'];
         }
-    }
-
-
-
-    
+    } 
 }
