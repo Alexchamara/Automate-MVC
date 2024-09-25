@@ -68,7 +68,7 @@ class AdvertController extends Controller
             } else {
                 $advertModel = $this->loadModel("AdvertManage");
                 $advertModel->createAdvert($make, $model, $engine, $registrationYear, $color, $conditions, $mileage, $bodyType, $fuelType, $transmission, $images, $price, $location, $contactNumber, $advertEmail, $description);
-                // header('Location: home');
+                header('Location: dashboard');
                 exit();
             }
         }

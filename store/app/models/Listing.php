@@ -82,7 +82,10 @@ class Listing
     {
         try {
             $this->db->startTransaction();
-            $this->db->query("SELECT * FROM car LEFT JOIN listing ON car.carId = listing.carId WHERE sellerId = :sellerId");
+            $this->db->query("SELECT * FROM car 
+                LEFT JOIN listing 
+                ON car.carId = listing.carId 
+                WHERE sellerId = :sellerId");
             $this->db->bind(':sellerId', $_SESSION["userId"]);
             $this->db->execute();
             $results = $this->db->results();
@@ -92,10 +95,6 @@ class Listing
             $this->db->cancelTransaction();
             echo $e->getMessage();
         }
-        // $this->db->query("SELECT * FROM car LEFT JOIN listing ON car.carId = listing.carId WHERE sellerId = :sellerId");
-        // $this->db->bind(':sellerId', $_SESSION["userId"]);
-        // $this->db->execute();
-        // return $this->db->results();
     }
 
     //method to delete a listing
@@ -127,7 +126,6 @@ class Listing
     }
 
     //method to update a listing
-
     public function updateListing($id, $fieldsToUpdate)
     {
         try {

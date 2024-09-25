@@ -1,7 +1,3 @@
-<?php
-    // echo print_r($listing ['listing']);
-    // echo print_r($advert);
-?>
 <main class="listing-main-container">
     <!-- search options -->
     <aside class="listing-main-wrapper">

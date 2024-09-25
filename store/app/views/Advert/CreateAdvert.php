@@ -380,106 +380,102 @@
 
                 <button type="button" class="prev-btn">
                     <i class="fa-solid fa-arrow-left"></i>Back</button>
-                <button type="" class="publish-btn" id="open-popup">Publish advert</button>
+                <button type="submit" class="publish-btn" id="open-popup">Publish advert</button>
             </div>
         </div>
 
-        <!-- Payment -->
-        <div class="payment-form-container">
-            <!-- Blurred Background Overlay -->
-            <div id="blur-background" class="blur-background"></div>
-        
-            <!-- Payment Popup Window -->
-            <div class="payment-popup" id="payment-popup">
-                <!-- Close Button -->
-                <span id="close-popup" class="close-btn"><i class="fas fa-times"></i></span>
-        
-                <h2 class="font-bold">Review Payment</h2>
-                <div>
-                    <div class="font-medium flex justify-between py-1 px-8">
-                        <label for="amount">Amount</label>
-                        <span>Rs. 8000/=</span>
-                    </div>
-                    <div class="font-medium flex justify-between py-1 px-8">
-                        <label for="amount">Boosted Ad</label>
-                        <span>Rs. 900/=</span>
-                    </div>
-                    <div class="font-medium flex justify-between py-1 px-8 bg-slate-300 rounded-full">
-                        <label for="amount">Total</label>
-                        <span>Rs. 8900/=</span>
-                    </div>
-                </div>
-        
-                <h2 class="font-bold">Payment Method</h2>
-                <div class="payment-options">
-                    <input type="radio" name="payment" id="credit-card" checked>
-                    <label for="credit-card">Credit Card</label>
-                    <input type="radio" name="payment" id="debit-card">
-                    <label for="debit-card">Debit Card</label>
-                    <input type="radio" name="payment" id="paypal">
-                    <label for="paypal">PayPal</label>
-                </div>
-        
-                <div class="payment-form" id="credit-card-form">
-                    <h3>Credit Card</h3>
-                    <form>
-                        <div class="input-group">
-                            <label for="cc-name">Card Holder Name</label>
-                            <input type="text" id="cc-name" placeholder="John Doe">
-                        </div>
-                        <div class="input-group">
-                            <label for="cc-number">Card Number</label>
-                            <input type="text" id="cc-number" placeholder="4123 4567 8910 1234">
-                        </div>
-                        <div class="input-group">
-                            <label for="cc-expiry">Expiry Date</label>
-                            <input type="text" id="cc-expiry" placeholder="MM/YY">
-                        </div>
-                        <div class="input-group">
-                            <label for="cc-cvv">CVV Code</label>
-                            <input type="text" id="cc-cvv" placeholder="123">
-                        </div>
-                        <button type="submit">Submit</button>
-                    </form>
-                </div>
-        
-                <div class="payment-form" id="debit-card-form">
-                    <h3>Debit Card</h3>
-                    <form>
-                        <div class="input-group">
-                            <label for="dc-name">Card Holder Name</label>
-                            <input type="text" id="dc-name" placeholder="John Doe">
-                        </div>
-                        <div class="input-group">
-                            <label for="dc-number">Card Number</label>
-                            <input type="text" id="dc-number" placeholder="4123 4567 8910 1234">
-                        </div>
-                        <div class="input-group">
-                            <label for="dc-expiry">Expiry Date</label>
-                            <input type="text" id="dc-expiry" placeholder="MM/YY">
-                        </div>
-                        <div class="input-group">
-                            <label for="dc-cvv">CVV Code</label>
-                            <input type="text" id="dc-cvv" placeholder="123">
-                        </div>
-                        <button type="submit">Submit</button>
-                    </form>
-                </div>
-        
-                <div class="payment-form" id="paypal-form">
-                    <h3>PayPal</h3>
-                    <form>
-                        <button type="submit">Continue to PayPal</button>
-                    </form>
-                </div>
-            </div>
-        </div>
     </form>
 </main>
 
+<!-- Payment
+<div class="payment-form-container">
 
+    <div id="blur-background" class="blur-background"></div>
 
+    <div class="payment-popup" id="payment-popup">
 
+        <span id="close-popup" class="close-btn"><i class="fas fa-times"></i></span>
+
+        <h2 class="font-bold">Review Payment</h2>
+        <div>
+            <div class="font-medium flex justify-between py-1 px-8">
+                <label for="amount">Amount</label>
+                <span>Rs. 8000/=</span>
+            </div>
+            <div class="font-medium flex justify-between py-1 px-8">
+                <label for="amount">Boosted Ad</label>
+                <span>Rs. 900/=</span>
+            </div>
+            <div class="font-medium flex justify-between py-1 px-8 bg-slate-300 rounded-full">
+                <label for="amount">Total</label>
+                <span>Rs. 8900/=</span>
+            </div>
+        </div>
+
+        <h2 class="font-bold">Payment Method</h2>
+        <div class="payment-options">
+            <input type="radio" name="payment" id="credit-card" checked>
+            <label for="credit-card">Credit Card</label>
+            <input type="radio" name="payment" id="debit-card">
+            <label for="debit-card">Debit Card</label>
+            <input type="radio" name="payment" id="paypal">
+            <label for="paypal">PayPal</label>
+        </div>
+
+        <div class="payment-form" id="credit-card-form">
+            <h3>Credit Card</h3>
+            <form>
+                <div class="input-group">
+                    <label for="cc-name">Card Holder Name</label>
+                    <input type="text" id="cc-name" placeholder="John Doe">
+                </div>
+                <div class="input-group">
+                    <label for="cc-number">Card Number</label>
+                    <input type="text" id="cc-number" placeholder="4123 4567 8910 1234">
+                </div>
+                <div class="input-group">
+                    <label for="cc-expiry">Expiry Date</label>
+                    <input type="text" id="cc-expiry" placeholder="MM/YY">
+                </div>
+                <div class="input-group">
+                    <label for="cc-cvv">CVV Code</label>
+                    <input type="text" id="cc-cvv" placeholder="123">
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+
+        <div class="payment-form" id="debit-card-form">
+            <h3>Debit Card</h3>
+            <form>
+                <div class="input-group">
+                    <label for="dc-name">Card Holder Name</label>
+                    <input type="text" id="dc-name" placeholder="John Doe">
+                </div>
+                <div class="input-group">
+                    <label for="dc-number">Card Number</label>
+                    <input type="text" id="dc-number" placeholder="4123 4567 8910 1234">
+                </div>
+                <div class="input-group">
+                    <label for="dc-expiry">Expiry Date</label>
+                    <input type="text" id="dc-expiry" placeholder="MM/YY">
+                </div>
+                <div class="input-group">
+                    <label for="dc-cvv">CVV Code</label>
+                    <input type="text" id="dc-cvv" placeholder="123">
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+
+        <div class="payment-form" id="paypal-form">
+            <h3>PayPal</h3>
+            <form>
+                <button type="submit">Continue to PayPal</button>
+            </form>
+        </div>
+    </div>
+</div> -->
 <!-- progress bar -->
 <script type="text/javascript">
 
@@ -710,7 +706,7 @@
                     });
 
                     // Add selected state to the clicked button
-                    this.classList.add('bg-customBlue', 'text-customBlue');
+                    this.classList.add('bg-customBlue', 'text-customRed');
                     this.classList.remove('bg-customBlue', 'text-gray-900');
 
                     // Update the hidden input with the selected value
@@ -725,24 +721,4 @@
             });
         });
     });
-
-    // document.querySelectorAll('.options').forEach(optionGroup => {
-    //     optionGroup.querySelectorAll('button').forEach(button => {
-    //         button.addEventListener('click', function() {
-    //             // Remove selected state from all buttons in the group
-    //             optionGroup.querySelectorAll('button').forEach(btn => {
-    //                 btn.classList.remove('bg-customBlue', 'text-white');
-    //                 btn.classList.add('bg-customBlue', 'text-gray-900');
-    //             });
-
-    //             // Add selected state to the clicked button
-    //             this.classList.add('bg-customBlue', 'text-white');
-    //             this.classList.remove('bg-customBlue', 'text-gray-900');
-
-    //             // Update the hidden input with the selected value
-    //             let hiddenInput = optionGroup.querySelector('input[type="hidden"]');
-    //             hiddenInput.value = this.getAttribute('data-value');
-    //         });
-    //     });
-    // });
 </script>

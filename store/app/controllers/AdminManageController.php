@@ -3,8 +3,9 @@
 class AdminManageController extends Controller
 {
     //method to register a new admin
-    public function addNewAdmin(){
-        if($_SERVER['REQUEST_METHOD'] == "POST"){
+    public function addNewAdmin()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $adminModel = $this->loadModel("AdminManage");
             $userModel = $this->loadModel("UserManage");
             $admName = trim($_POST['admName']);
@@ -12,19 +13,19 @@ class AdminManageController extends Controller
             $admPwd = trim($_POST['admPwd']);
             $admPwdRepeat = trim($_POST['admPwdRepeat']);
 
-            if (empty($admName) || empty($admEmail) || empty($admPwd) || empty($admPwdRepeat)){
+            if (empty($admName) || empty($admEmail) || empty($admPwd) || empty($admPwdRepeat)) {
                 header('Location: ?error=emptyinput');
                 exit();
-            } elseif (!filter_var($admEmail, FILTER_VALIDATE_EMAIL)){
+            } elseif (!filter_var($admEmail, FILTER_VALIDATE_EMAIL)) {
                 header('Location: ?error=invaildEmail');
                 exit();
-            } elseif ($admPwd !== $admPwdRepeat){
+            } elseif ($admPwd !== $admPwdRepeat) {
                 header('Location: ?error=passwordsdontmatch');
                 exit();
-            } elseif (strlen($admPwd) < 8){
+            } elseif (strlen($admPwd) < 8) {
                 header('Location: ?error=passwordshort');
                 exit();
-            } elseif ($userModel->getUserByEmail($admEmail)){
+            } elseif ($userModel->getUserByEmail($admEmail)) {
                 header('Location: ?error=emailtaken');
                 exit();
             } else {
@@ -36,8 +37,11 @@ class AdminManageController extends Controller
         $this->renderView('UserDashboard/AdminDashboard');
     }
 
-    
-
+    //method to delete a user
+    public function deleteUser($userId)
+    {
+        $adminModel = $this->loadModel("AdminManage");
+        $adminModel->deleteUser($userId);
+        header('Location: ' . BASE_URL . 'dashboard');
+    }
 }
-
-    

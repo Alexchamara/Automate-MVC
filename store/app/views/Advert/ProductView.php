@@ -7,7 +7,7 @@
 
         <!-- Sign out btn -->
         <div class="flex justify-end gap-8 text-sm mb-4">
-            <a href="#" class="text-customBlue"><i class="fa-regular fa-heart mr-2"></i>Share</a> <a href="#" class="text-customBlue"><i class="fa-solid fa-share-nodes mr-2"></i>Share</a>
+            <a href="#" class="text-customBlue"><i class="fa-regular fa-heart mr-2"></i>Save</a> <a href="#" class="text-customBlue"><i class="fa-solid fa-share-nodes mr-2"></i>Share</a>
         </div>
     </div>
     <div class="ad-top-preview flex flex-col md:flex-row gap-4 items-start  bg-center bg-cover bg-no-repeat">

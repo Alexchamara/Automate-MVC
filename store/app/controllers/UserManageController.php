@@ -17,10 +17,9 @@ class UserManageController extends Controller
         if (isset($_SESSION['userId'])) {
             if ($_SESSION['isAdmin'] == 1) {
                 $userModel = $this->loadModel("AdminManage");
-                $totalUsers = $userModel->getTotalUsers(); 
+                $users = $userModel->getAllUsers();
                 // $data = $userModel->getUserById([$_SESSION['userId']]);
-                $this->renderView('UserDashboard/AdminDashboard', ['totalUsers' => $totalUsers]);
-
+                $this->renderView('UserDashboard/AdminDashboard', ['users' => $users]);
             } else {
                 //method to get user by userId
                 $data = $this->loadModel("UserManage")->getUserById($_SESSION['userId']);
@@ -202,7 +201,6 @@ class UserManageController extends Controller
 
             header('Location: ?updateuserdetails=success');
             exit();
-
         }
 
         // Render the view if not a POST request
@@ -233,4 +231,8 @@ class UserManageController extends Controller
             $_SESSION['createdDate'] = $user['createdAt'];
         }
     }
+
+
+
+    
 }

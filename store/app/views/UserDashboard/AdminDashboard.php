@@ -70,13 +70,13 @@
         <!-- Main Content -->
         <div class="u-dashboard-content-wrapper">
             <!-- Dashboard page -->
-            <div id="dashboard" class="ud-page-wrapper">
+            <div id="dashboard" class="ud-page-wrapper hidden">
                 <div class="ud-dashboard-page">
-                    <h2 class="text-[40px] font-bold text-customBlue">Hello! <?= $userData['name']?></h2>
+                    <h2 class="text-[40px] font-bold text-customBlue">Hello!<?= $userData['name'] ?></h2>
                     <div class="flex gap-10 text-[#252a34] mb-4">
                         <span class="mt-2"><i class="fa-regular fa-user mr-2"></i><?php echo htmlspecialchars($_SESSION['userName']); ?></span>
                         <span class="mt-2"><i class="fa-regular fa-envelope mr-2"></i><?php echo htmlspecialchars($_SESSION['userEmail']); ?></span>
-                        <span class="mt-2"><i class="fa-regular fa-calendar mr-2"></i>Account Created On: <?php echo htmlspecialchars($_SESSION['createdDate']); ?></span>                   
+                        <span class="mt-2"><i class="fa-regular fa-calendar mr-2"></i>Account Created On: <?php echo htmlspecialchars($_SESSION['createdDate']); ?></span>
                     </div>
                     <button class="ud-btn" onclick="loadPage('personalDetails')">Edit my details</button>
                 </div>
@@ -163,8 +163,8 @@
                     <div class="ud-advert-status-wrapper flex-[25%]">
                         <p class="mt-2 mb-2"></i>Status</p>
                         <select name="" id="" class="border border-[#00000026] rounded-[5px]">
-                            <option value="pending">Pending</option>
                             <option value="live">Live</option>
+                            <option value="pending">Pending</option>
                             <option value="rejected">Rejected</option>
                         </select>
                     </div>
@@ -176,6 +176,16 @@
                         </div>
                     </div>
                 </div>
+                <!-- car listings -->
+                <section class="listing-container">
+                    <ul>
+                        <?php foreach ($product as $listing) : ?>
+                            <li class="listing-value-wrapper pl-6">
+                                <?php require '../app/views/Advert/ListingContainer.php'; ?>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                </section>
                 <div class="ud-empty-body">
                     <i class="fa-solid fa-magnifying-glass text-[#6C757D] text-[80px]"></i>
                     <h2 class="text-[#6C757D] text-[40px] font-bold">No adverts found</h2>
@@ -184,7 +194,7 @@
             </div>
 
             <!-- users page -->
-            <div id="users" class="ud-page-wrapper hidden">
+            <div id="users" class="ud-page-wrapper ">
                 <div class="ud-saved-advert-page">
                     <div class="ud-advert-status-wrapper flex-[25%]">
                         <p class="mt-2 mb-2"></i>Status</p>
@@ -201,11 +211,25 @@
                         </div>
                     </div>
                 </div>
-                <div class="ud-empty-body">
-                    <i class="fa-solid fa-magnifying-glass text-[#6C757D] text-[80px]"></i>
-                    <h2 class="text-[#6C757D] text-[40px] font-bold">No users found</h2>
-                    <span class="text-[#6C757D]">We couldn't find any users. Try changing search filters.</span>
-                </div>
+
+                <!-- user lists -->
+                <section class="listing-container">
+                    <?php if (!empty($users)) : ?>
+                        <ul>
+                            <?php foreach ($users as $user): ?>
+                                <li class="listing-value-wrapper">
+                                    <?php require 'UserInfo.php'; ?>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    <?php else: ?>
+                        <div class="ud-empty-body">
+                            <i class="fa-solid fa-magnifying-glass text-[#6C757D] text-[80px]"></i>
+                            <h2 class="text-[#6C757D] text-[40px] font-bold">No users found</h2>
+                            <span class="text-[#6C757D]">We couldn't find any users. Try changing search filters.</span>
+                        </div>
+                    <?php endif; ?>
+                </section>
             </div>
 
             <!-- admin page -->
