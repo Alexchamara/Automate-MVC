@@ -100,7 +100,7 @@
                 <span>Toyota</span></a>
         </div6>
         <div7>
-            <a href="#" class="search-car-btn">View all cars<i class="fa-solid fa-arrow-right" style="color: #ffffff; margin-left: 5px;"></i></a>
+            <a href="<?=BASE_URL . 'allAdverts'?>" class="search-car-btn">View all cars<i class="fa-solid fa-arrow-right" style="color: #ffffff; margin-left: 5px;"></i></a>
         </div7>
     </div>
 
@@ -125,7 +125,7 @@
                         <option value="audi">Audi</option>
                     </select>
                 </div>
-                <button type="submit">Create your advert</button>
+                <button type="submit"><a href="<?=BASE_URL . 'accessToCreateAdvert'?>">Create your advert</a></button>
             </div>
             <div class="sell-img">
                 <img src="img/green-car-side.png" alt="sell-car">

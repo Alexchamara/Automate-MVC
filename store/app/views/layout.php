@@ -4,13 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <link rel="icon" type="image/png" href="<?=BASE_URL?>img/logo.png">
+    <title>Automate</title>
+    <link rel="icon" type="image/png" href="<?= BASE_URL ?>img/logo.png">
     <!-- custom css link -->
-    <link rel="stylesheet" href="<?=BASE_URL?>style/up_down.css">
-    <link rel="stylesheet" href="<?=BASE_URL?>style/style.css">
-    <link rel="stylesheet" href="<?=BASE_URL?>style/advert.css">
-    <link rel="stylesheet" href="<?=BASE_URL?>style/sign.css">
-    <link rel="stylesheet" href="<?=BASE_URL?>style/main.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>style/up_down.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>style/style.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>style/advert.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>style/sign.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>style/main.css">
     <!-- boxicon link -->
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
     <!-- remixicon link -->
@@ -24,26 +25,26 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/brands.min.css">
     <!-- jquery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="<?=BASE_URL?>js/script.js" defer></script>
-    <script src="<?=BASE_URL?>js/navigation.js" defer></script>
+    <script src="<?= BASE_URL ?>js/script.js" defer></script>
+    <script src="<?= BASE_URL ?>js/navigation.js" defer></script>
 </head>
 
 <body>
     <!-- Navigation Bar -->
     <header class="nav" id="nav">
-        <a href="<?=BASE_URL . 'home'?>" class="logo">automate</a>
+        <a href="<?= BASE_URL . 'home' ?>" class="logo">automate</a>
 
         <ul class="navlist">
-            <li><a href="<?=BASE_URL . 'allAdverts'?>" class="menu-link">Search cars</a></li>
-            <li><a href="<?=BASE_URL . 'service'?>" class="menu-link">Services</a></li>
-            <li><a href="<?=BASE_URL . 'about'?>" class="menu-link">About us</a></li>
+            <li><a href="<?= BASE_URL . 'allAdverts' ?>" class="menu-link">Search cars</a></li>
+            <li><a href="<?= BASE_URL . 'service' ?>" class="menu-link">Services</a></li>
+            <li><a href="<?= BASE_URL . 'about' ?>" class="menu-link">About us</a></li>
             <?php
             $link = isset($_SESSION['userName']) ? BASE_URL . 'dashboard' : 'sign';
             $linkText = isset($_SESSION['userName']) ? "My Account (" . explode(' ', $_SESSION['userName'])[0] . ")" : "Sign in";
             echo "<a href=\"{$link}\" class=\"menu-link dropdown-toggle\">{$linkText}</a>";
             ?>
             <div>
-                <li><a href="<?=BASE_URL . 'accessToCreateAdvert'?>" class="Ads-button Ads-mob" id="Ads-mob">Create Ads</a></li>
+                <li><a href="<?= BASE_URL . 'accessToCreateAdvert' ?>" class="Ads-button Ads-mob" id="Ads-mob">Create Ads</a></li>
                 <div class="icons">
                     <a href="https://www.instagram.com/alex.chamara?igsh=MTF4MmdqeHA5MDNtOA%3D%3D&utm_source=qr" target="_blank"><i class="ri-instagram-line"></i></a>
                     <a href="https://www.facebook.com/profile.php?id=100070128788033&mibextid=LQQJ4d" target="_blank"><i class="ri-facebook-circle-line"></i></a>
@@ -57,12 +58,9 @@
 
     <!-- Include the view file -->
     <?php
-    // Ensure $viewPath is set correctly
     if (isset($viewPath)) {
-        // Construct the full path to the view file
         $viewFilePath = "../app/views/{$viewPath}.php";
 
-        // Check if the view file exists before including it
         if (file_exists($viewFilePath)) {
             require_once $viewFilePath;
         } else {
@@ -253,6 +251,12 @@
             }
         });
     </script> -->
+
+    <script>
+        if (window.location.pathname === "../app/views/Home.php") {
+            document.title = "Home | Automate";
+        }
+    </script>
 </body>
 
 </html>

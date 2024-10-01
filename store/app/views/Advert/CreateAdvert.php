@@ -21,7 +21,7 @@
     </div>
 
     <!-- Add vehicle informations -->
-    <form action="createAdvert" method="POST" id="multi-step-form">
+    <form action="createAdvert" method="POST" id="multi-step-form" enctype="multipart/form-data">
         <div class="form-step active form_1">
             <h2>Make & model</h2>
             <div class="sec-box">
